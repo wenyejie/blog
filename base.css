@@ -101,9 +101,15 @@ dfn {
   font-style: italic;
 }
 
-h1 {
-  font-size: 2em;
-  margin: 0.67em 0;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+  margin: 0;
+  font-size: inherit;
 }
 
 mark {
@@ -410,6 +416,7 @@ ol.clearfix > li {
 
 .container {
   max-width: 100%;
+  overflow: hidden;
 }
 
 .content {
