@@ -3,8 +3,8 @@
 ## 报错信息如下
 
 ```text
-Uncaught DOMException: Failed to execute 'toDataURL' on 'HTMLCanvasElement': Tainted canvases may not be exported.
-       at HTMLImageElement.images.onload (eval at 440 (http://192.168.18.137:8080/38.js:247:1), <anonymous>:158:26)
+Uncaught DOMException: Failed to execute 'toDataURL' on 'HTMLCanvasElement': Tainted canvases may not be exported. 
+at HTMLImageElement.images.onload (eval at 440 (http://192.168.xx.xxx:8080/38.js:247:1), <anonymous>:158:26)
 ```
 
 ## 解决方法
