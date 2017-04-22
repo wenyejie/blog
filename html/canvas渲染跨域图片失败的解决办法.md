@@ -7,7 +7,7 @@ Uncaught DOMException: Failed to execute 'toDataURL' on 'HTMLCanvasElement': Tai
 `
 
 ## 解决方法
-```ecmascript 6
+```javascript
 // 生成图片
 const images = document.createElement('img');
 
