@@ -1,5 +1,5 @@
 # ngRepeat根据某个属性去重
-```ecmascript 6
+```javascript
 angular
   .module('app')
   .filter('unique', uniqueFilter);
@@ -13,10 +13,9 @@ function uniqueFilter () {
     let result = [], keys = [];
     angular.forEach(lists, function (item) {
       const key = item[name];
-      if (keys.indexOf(key) === -1) {
-        keys.push(key);
-        result.push(item);
-      }
+      if (keys.indexOf(key) >= 0) return false;
+      keys.push(key);
+      result.push(item);
     });
     return result;
   }
