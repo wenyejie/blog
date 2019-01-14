@@ -1,0 +1,46 @@
+<!doctype html>
+<!--
+ - @author: Storm
+ - @date: 2019-01-11
+ - @email: wenyejie@foxmail.com
+ -->
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <title>03-插入排序</title>
+</head>
+<body>
+  <script type="module">
+  const data = [4, 1, 8, 5, 9, 10, 0]
+
+  /**
+   * 插入排序
+   * 参考文档: https://github.com/hustcc/JS-Sorting-Algorithm/blob/master/3.insertionSort.md
+   * @param array {Array} 排序数组
+   * @return {Array} 排序后的数组
+   */
+  const selectionSort = (array) => {
+    const length = array.length
+    const data = array.slice()
+    let temp = 0
+
+    for (let i = 0; i < length - 1; i++) {
+      for (let j = i + 1; j < length - 1; j++) {
+        console.log(`第${i}次循环, 第${j}次比较: `, data[i], data[j])
+        if (data[i] > data[j]) {
+          temp = data[i]
+          data[i] = data[j]
+          data[j] = temp
+        }
+      }
+    }
+
+    return data
+  }
+
+  console.log(`旧数据: ${data}`)
+
+  console.log(`新数据: ${selectionSort(data)}`)
+  </script>
+</body>
+</html>
