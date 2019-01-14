@@ -11,7 +11,7 @@
 </head>
 <body>
   <script type="module">
-  const data = [4, 1, 8, 5, 9, 10, 0]
+  const data = [4, 1, 8, 6, 5, 9, 10, 0]
 
   /**
    * 插入排序
@@ -19,20 +19,21 @@
    * @param array {Array} 排序数组
    * @return {Array} 排序后的数组
    */
-  const selectionSort = (array) => {
+  const insertionSort = (array) => {
     const length = array.length
     const data = array.slice()
-    let temp = 0
+    let prevIndex = 0;
+    let current = 0
 
-    for (let i = 0; i < length - 1; i++) {
-      for (let j = i + 1; j < length - 1; j++) {
-        console.log(`第${i}次循环, 第${j}次比较: `, data[i], data[j])
-        if (data[i] > data[j]) {
-          temp = data[i]
-          data[i] = data[j]
-          data[j] = temp
-        }
+    for (let i = 1; i < length; i++) {
+      prevIndex = i - 1
+      current = data[i]
+      while (prevIndex >= 0 && data[prevIndex] > current) {
+        console.log(`第${i}次循环, 第${prevIndex}次比较: `, data[prevIndex], current, JSON.stringify(data))
+        data[prevIndex + 1] = data[prevIndex]
+        prevIndex--
       }
+      data[prevIndex + 1] = current
     }
 
     return data
@@ -40,7 +41,7 @@
 
   console.log(`旧数据: ${data}`)
 
-  console.log(`新数据: ${selectionSort(data)}`)
+  console.log(`新数据: ${insertionSort(data)}`)
   </script>
 </body>
 </html>
