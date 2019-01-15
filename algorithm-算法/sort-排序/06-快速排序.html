@@ -21,11 +21,8 @@
    * @param right {Number?} 下标
    * @return {Array<Number>} 排序后的数组
    */
-  const quickSort = (array, left, right) => {
-    const length = array.length
+  const quickSort = (array, left = 0, right = array.length - 1) => {
     let partitionIndex = 0
-    left = typeof left !== 'number' ? 0 : left
-    right = typeof right !== 'number' ? length - 1 : right
 
     if (left < right) {
       partitionIndex = partition(array, left, right)
