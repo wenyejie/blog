@@ -1,0 +1,50 @@
+<!doctype html>
+<!--
+ - @author: Storm
+ - @date: 2019-01-11
+ - @email: wenyejie@foxmail.com
+ -->
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <title>04-希尔排序</title>
+</head>
+<body>
+  <script type="module">
+  const data = [4, 1, 8, 6, 5, 9, 10, 0]
+
+  /**
+   * 希尔排序
+   * 参考文档: https://github.com/hustcc/JS-Sorting-Algorithm/blob/master/3.insertionSort.md
+   * @param array {Array} 排序数组
+   * @return {Array} 排序后的数组
+   */
+  const shellSort = (array) => {
+    const length = array.length
+    let gap = 1
+    let temp = 0
+    while (gap < length / 3) {
+      gap = gap * 3 + 1
+    }
+
+    for (; gap > 0; gap = Math.floor(gap / 3)) {
+      for (let i = gap; i < length; i++) {
+        temp = array[i]
+        let j = i - gap
+        for (; j >= 0 && array[j] > temp; j = j - gap) {
+          console.log(`第${i}次循环, 第${j}次比较: `, array[j], array[j], JSON.stringify(array))
+          array[j + gap] = array[j]
+        }
+        array[j + gap] = temp
+      }
+    }
+
+    return array
+  }
+
+  console.log(`旧数据: ${data}`)
+
+  console.log(`新数据: ${shellSort(data)}`)
+  </script>
+</body>
+</html>
