@@ -1,0 +1,78 @@
+<!doctype html>
+<!--
+ - @author: Storm
+ - @date: 2019-01-11
+ - @email: wenyejie@foxmail.com
+ -->
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <title>06-快速排序</title>
+</head>
+<body>
+  <script type="module">
+  import data from './data.js'
+
+  /**
+   * 快速排序
+   * 参考文档: https://github.com/wenyejie/JS-Sorting-Algorithm/blob/master/5.mergeSort.md
+   * @param array {Array<Number>} 排序数组
+   * @param left {Number?} 下标
+   * @param right {Number?} 下标
+   * @return {Array<Number>} 排序后的数组
+   */
+  const quickSort = (array, left, right) => {
+    const length = array.length
+    let partitionIndex = 0
+    left = typeof left !== 'number' ? 0 : left
+    right = typeof right !== 'number' ? length - 1 : right
+
+    if (left < right) {
+      partitionIndex = partition(array, left, right)
+      quickSort(array, left, partitionIndex - 1)
+      quickSort(array, partitionIndex + 1, right)
+    }
+    return array
+
+  }
+
+  /**
+   * 进行分区操作
+   * @param array {Array<Number>} 排序数组
+   * @param left {Number?} 下标
+   * @param right {Number} 下标
+   * @return {Number} 下标
+   */
+  const partition = (array, left, right) => {
+    let index = left + 1
+
+    for (let i = index; i <= right; i++) {
+      if (array[i] < array[left]) {
+        swap(array, i, index)
+        index++
+      }
+    }
+
+    swap(array, left, index - 1)
+    return index - 1
+  }
+
+  /**
+   * 交换两个数组中的值
+   * @param {Array<Number>} array 数组
+   * @param {Number} i 下标
+   * @param {Number} j 小标
+   * @return {VoidFunction}
+   */
+  const swap = (array, i, j) => {
+    const temp = array[i]
+    array[i] = array[j]
+    array[j] = temp
+  }
+
+  console.log(`旧数据: ${data}`)
+
+  console.log(`新数据: ${quickSort(data)}`)
+  </script>
+</body>
+</html>
