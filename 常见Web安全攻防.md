@@ -1,6 +1,5 @@
 # 常见Web安全攻防
 
-## 导航
 - [XSS](#一-xss)
 - [CSRF](#二-csrf)
 - [点击劫持](#三-clickjacking)
