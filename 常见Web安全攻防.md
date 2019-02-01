@@ -1,12 +1,12 @@
 # 常见Web安全攻防
 
 ## 导航
-- [XSS](#-xss)
-- [CSRF](#-csrf)
-- [点击劫持](#-clickjacking)
-- [URL跳转漏洞](#-url)
-- [SQL注入](#-sql)
-- OS命令注入
+- [XSS](#一-xss)
+- [CSRF](#二-csrf)
+- [点击劫持](#三-clickjacking)
+- [URL跳转漏洞](#四-url跳转漏洞)
+- [SQL注入](#五-sql注入)
+- [OS命令注入](#六-os命令注入攻击)
 
 ## 一. XSS
 
