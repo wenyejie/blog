@@ -1,0 +1,81 @@
+<!doctype html>
+<!--
+ - @author: Storm
+ - @date: 2019-02-18
+ - @email: wenyejie@foxmail.com
+ -->
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <title>07-堆排序</title>
+</head>
+<body>
+  <script type="module">
+  import data from './data.js'
+
+  let length
+
+  /**
+   * 堆排序
+   * 参考文档: https://github.com/wenyejie/JS-Sorting-Algorithm/blob/master/7.heapSort.md
+   * @param array {Array} 原始数据
+   * @return {Array} 排序后的数据
+   */
+  const heapSort = (array) => {
+    buildMaxHeap(array)
+
+    length = array.length
+
+    for (let i = array.length - 1; i > 0; i--) {
+      swap(array, 0, i)
+      length--
+      heapify(array, 0)
+    }
+
+    return array
+  }
+
+  const buildMaxHeap = (array) => {
+    length = array.length
+    for (let i = Math.floor(length / 2); i >= 0; i--) {
+      heapify(array, i)
+    }
+  }
+
+  const heapify = (array, i) => {
+    const left = 2 * i + 1
+    const right = 2 * i + 2
+    let largest = i
+
+    if (left < length && array[left] > array[largest]) {
+      largest = left
+    }
+
+    if (right < length && array[right] > array[largest]) {
+      largest = right
+    }
+
+    if (largest !== i) {
+      swap(array, i, largest)
+      heapify(array, largest)
+    }
+  }
+
+  /**
+   * 交换数组两个下标的值
+   * @param array {Array} 数组
+   * @param i {Number} 下标
+   * @param j {Number} 下标
+   */
+  const swap = (array, i, j) => {
+    const temp = array[i]
+    array[i] = array[j]
+    array[j] = temp
+  }
+
+  console.log(`旧数据: ${data}`)
+
+  console.log(`新数据: ${heapSort(data)}`)
+  </script>
+</body>
+</html>

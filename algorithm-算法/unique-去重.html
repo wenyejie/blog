@@ -1,0 +1,25 @@
+<!doctype html>
+<!--
+ - @author: Storm
+ - @date: 2019-02-18
+ - @email: wenyejie@foxmail.com
+ -->
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <title>unique-去重</title>
+</head>
+<body>
+
+  <script type="module">
+  const data = [5, 1, 5, 3, 2, 34, 5, 6, 90, 7]
+
+  console.log([...new Set(data)])
+
+  const unique = (array) => {
+    return array.sort().filter((value, index) => value !== array[index - 1])
+  }
+  console.log(unique(data))
+  </script>
+</body>
+</html>
