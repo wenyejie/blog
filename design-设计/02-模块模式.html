@@ -1,0 +1,32 @@
+<!doctype html>
+<!--
+ - @author: Storm
+ - @date: 2019-02-25
+ - @email: wenyejie@foxmail.com
+ -->
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <title>02-模块模式</title>
+</head>
+<body>
+  <script type="module">
+  // 封装大部分代码, 只暴露必需接口
+
+
+  const Demo = (function (name, age) {
+    function sayHi () {
+      console.log(`${name}: Hi!`)
+    }
+    return {
+      name,
+      age,
+      sayHi
+    }
+  })()
+
+  window.Demo = Demo
+  window.demo = Demo('Storm', 29)
+  </script>
+</body>
+</html>

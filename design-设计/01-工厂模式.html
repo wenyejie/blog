@@ -1,0 +1,29 @@
+<!doctype html>
+<!--
+ - @author: Storm
+ - @date: 2019-02-25
+ - @email: wenyejie@foxmail.com
+ -->
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <title>01-工厂模式</title>
+</head>
+<body>
+  <script type="module">
+
+  function Demo (name, age) {
+    const obj = new Object(null)
+    obj.name = name
+    obj.age = age
+    obj.sayHi = function () {
+      console.log(`${this.name}: Hi!`)
+    }
+    return obj
+  }
+
+  window.Demo = Demo
+  window.demo = Demo('Storm', 29)
+  </script>
+</body>
+</html>
