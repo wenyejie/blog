@@ -1,0 +1,28 @@
+<!doctype html>
+<!--
+ - @author: Storm
+ - @date: 2019-02-26
+ - @email: wenyejie@foxmail.com
+ -->
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <title>Map 与 WeakMap</title>
+</head>
+<body>
+  <script>
+  const obj = [1, 2, 3, 4, 5, 6]
+  const map = new Map([[1, 2]])
+  const weakMap = new WeakMap()
+
+  for (let key in obj) {
+    console.log(key, obj[key])
+  }
+  for (let value of obj) {
+    console.log(value)
+  }
+
+  // To be continuing
+  </script>
+</body>
+</html>
