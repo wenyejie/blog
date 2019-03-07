@@ -1,0 +1,132 @@
+<!doctype html>
+<!--
+ - @author: Storm
+ - @date: 2019-03-07
+ - @email: wenyejie@foxmail.com
+ -->
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <title>EventBus</title>
+</head>
+<body>
+  <div id="app">
+    <div>listVal: {{ listVal }}</div>
+    <button type="button" @click="changeValue">Change Value</button>
+    <list v-model="listVal" :list="list" />
+  </div>
+  <script type="module">
+  import Vue from 'https://cdn.bootcss.com/vue/2.6.6/vue.esm.browser.js'
+
+  // 事件公交, 俗称小型的vuex/redux,
+  const eventBus = new Vue()
+
+  Vue.component('List', {
+    props: {
+      list: {
+        type: Array,
+        default: () => []
+      },
+      value: {
+        type: String,
+        default: undefined
+      }
+    },
+    watch: {
+      value (val, oldVal) {
+        if (val === oldVal || val === this.innerVal) {
+          return
+        }
+        this.innerVal = val
+        eventBus.$emit('valueChange', val)
+      }
+    },
+    data () {
+      return {
+        innerVal: this.value
+      }
+    },
+    created () {
+      eventBus.$on('valueChange', this.valueChange)
+    },
+    methods: {
+      valueChange (val) {
+        if (val !== this.innerVal) {
+          this.$emit('input', val)
+        }
+      }
+    },
+    template: `<ul><item v-for="item in list" :key="item.id" :data="item" /></ul>`
+  })
+
+  Vue.component('Item', {
+    props: {
+      data: {
+        type: Object,
+        default: () => {}
+      }
+    },
+    data () {
+      return {
+        checked: false
+      }
+    },
+    methods: {
+      handleChange (event) {
+        if (event.target.checked) {
+          eventBus.$emit('valueChange', this.data.id)
+        }
+      },
+      valueChange (value) {
+        this.checked = value === this.data.id
+      }
+    },
+    created () {
+      eventBus.$on('valueChange', this.valueChange)
+    },
+    template: `<li>
+  <h3>
+    <label>
+      <input type="radio" name="item" :checked="checked" @change="handleChange">{{data.name}}
+    </label>
+  </h3>
+  <list v-if="data.children" :list="data.children" />
+</li>`
+  })
+
+  const vm = new Vue({
+    el: '#app',
+    data: {
+      listVal: undefined,
+      list: [
+        {
+          id: '1',
+          name: 'one',
+          children: [
+            {
+              id: '1.1',
+              name: 'one.one',
+              children: [
+                {
+                  id: '1.1.1',
+                  name: 'one.one.one'
+                }
+              ]
+            }
+          ]
+        },
+        {
+          id: '2',
+          name: 'two'
+        }
+      ]
+    },
+    methods: {
+      changeValue () {
+        this.listVal = '1.1'
+      }
+    }
+  })
+  </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!doctype html>
+<!--
+ - @author: Storm
+ - @date: 2019-03-07
+ - @email: wenyejie@foxmail.com
+ -->
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <title>nextTick</title>
+</head>
+<body>
+  <div id="app">
+    <input v-model="message">
+    <h1>{{ message }}</h1>
+    <button type="button" @click="demo">nextTick Test</button>
+  </div>
+  <script type="module">
+  import Vue from 'https://cdn.bootcss.com/vue/2.6.6/vue.esm.browser.js'
+
+  const vm = new Vue({
+    el: '#app',
+    data: {
+      message: 'Hello World!'
+    },
+    methods: {
+      demo () {
+        this.message = 'Hello Vue!'
+        debugger
+        this.$nextTick()
+          .then(() => {
+            console.log('22222')
+          })
+      }
+    }
+  })
+  </script>
+</body>
+</html>
