@@ -11,28 +11,51 @@
 </head>
 <body>
   <div id="app">
-    <input v-model="message">
-    <h1>{{ message }}</h1>
-    <button type="button" @click="demo">nextTick Test</button>
+    <h1 id="title">0</h1>
+    <button type="button" id="btn">Click</button>
   </div>
   <script type="module">
-  import Vue from 'https://cdn.bootcss.com/vue/2.6.6/vue.esm.browser.js'
+  const nextTick = (function () {
+    const callbackQueue = []
 
-  const vm = new Vue({
-    el: '#app',
-    data: {
-      message: 'Hello World!'
-    },
-    methods: {
-      demo () {
-        this.message = 'Hello Vue!'
-        debugger
-        this.$nextTick()
-          .then(() => {
-            console.log('22222')
-          })
+    let resolve
+
+    const call = () => {
+      const cbs = callbackQueue.splice(0)
+      cbs.forEach(cb => cb())
+    }
+
+    const isPromise = typeof Promise
+
+    return function (cb) {
+
+      if (cb) {
+        callbackQueue.push(cb)
+      }
+
+      if (isPromise) {
+        resolve = Promise.resolve()
+        resolve.then(call)
+      } else {
+        setTimeout(call, 0)
+      }
+      if (!cb && isPromise) {
+        return resolve
       }
     }
+  }())
+
+  const $title = document.querySelector('#title')
+  const $btn = document.querySelector('#btn')
+  let counter = 0
+
+  $btn.addEventListener('click', () => {
+    console.log('change start', $title.innerHTML)
+    $title.innerHTML = `${++counter}`
+    nextTick()
+      .then(() => {
+        console.log('change end', $title.innerHTML)
+      })
   })
   </script>
 </body>
