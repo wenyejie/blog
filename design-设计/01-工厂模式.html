@@ -12,6 +12,8 @@
 <body>
   <script>
 
+  // 每个实例之间没有之间关系
+  // 没有共同父类, 不能公用方法.
   function Demo (name, age) {
     const obj = new Object(null)
     obj.name = name
@@ -22,7 +24,8 @@
     return obj
   }
 
-  window.demo = Demo('Storm', 29)
+  const demo = Demo('Storm', 29)
+  console.log(demo)
   </script>
 </body>
 </html>
