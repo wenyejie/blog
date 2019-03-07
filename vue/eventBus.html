@@ -19,7 +19,18 @@
   import Vue from 'https://cdn.bootcss.com/vue/2.6.6/vue.esm.browser.js'
 
   // 事件公交, 俗称小型的vuex/redux,
-  const eventBus = new Vue()
+  const eventBus = new Vue({
+    data () {
+      return {
+        value: undefined
+      }
+    },
+    watch: {
+      value (val) {
+        this.$emit('change', val)
+      }
+    }
+  })
 
   Vue.component('List', {
     props: {
@@ -38,7 +49,7 @@
           return
         }
         this.innerVal = val
-        eventBus.$emit('valueChange', val)
+        eventBus.value = val
       }
     },
     data () {
@@ -47,7 +58,8 @@
       }
     },
     created () {
-      eventBus.$on('valueChange', this.valueChange)
+      eventBus.$on('change', this.valueChange)
+      eventBus.value = this.value
     },
     methods: {
       valueChange (val) {
@@ -74,7 +86,7 @@
     methods: {
       handleChange (event) {
         if (event.target.checked) {
-          eventBus.$emit('valueChange', this.data.id)
+          eventBus.value = this.data.id
         }
       },
       valueChange (value) {
@@ -82,7 +94,10 @@
       }
     },
     created () {
-      eventBus.$on('valueChange', this.valueChange)
+      eventBus.$on('change', this.valueChange)
+      if (eventBus.value) {
+        this.valueChange(eventBus.value)
+      }
     },
     template: `<li>
   <h3>
@@ -97,7 +112,7 @@
   const vm = new Vue({
     el: '#app',
     data: {
-      listVal: undefined,
+      listVal: '1',
       list: [
         {
           id: '1',
