@@ -4,6 +4,7 @@
  * @email: wenyejie@foxmail.com
  */
 import { observer } from './observer.js'
+import { compile } from './compile.js'
 
 class Mvvm {
   constructor (options) {
@@ -16,7 +17,7 @@ class Mvvm {
     }
     this.$watcher = {}
     observer(this, data)
-    // compile(proxy, this.$el)
+    compile(this, this.$el)
   }
 }
 
