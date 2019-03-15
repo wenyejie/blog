@@ -1,0 +1,28 @@
+<!doctype html>
+<!--
+ - @author: Storm
+ - @date: 2019-03-15
+ - @email: wenyejie@foxmail.com
+ -->
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <title>Demo</title>
+</head>
+<body>
+  <script>
+  const frUpper = 'aaa bbb ccc ddd eee fff ggg'.split(' ')
+  let firstUpperStr = ''
+  let tempStrEnd
+  for (let i = 0; i < frUpper.length; i++) {
+    tempStrEnd = '1'
+    for (let j = 0; j < frUpper[1].length; j++) {
+      console.log(frUpper[i][j])
+      tempStrEnd += frUpper[i][j].toLocaleUpperCase()
+      console.log(tempStrEnd)
+    }
+    console.log(tempStrEnd + 'wufan')
+  }
+  </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!doctype html>
+<!--
+ - @author: Storm
+ - @date: 2019-03-14
+ - @email: wenyejie@foxmail.com
+ -->
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <title>随机生成验证码</title>
+</head>
+<body>
+
+  <script>
+  const randomStr = (length = 6) => {
+    const str = 'abcdefghijklmnopqrstuvwxyz0123456789'
+    let result = ''
+    const strLength = str.length
+    for (let i = 0; i < length; i++) {
+      result += str.charAt(Math.round(Math.random() * strLength))
+    }
+    return result
+  }
+
+  console.log(randomStr())
+  </script>
+</body>
+</html>

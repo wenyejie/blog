@@ -1,0 +1,46 @@
+<!doctype html>
+<!--
+ - @author: Storm
+ - @date: 2019-03-14
+ - @email: wenyejie@foxmail.com
+ -->
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <title>斐波那契数列</title>
+</head>
+<body>
+  <script>
+  window.onload = () => {
+
+    // 0、1、2、3、5、8、13、21、34
+    // 0  1  2 3  4  5  6   7  8
+    /*const fibonacciSequence = (n) => {
+      if (n <= 2) {
+        return n
+      }
+      return fibonacciSequence(n - 1) + fibonacciSequence(n - 2)
+    }*/
+
+    const fibonacciSequence = (n) => {
+      if (n <= 3) {
+        return n
+      }
+      let prev1 = 2
+      let prev2 = 1
+      let temp
+      for (let i = 3; i < n; i++) {
+        temp = prev1
+        prev1 = prev1 + prev2
+        prev2 = temp
+      }
+      return prev1 + prev2
+    }
+    console.time('test')
+    console.log(fibonacciSequence(30))
+    console.timeEnd('test')
+
+  }
+  </script>
+</body>
+</html>
