@@ -14,12 +14,24 @@
   <script type="module">
   const data = [5, 1, 5, 3, 2, 34, 5, 6, 90, 7]
 
-  console.log([...new Set(data)])
+  // console.log([...new Set(data)])
 
   const unique = (array) => {
-    return array.sort().filter((value, index) => value !== array[index - 1])
+    // return array.sort().filter((value, index) => value !== array[index - 1])
+    const obj = {}
+    const result = []
+
+    for (let value of array) {
+      if (!obj[value]) {
+        obj[value] = true
+        result.push(value)
+      }
+    }
+    return result
   }
+  console.time('test')
   console.log(unique(data))
+  console.timeEnd('test')
   </script>
 </body>
 </html>

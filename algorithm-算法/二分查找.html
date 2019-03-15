@@ -10,6 +10,30 @@
   <title>二分查找</title>
 </head>
 <body>
+  <script>
+  const data = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
 
+  const binarySearch = (array, value) => {
+    let start = 0
+    let end = array.length - 1
+    let middle
+    while (start <= end) {
+      console.log(`start: ${start}, end: ${end}`)
+      middle = start + Math.floor((end - start) / 2)
+      if (array[middle] < value) {
+        start = middle + 1
+      } else if (array[middle] > value) {
+        end = middle - 1
+      } else {
+        return middle
+      }
+    }
+    return -1
+  }
+
+  console.time('test')
+  console.log(binarySearch(data, 7))
+  console.timeEnd('test')
+  </script>
 </body>
 </html>
