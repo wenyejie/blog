@@ -1,0 +1,41 @@
+<!doctype html>
+<!--
+ - @author: Storm
+ - @date: 2019-03-15
+ - @email: wenyejie@foxmail.com
+ -->
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <title>统计次数</title>
+</head>
+<body>
+  <script>
+  const string = 'fdjksafjdisjfdaljfdioqwhjfdopasfdajjdjelwelnfdfd'
+  const findMax = (string) => {
+    const result = {}
+    const length = string.length
+    if (length === 0) {
+      return result
+    }
+
+    let key
+
+    for (let i = 0; i < length; i++) {
+      key = string[i]
+      if (!result[key]) {
+        result[key] = 1
+      } else {
+        result[key] += 1
+      }
+    }
+
+    return result
+  }
+
+  console.time('test')
+  console.log(findMax(string))
+  console.timeEnd('test')
+  </script>
+</body>
+</html>
