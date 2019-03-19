@@ -11,18 +11,27 @@
 </head>
 <body>
   <script>
-  const frUpper = 'aaa bbb ccc ddd eee fff ggg'.split(' ')
-  let firstUpperStr = ''
-  let tempStrEnd
-  for (let i = 0; i < frUpper.length; i++) {
-    tempStrEnd = '1'
-    for (let j = 0; j < frUpper[1].length; j++) {
-      console.log(frUpper[i][j])
-      tempStrEnd += frUpper[i][j].toLocaleUpperCase()
-      console.log(tempStrEnd)
+  const pattern = 'aabbc'
+  const str = ' 北京 北京 杭州 杭州 上海'
+
+  const test = (pattern, str) => {
+    const strAry = str.trim().split(/\s/)
+    if (strAry.length !== pattern.length) {
+      return false
     }
-    console.log(tempStrEnd + 'wufan')
+    const result = {}
+    let key
+    for (let i = 0; i < pattern.length; i++) {
+      key = pattern[i]
+      if (result[key] && result[key] !== strAry[i]) {
+        return false
+      } else {
+        result[key] = strAry[i]
+      }
+    }
+    return true
   }
+  console.log(test(pattern, str))
   </script>
 </body>
 </html>
