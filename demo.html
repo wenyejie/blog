@@ -11,27 +11,31 @@
 </head>
 <body>
   <script>
-  const pattern = 'aabbc'
-  const str = ' 北京 北京 杭州 杭州 上海'
+  class A {
+    constructor () {
 
-  const test = (pattern, str) => {
-    const strAry = str.trim().split(/\s/)
-    if (strAry.length !== pattern.length) {
-      return false
     }
-    const result = {}
-    let key
-    for (let i = 0; i < pattern.length; i++) {
-      key = pattern[i]
-      if (result[key] && result[key] !== strAry[i]) {
-        return false
-      } else {
-        result[key] = strAry[i]
+  }
+
+  const singletonify = OriginalClass => {
+    let instance = new OriginalClass()
+
+    class NewClass extends OriginalClass {
+      constructor () {
+        super()
+        return instance
       }
     }
-    return true
+
+    Object.setPrototypeOf(instance, NewClass.prototype)
+
+    return NewClass
   }
-  console.log(test(pattern, str))
+
+  const SingleA = singletonify(A)
+
+  const a1 = new SingleA()
+  const a2 = new SingleA()
   </script>
 </body>
 </html>
