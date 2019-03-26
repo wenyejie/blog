@@ -10,32 +10,29 @@
   <title>Demo</title>
 </head>
 <body>
+  <div id="app">
+    <button type="button" @click="handleClick()">button</button>
+  </div>
+  <script src="https://unpkg.com/vue@2.6.10/dist/vue.common.dev.js"></script>
   <script>
-  class A {
-    constructor () {
-
-    }
-  }
-
-  const singletonify = OriginalClass => {
-    let instance = new OriginalClass()
-
-    class NewClass extends OriginalClass {
-      constructor () {
-        super()
-        return instance
+  const vm = new Vue({
+    el: '#app',
+    data () {
+      return {
+        content: 'hello world'
       }
+    },
+    methods: {
+      handleClick ($event) {
+        console.log('click', $event)
+      }
+    },
+    created () {
+
     }
+  })
 
-    Object.setPrototypeOf(instance, NewClass.prototype)
-
-    return NewClass
-  }
-
-  const SingleA = singletonify(A)
-
-  const a1 = new SingleA()
-  const a2 = new SingleA()
+  vm.$mount('#app')
   </script>
 </body>
 </html>
