@@ -1,0 +1,37 @@
+<!doctype html>
+<!--
+ - @author: Storm
+ - @date: 2019-03-26
+ - @email: wenyejie@foxmail.com
+ -->
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <title>整数反转</title>
+</head>
+<body>
+  <script>
+/**
+ * @param {number} number
+ * @return {number}
+ */
+const reverse = number => {
+
+  let result = parseInt((number + '').split('').reverse().join(''))
+
+  result = number >= 0 ? result : -result
+
+  if (result > 2147483647 || result < -2147483648) {
+    return 0
+  }
+
+  return result
+
+}
+
+  console.time('test')
+  console.log(reverse(1534236469))
+  console.timeEnd('test')
+  </script>
+</body>
+</html>
