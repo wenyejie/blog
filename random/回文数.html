@@ -1,0 +1,39 @@
+<!doctype html>
+<!--
+ - @author: Storm
+ - @date: 2019-03-27
+ - @email: wenyejie@foxmail.com
+ -->
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <title>回文数</title>
+</head>
+<body>
+  <script>
+  /**
+   * @param {number} num
+   * @return {boolean}
+   */
+  const isPalindrome = num => {
+    if (num < 0) {
+      return false
+    }
+
+    const length = (num + '').length
+    const halve = Math.ceil(length / 2)
+
+    for (let i = 1; i <= halve; i++) {
+      if (Math.floor(num % Math.pow(10, i) / Math.pow(10, i - 1)) !== Math.floor(num / Math.pow(10, length - i) % 10)) {
+        return  false
+      }
+    }
+    return true
+  }
+
+  console.time('test')
+  console.log(isPalindrome(121))
+  console.timeEnd('test')
+  </script>
+</body>
+</html>
