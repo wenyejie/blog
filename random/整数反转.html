@@ -11,23 +11,23 @@
 </head>
 <body>
   <script>
-/**
- * @param {number} number
- * @return {number}
- */
-const reverse = number => {
+  /**
+   * @param {number} number
+   * @return {number}
+   */
+  const reverse = number => {
 
-  let result = parseInt((number + '').split('').reverse().join(''))
+    let result = parseInt((number + '').split('').reverse().join(''))
 
-  result = number >= 0 ? result : -result
+    result = number >= 0 ? result : -result
 
-  if (result > 2147483647 || result < -2147483648) {
-    return 0
+    if (result > 2147483647 || result < -2147483648) {
+      return 0
+    }
+
+    return result
+
   }
-
-  return result
-
-}
 
   console.time('test')
   console.log(reverse(1534236469))
