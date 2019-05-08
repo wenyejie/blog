@@ -1,0 +1,26 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "description": "blog",
+  "main": "http.js",
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "^3.4.5"
+  },
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wenyejie/blog.git"
+  },
+  "keywords": [
+    "blog"
+  ],
+  "author": "wenyejie",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wenyejie/blog/issues"
+  },
+  "homepage": "https://github.com/wenyejie/blog#readme"
+}

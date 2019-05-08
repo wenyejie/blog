@@ -58,16 +58,6 @@ export const toNumber = (val) => {
   return Number.isNaN(num) ? val : num
 }
 
-export const remove = (array, item) => {
-  if (Array.isArray(array) && array.length) {
-    const index = array.indexOf(item)
-    if (index > -1) {
-      array.splice(index, 1)
-    }
-  }
-  return array
-}
-
 export const hasOwnProperty = Object.prototype.hasOwnProperty
 
 export const hasOwn = (obj, key) => {
