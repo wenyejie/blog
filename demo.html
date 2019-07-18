@@ -14,11 +14,60 @@
     <button type="button" @click="handleClick()">button</button>
   </div>
   <script type="module">
-  const start = new Date()
-  const end = new Date()
-  start.setMonth(start.getMonth() - 1, 1)
-  end.setDate(0)
-  console.log(start.toISOString(), end.toISOString())
+  // const string = '新疆维吾尔自治区乌鲁木齐市'
+  // console.log(string.match(/(.+?(自治区|省|市|区|县))/g))
+  //
+  // const getArea = function (str) {
+  //   let area = {}
+  //   let index11 = 0
+  //   let index1 = str.indexOf('省')
+  //   if (index1 === -1) {
+  //     index11 = str.indexOf('自治区')
+  //     if (index11 !== -1) {
+  //       area.province = str.substring(0, index11 + 3)
+  //     } else {
+  //       area.province = str.substring(0, 0)
+  //     }
+  //   } else {
+  //     area.province = str.substring(0, index1 + 1)
+  //   }
+  //
+  //   let index2 = str.indexOf('市')
+  //   if (index11 === -1) {
+  //     area.city = str.substring(index11 + 1, index2 + 1)
+  //   } else {
+  //     if (index11 === 0) {
+  //       area.city = str.substring(index1 + 1, index2 + 1)
+  //     } else {
+  //       area.city = str.substring(index11 + 3, index2 + 1)
+  //     }
+  //   }
+  //
+  //   let index3 = str.lastIndexOf('区')
+  //   if (index3 === -1) {
+  //     index3 = str.indexOf('县')
+  //     area.country = str.substring(index2 + 1, index3 + 1)
+  //   } else {
+  //     area.country = str.substring(index2 + 1, index3 + 1)
+  //   }
+  //   return area
+  // }
+  // console.log(getArea(string))
+
+  const fn1 = () => {
+    return fn2;
+  }
+
+  const fn2 = () => {
+    console.log('fn2...');
+  }
+
+  fn2.toString = () => {
+    console.log('fn2.toString...');
+    return 2;
+  }
+  console.log(fn1());
+
   </script>
 </body>
 </html>
