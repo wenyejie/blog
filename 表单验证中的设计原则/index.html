@@ -19,7 +19,7 @@ console.log({login: document.querySelector('[name="login"]')})
 
 const rules = {
   required: true,
-  forms: {
+  element: {
     phone: {
       maxlength: 11,
       minlength: 11,
@@ -29,6 +29,12 @@ const rules = {
       minlength: 6,
       maxlength: 6,
       pattern: /^\d{6}$/
+    }
+  },
+  extend: {
+    name: {
+      maxlength: 20,
+      minlength: 2
     }
   }
 }
