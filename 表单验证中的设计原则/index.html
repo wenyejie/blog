@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <title>表单验证中的设计原则</title>
+</head>
+<body>
+
+<form novalidate name="login">
+  <label>手机号码: <input type="tel" name="phone" /></label>
+  <label>验 证 码: <input type="tel" name="smsCode" /></label>
+  <button type="submit">提交</button>
+</form>
+
+<script type="module">
+import FormValidator from './formValidator.js'
+
+console.log({login: document.querySelector('[name="login"]')})
+
+const rules = {
+  required: true,
+  forms: {
+    phone: {
+      maxlength: 11,
+      minlength: 11,
+      pattern: /^1\d{10}$/
+    },
+    smsCode: {
+      minlength: 6,
+      maxlength: 6,
+      pattern: /^\d{6}$/
+    }
+  }
+}
+
+const values = {
+  phone: '12345678910',
+  smsCode: '123456'
+}
+
+const test = new FormValidator(rules)
+const result = test.validate(values)
+window.test = test
+window.result = result
+console.log(result, test)
+</script>
+</body>
+</html>
