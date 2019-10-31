@@ -1,73 +1,57 @@
 <!doctype html>
 <!--
  - @author: Storm
- - @date: 2019-03-15
  - @email: wenyejie@foxmail.com
  -->
 <html lang="zh-cn">
 <head>
   <meta charset="utf-8">
-  <title>Demo</title>
+  <title>迪米特</title>
+  <link
+    rel="stylesheet"
+    href="./assets/prism.css">
+  <style>
+  .loading {
+    width: 240px;
+    height: 240px;
+    background: transparent no-repeat center;
+    transition: all .1s ease-in-out;
+  }
+  </style>
 </head>
 <body>
-  <div id="app">
-    <button type="button" @click="handleClick()">button</button>
-  </div>
-  <script type="module">
-  // const string = '新疆维吾尔自治区乌鲁木齐市'
-  // console.log(string.match(/(.+?(自治区|省|市|区|县))/g))
-  //
-  // const getArea = function (str) {
-  //   let area = {}
-  //   let index11 = 0
-  //   let index1 = str.indexOf('省')
-  //   if (index1 === -1) {
-  //     index11 = str.indexOf('自治区')
-  //     if (index11 !== -1) {
-  //       area.province = str.substring(0, index11 + 3)
-  //     } else {
-  //       area.province = str.substring(0, 0)
-  //     }
-  //   } else {
-  //     area.province = str.substring(0, index1 + 1)
-  //   }
-  //
-  //   let index2 = str.indexOf('市')
-  //   if (index11 === -1) {
-  //     area.city = str.substring(index11 + 1, index2 + 1)
-  //   } else {
-  //     if (index11 === 0) {
-  //       area.city = str.substring(index1 + 1, index2 + 1)
-  //     } else {
-  //       area.city = str.substring(index11 + 3, index2 + 1)
-  //     }
-  //   }
-  //
-  //   let index3 = str.lastIndexOf('区')
-  //   if (index3 === -1) {
-  //     index3 = str.indexOf('县')
-  //     area.country = str.substring(index2 + 1, index3 + 1)
-  //   } else {
-  //     area.country = str.substring(index2 + 1, index3 + 1)
-  //   }
-  //   return area
-  // }
-  // console.log(getArea(string))
-
-  const fn1 = () => {
-    return fn2;
+<div id="app">
+  <div :style="{'background-image': `url(${activeBg})`}" class="loading"></div>
+</div>
+<pre><code data-code-highlight="javascript" class="language-javascript"></code></pre>
+<!-- 开发环境版本，包含了有帮助的命令行警告 -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script data-code-highlight="javascript">
+const app = new Vue({
+  el: '#app',
+  data: {
+    baseUrl: './assets/',
+    list: ['1.png','2.png','3.png','4.png'],
+    activeBg: ''
+  },
+  methods: {
+    play () {
+      const list = this.list
+      const length = list.length
+      const baseUrl = this.baseUrl || ''
+      let index = 0
+      setInterval(() => {
+        index = index >= length - 1 ? 0 : index + 1
+        this.activeBg = baseUrl+ list[index]
+      }, 150)
+    }
+  },
+  created () {
+    this.play()
   }
-
-  const fn2 = () => {
-    console.log('fn2...');
-  }
-
-  fn2.toString = () => {
-    console.log('fn2.toString...');
-    return 2;
-  }
-  console.log(fn1());
-
-  </script>
+})
+</script>
+<script src="./assets/codeHighlight.js"></script>
+<script src="./assets/prism.js"></script>
 </body>
 </html>

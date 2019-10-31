@@ -1,0 +1,67 @@
+<!doctype html>
+<!--
+ - @author: Storm
+ - @date: 2019-03-15
+ - @email: wenyejie@foxmail.com
+ -->
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <title>Demo1</title>
+</head>
+<body>
+<form novalidate>
+  <input
+    type="text"
+    name="mobile"
+    placeholder="请输入手机号码">
+  <input
+    type="text"
+    name="captcha"
+    placeholder="请输入验证码">
+  <button
+    type="submit"
+    class="submit">Submit</button>
+</form>
+<script>
+// 狗子
+const dogSon = {
+  name: 'dogSon',
+  walk () {
+    console.log(`走路...`)
+  },
+  byBus () {
+    console.log(`坐公交...`)
+  },
+  bicycle () {
+    console.log('骑自行车...')
+  },
+
+  goToSchool () {
+    this.walk()
+    this.byBus()
+  }
+}
+
+const tieZhu = {
+  name: 'tieZhu',
+  walk () {
+    console.log('走路...')
+  },
+  goToSchool () {
+    this.walk()
+  }
+}
+
+// 去学校
+function goToSchool (obj) {
+  console.log('开始')
+  obj.goToSchool()
+  console.log('结束')
+}
+
+console.log(goToSchool(dogSon))
+console.log(goToSchool(tieZhu))
+</script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!doctype html>
+<!--
+ - @author: Storm
+ - @date: 2019-03-15
+ - @email: wenyejie@foxmail.com
+ -->
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <title>Demo1</title>
+</head>
+<body>
+<form novalidate>
+  <input
+    type="text"
+    name="mobile"
+    placeholder="请输入手机号码">
+  <input
+    type="text"
+    name="captcha"
+    placeholder="请输入验证码">
+  <button
+    type="submit"
+    class="submit">Submit</button>
+</form>
+<script>
+/*function formItemValidate (value, rules) {
+  return {
+    $required: rules.required ? !!value : true,
+    $minlength: rules.minlength > 0 ? `${value}`.length >= rules.minlength : true
+  }
+}
+
+console.log(formItemValidate('13411111111', {
+  required: true,
+  minlength: 11
+}))*/
+
+function required (value, required) {
+  return required ? !!value : true
+}
+
+function minlength (value, minlength) {
+  return minlength > 0 ? `${ value }`.length >= minlength : true
+}
+
+const validators = {
+  required,
+  minlength
+}
+
+function formItemValidate (value, rules) {
+  const validity = {}
+  rules.forEach(item => {
+    validity[`$${ item.name }`] = item.validator(value, item.property)
+  })
+  return validity
+}
+
+console.log(formItemValidate('13480298192', [
+  {
+    name: 'required',
+    property: true,
+    validator: required
+  },
+  {
+    name: 'minlength',
+    property: 11,
+    validator: minlength
+  }
+]))
+</script>
+</body>
+</html>
