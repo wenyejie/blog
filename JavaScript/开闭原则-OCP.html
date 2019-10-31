@@ -1,0 +1,72 @@
+<!doctype html>
+<!--
+ - @author: Storm
+ - @date: 2019-09-16
+ - @email: wenyejie@foxmail.com
+ -->
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <title>开闭原则-OCP</title>
+  <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <form-validate>
+      <input name="username" type="text" required />
+      <input name="password" type="password" required />
+      <button type="submit">Submit</button>
+    </form-validate>
+  </div>
+<script>
+const formValidate = {
+  name: 'FormValidate',
+  template: `<form name="form" autocomplete="on" novalidate @submit.prevent="handleSubmit"><slot /></form>`,
+  data () {
+    return {
+      list: [],
+      valid: null
+    }
+  },
+  methods: {
+    handleValidate () {
+      const $el = this.$el
+      let el
+      this.list = []
+      for (let i = 0; i < $el.length; i++) {
+        el = $el[i]
+        console.log(i, {value: $el[i]})
+        if (!el.name || !el.willValidate) {
+          continue
+        }
+        const result = {
+          el,
+          name: el.name,
+          validity: el.validity,
+          valid: el.validity.valid
+        }
+        this.list.push(result)
+        if (!result.valid) {
+          this.valid = false
+        }
+      }
+      console.log(this.list.filter(item => !item.valid))
+      return this.valid
+    },
+    handleSubmit (event) {
+      console.log(event)
+      this.handleValidate()
+    }
+  },
+  mounted () {
+  }
+}
+
+const app = new Vue({
+  el: '#app',
+  components: {formValidate}
+})
+</script>
+</body>
+</html>
