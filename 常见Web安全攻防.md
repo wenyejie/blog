@@ -10,6 +10,7 @@
 ## 一. XSS
 
 > XSS(Cross-Site Scripting 跨站脚本攻击)
+
 - web页面的内容来自服务端
 - 不要从url, `document.referrer`, `document.forms`等DOM API重获取数据
 - 不要使用`eval`, `new Function`, `document.write`, `document.writeln`, `setInterval`, `setTimeout`, `innerHTML`, `document.createElement`等可执行字符串的方法
@@ -21,6 +22,7 @@
 ## 二. CSRF
 
 > CSRF(Cross Site Request Forgery 跨站请求伪造)
+
 - Get请求不对数据进行修改
 - 不让第三方站点访问到用户cookie
 - 阻止第三方网站请求
@@ -30,17 +32,20 @@
 ## 三. clickjacking
 
 > clickjacking点击劫持 即iframe 劫持
+
 - 设置`X-FRAME-OPTIONS`
 
 ## 四. URL跳转漏洞
 
 > 通过站点一些跳转规则, 跳转过去
+
 - referer限制
 - 加入Token验证
 
 ## 五. SQL注入
 
 > 通过用户输入, 利用一些SQL规则, 非法获取数据
+
 - 严格限制web应用的数据库操作权限
 - 后端检测用户输入代码是否合理
 - 对特殊字符进行转义
@@ -50,4 +55,5 @@
 ## 六. OS命令注入攻击
 
 > 原理与SQL注入类似
+
 - 省略
