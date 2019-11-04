@@ -49,3 +49,13 @@ export const each = (object, fn) => {
     fn(object[key], key, object)
   }
 }
+
+export const extend = (object, key, value) => {
+  let result = {}
+  if (typeof key === 'object') {
+    result = key
+  } else if (typeof key === 'string') {
+    result[key] = value
+  }
+  Object.assign(object, result)
+}

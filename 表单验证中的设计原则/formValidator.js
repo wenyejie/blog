@@ -1,9 +1,25 @@
-import { each, hasOwn } from './utils.js'
+import { each, hasOwn, extend } from './utils.js'
 import FormItemValidator from './formItemValidator.js'
 // 默认配置项 即适应大多数情况的配置
 const defaultOptions = {}
 // 默认校验规则
-const defaultRules = {}
+const defaultRules = {
+  cnName: {
+    minlength: 2,
+    maxlength: 20,
+    pattern: ''
+  },
+  phone: {
+    maxlength: 11,
+    minlength: 11,
+    pattern: /^1\d{10}$/
+  },
+  smsCode: {
+    minlength: 6,
+    maxlength: 6,
+    pattern: /^\d{6}$/
+  }
+}
 
 class FormValidator {
   constructor (options = {}) {
@@ -25,19 +41,10 @@ class FormValidator {
 
   // 对表单进行校验
   // 当options中有values属性时, 即覆盖式校验, 如果没有则取已经保存的值进行校验
-
   // 对全局校验规则进行扩展
-  static extend (options = {}) {
-    const rules = {}
-    each(options, (value, key) => {
-      rules[key] = value
-    })
-    Object.assign(defaultRules, rules)
+  static extend (key, value) {
+    extend(defaultRules, key, value)
   }
-
-  // 设置表单属性的值, 但是暂不做校验, 新值会覆盖旧值
-  // 支持 1: key, value; 2: {key, value}; 3: [{key,value}, ...]
-  values () {}
 
   // 支持 1: values, options; 2: {values}, 3: values
   validate (values = {}, options) {
@@ -59,12 +66,8 @@ class FormValidator {
   }
 
   // 对当前实例进行扩展
-  extend (options) {
-    const rules = {}
-    each(options, (value, key) => {
-      rules[key] = value
-    })
-    this.rules = Object.assign({}, this.rules, rules)
+  extend (key, value) {
+    extend(this.rules, key, value)
   }
 }
 
