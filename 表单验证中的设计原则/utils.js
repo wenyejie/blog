@@ -43,7 +43,7 @@ export const each = (object, fn) => {
     return object.forEach(fn)
   }
   for (let key in object) {
-    if (!hasOwn(object, key)) {
+    if (!object.hasOwnProperty(key)) {
       continue
     }
     fn(object[key], key, object)

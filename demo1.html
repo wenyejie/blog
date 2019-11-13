@@ -16,16 +16,15 @@
   <button type="submit" class="submit">Submit</button>
 </form>
 <script>
-const demo = () => {
-  return true
+function Test () {
+  this.name = 10
+  return {
+    name: this.name,
+    demo: {
+      name: this.name
+    }
+  }
 }
-
-const demo1 = async () => {
-  const result = await demo()
-  console.log(result)
-  return result
-}
-console.log(demo1())
 </script>
 </body>
 </html>

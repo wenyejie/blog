@@ -5,6 +5,7 @@
   "main": "http.js",
   "dependencies": {},
   "devDependencies": {
+    "prettier": "^1.18.2",
     "typescript": "^3.4.5"
   },
   "scripts": {
