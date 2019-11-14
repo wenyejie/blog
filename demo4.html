@@ -1,67 +1,83 @@
-<!doctype html>
+<!DOCTYPE html>
 <!--
  - @author: Storm
  - @date: 2019-03-15
  - @email: wenyejie@foxmail.com
  -->
 <html lang="zh-cn">
-<head>
-  <meta charset="utf-8">
-  <title>Demo1</title>
-</head>
-<body>
-<form novalidate>
-  <input
-    type="text"
-    name="mobile"
-    placeholder="请输入手机号码">
-  <input
-    type="text"
-    name="captcha"
-    placeholder="请输入验证码">
-  <button
-    type="submit"
-    class="submit">Submit</button>
-</form>
-<script>
-// 狗子
-const dogSon = {
-  name: 'dogSon',
-  walk () {
-    console.log(`走路...`)
-  },
-  byBus () {
-    console.log(`坐公交...`)
-  },
-  bicycle () {
-    console.log('骑自行车...')
-  },
-
-  goToSchool () {
-    this.walk()
-    this.byBus()
-  }
-}
-
-const tieZhu = {
-  name: 'tieZhu',
-  walk () {
-    console.log('走路...')
-  },
-  goToSchool () {
-    this.walk()
-  }
-}
-
-// 去学校
-function goToSchool (obj) {
-  console.log('开始')
-  obj.goToSchool()
-  console.log('结束')
-}
-
-console.log(goToSchool(dogSon))
-console.log(goToSchool(tieZhu))
-</script>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <title>Demo1</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .wrapper {
+        width: 360px;
+        background-color: #eee;
+        height: 20px;
+        overflow-y: hidden;
+      }
+      ul {
+        font-size: 20px;
+        transform: scale(0.5) translate(-50%, -50%);
+        width: 200%;
+        list-style: none;
+      }
+      li {
+        display: inline-block;
+        margin: 3px 6px;
+        background-color: #000000;
+        color: #fff;
+        padding: 3px 6px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <ul>
+        <li>借证</li>
+        <li>借证:1212</li>
+        <li>借证:1212</li>
+        <li>借证:12213112</li>
+        <li>借证:12231312</li>
+        <li>借证:1212</li>
+        <li>借证:1221312</li>
+        <li>借证:12321312</li>
+        <li>借证</li>
+        <li>借证:1212</li>
+        <li>借证:1212</li>
+        <li>借证:12213112</li>
+        <li>借证:12231312</li>
+        <li>借证:1212</li>
+        <li>借证:1221312</li>
+        <li>借证:12321312</li>
+        <li>借证</li>
+        <li>借证:1212</li>
+        <li>借证:1212</li>
+        <li>借证:12213112</li>
+        <li>借证:12231312</li>
+        <li>借证:1212</li>
+        <li>借证:1221312</li>
+        <li>借证:12321312</li>
+      </ul>
+    </div>
+    <button>Toggle</button>
+    <script>
+      let toggle = true;
+      const $button = document.querySelector("button");
+      const $wrapper = document.querySelector(".wrapper");
+      $button.addEventListener("click", () => {
+        let height = 0;
+        if (toggle) {
+          height = $wrapper.scrollHeight / 2;
+        } else {
+          height = 20;
+        }
+        toggle = !toggle;
+        $wrapper.style.height = height + "px";
+      });
+    </script>
+  </body>
 </html>

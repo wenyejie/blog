@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8" />
+    <title>validator</title>
+  </head>
+  <body>
+    <script type="module">
+      import validator from "./index.js";
+
+      const demo = validator({
+        mobile: {
+          type: "string",
+          length: 11,
+          required: true
+        },
+        smsCode: {
+          type: "string",
+          length: 6,
+          required: true
+        }
+      });
+      demo
+        .validate({
+          mobile: "13480298192",
+          smsCode: "123456"
+        })
+        .then(validity => {
+          console.log(validity);
+        });
+    </script>
+  </body>
+</html>

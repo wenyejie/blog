@@ -1,30 +1,26 @@
-<!doctype html>
+<!DOCTYPE html>
 <!--
  - @author: Storm
  - @date: 2019-03-15
  - @email: wenyejie@foxmail.com
  -->
 <html lang="zh-cn">
-<head>
-  <meta charset="utf-8">
-  <title>Demo1</title>
-</head>
-<body>
-<form novalidate>
-  <input type="text" name="mobile" placeholder="请输入手机号码">
-  <input type="text" name="captcha" placeholder="请输入验证码">
-  <button type="submit" class="submit">Submit</button>
-</form>
-<script>
-function Test () {
-  this.name = 10
-  return {
-    name: this.name,
-    demo: {
-      name: this.name
-    }
-  }
-}
-</script>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <title>Demo1</title>
+  </head>
+  <body>
+    <form novalidate>
+      <input type="text" name="mobile" placeholder="请输入手机号码" />
+      <input type="text" name="captcha" placeholder="请输入验证码" />
+      <button type="button" class="submit" onclick="Test()">Submit</button>
+    </form>
+    <script>
+      let selectTagCount = 0;
+      function Test() {
+        selectTagCount++;
+        alert("(已选" + selectTagCount + ")");
+      }
+    </script>
+  </body>
 </html>
