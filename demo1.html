@@ -10,17 +10,21 @@
     <title>Demo1</title>
   </head>
   <body>
-    <form novalidate>
-      <input type="text" name="mobile" placeholder="请输入手机号码" />
-      <input type="text" name="captcha" placeholder="请输入验证码" />
-      <button type="button" class="submit" onclick="Test()">Submit</button>
-    </form>
-    <script>
-      let selectTagCount = 0;
-      function Test() {
-        selectTagCount++;
-        alert("(已选" + selectTagCount + ")");
-      }
+    <button id="execute">点击我执行命令</button>
+    <button id="undo">点击我执行命令</button>
+    <script type="module">
+      import AsyncValidator from "./node_modules/async-validator/dist-web/index.js";
+      const rule = {
+        name: {
+          type: "string",
+          required: true,
+          validator: (rule, value) => value === "muji"
+        }
+      };
+      window.validator = new AsyncValidator(rule);
+      validator.validate({ name: "" }).then(result => {
+        console.log(result);
+      });
     </script>
   </body>
 </html>

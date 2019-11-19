@@ -9,3 +9,14 @@ export const length = "$label必须为$length位";
 export const pattern = "$label格式错误";
 
 export const type = "$label类型错误";
+
+const messages = {
+  required,
+  minlength,
+  maxlength,
+  length,
+  pattern,
+  type
+};
+
+export default (label, rules) => {};

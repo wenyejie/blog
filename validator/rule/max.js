@@ -7,7 +7,7 @@ import { isEmpty, isNumber } from "../utils.js";
  * @return {boolean}
  */
 export default function(value, { max }) {
-  if (isEmpty(value) || !isNumber(min)) {
+  if (isEmpty(value) || !isNumber(max)) {
     return true;
   }
   return value <= max;

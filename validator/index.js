@@ -1,5 +1,5 @@
-import { hasOwn } from "./utils.js";
-import rule from "./rule/index.js";
+import { hasOwn } from './utils.js'
+import rule from './rule/index.js'
 
 class Validator {
   /**
@@ -8,8 +8,10 @@ class Validator {
    * @param options {Object} 选项
    */
   constructor(rules, options) {
-    this.rules = rules;
-    this.options = options;
+    this.rules = rules
+    this.options = options
+    this.$errors = {}
+    this.$validity = {}
   }
 
   /**
@@ -19,24 +21,34 @@ class Validator {
    * @return {Object}
    */
   validateProp(value, propRule) {
-    const validity = {};
+    const validity = {}
     for (let key in propRule) {
       if (!propRule.hasOwnProperty(key)) {
-        continue;
+        continue
       }
-      if (typeof propRule[key] === "function") {
-        validity[key] = propRule[key](value, propRule);
-      } else if (typeof rule[key] === "function") {
-        validity[key] = rule[key](value, propRule);
+      if (typeof propRule[key] === 'function') {
+        validity[key] = propRule[key](value, propRule)
+      } else if (typeof rule[key] === 'function') {
+        validity[key] = rule[key](value, propRule)
       }
     }
-    validity.$valid =
-      Object.values(validity).filter(item => !item).length === 0;
-    validity.$invalid = !validity.$valid;
-    return validity;
+    validity.$valid = Object.values(validity).filter((item) => !item).length === 0
+    validity.$invalid = !validity.$valid
+    return validity
   }
 
-  setRules() {}
+  // 调整验证规则
+  setRules(rules) {
+    this.rules = rules
+  }
+
+  // 触发相关钩子
+  trigger(eventName, ...rest) {
+    if (typeof this[eventName] !== 'function') {
+      return
+    }
+    this[eventName].apply(this, rest)
+  }
 
   /**
    * 校验
@@ -46,28 +58,31 @@ class Validator {
    */
   validate(values, callback) {
     if (!values) {
-      console.warn("参数values错误");
-      return false;
+      console.warn('参数values错误')
+      return false
     }
-    const rules = this.rules;
-    const validity = {};
+    this.trigger('beforeValidate', values)
+    const rules = this.rules
+    const validity = {}
     for (let key in rules) {
       if (!hasOwn(rules, key)) {
-        continue;
+        continue
       }
-      validity[key] = this.validateProp(values[key], rules[key]);
+      validity[key] = this.validateProp(values[key], rules[key])
     }
-    validity.$valid =
-      Object.values(validity).filter(item => item.$invalid).length === 0;
-    validity.$invalid = !validity.$valid;
-    if (typeof callback === "function") {
-      callback(validity);
-      return validity;
+    validity.$valid = Object.values(validity).filter((item) => item.$invalid).length === 0
+    validity.$invalid = !validity.$valid
+    validity.$errors = this.$errors
+    this.$validity = validity
+    this.trigger('afterValidate', this.$validity)
+    if (typeof callback === 'function') {
+      callback(validity)
+      return validity
     }
-    return new Promise(resolve => resolve(validity));
+    return new Promise((resolve) => resolve(validity))
   }
 }
 
 export default function(rules, options) {
-  return new Validator(rules, options);
+  return new Validator(rules, options)
 }
