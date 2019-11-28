@@ -8,7 +8,7 @@ export const inBrowser = typeof window !== 'undefined'
 
 export const ua = inBrowser && window.navigator.userAgent.toLowerCase()
 
-export const isIE= ua && /msie|trident/.test(ua)
+export const isIE = ua && /msie|trident/.test(ua)
 
 export const isIE9 = ua && ua.includes('msie 9.0')
 
@@ -20,6 +20,6 @@ export const isIos = ua && /iphone|ipad|ipod|ios/.test(ua)
 
 export const isChrome = ua && /chrome\/\d+/.test(ua) && !isEdge
 
-export const isPhantomJs = ua && /phantomjs/.test(ua)
+export const isPhantom = ua && /phantomjs/.test(ua)
 
 export const isFirefox = ua && ua.match(/firefox\/(\d+)/)

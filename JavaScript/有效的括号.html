@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8" />
+    <title>有效的括号</title>
+    <link rel="stylesheet" href="../assets/prism.css" />
+  </head>
+  <body>
+    <pre><code data-code-highlight="javascript" class="language-javascript"></code></pre>
+    <script>
+      const isValid = function(s) {
+        const map = {
+          '(': ')',
+          '[': ']',
+          '{': '}'
+        }
+        const stack = []
+        for (let i = 0; i < s.length; i++) {
+          let c = s.charAt(i)
+          if (c in map) {
+            stack.push(c)
+          } else {
+            let t = stack.length === 0 ? '' : stack.pop()
+            if (map[t] !== c) {
+              return false
+            }
+          }
+        }
+        return stack.length === 0
+      }
+
+      console.log('isValid => ', isValid('['))
+    </script>
+  </body>
+</html>

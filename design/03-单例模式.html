@@ -1,33 +1,46 @@
-<!doctype html>
+<!DOCTYPE html>
 <!--
  - @author: Storm
  - @date: 2019-02-25
  - @email: wenyejie@foxmail.com
  -->
 <html lang="zh-cn">
-<head>
-  <meta charset="utf-8">
-  <title>03-单例模式</title>
-</head>
-<body>
-  <script>
-
-  const Demo = (function () {
-    let instance
-    function init () {
-      return {}
-    }
-    return {
-      getInstance: function () {
-        if (!instance) {
-          instance = init()
+  <head>
+    <meta charset="utf-8" />
+    <title>03-单例模式</title>
+  </head>
+  <body>
+    <script>
+      /*const Demo = (function () {
+        let instance
+        function init () {
+        return {}
         }
-        return instance
-      }
-    }
-  })()
+        return {
+        getInstance: function () {
+          if (!instance) {
+            instance = init()
+          }
+          return instance
+        }
+        }
+        })()*/
 
-  window.demo = Demo()
-  </script>
-</body>
+      class Demo {
+        static instance
+        constructor() {
+          this.name = 'Storm'
+        }
+      }
+
+      const demo = new Demo()
+
+      const getSingle = function(fn) {
+        let instance
+        return function() {
+          return instance || (instance = new Demo())
+        }
+      }
+    </script>
+  </body>
 </html>

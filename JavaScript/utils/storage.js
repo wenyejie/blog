@@ -10,23 +10,23 @@ import { inBrowser } from './env.js'
 const storage = (name) => {
   const s = inBrowser ? window[`${name}Storage`] : emptyObject
   return {
-    get (key) {
+    get(key) {
       return (JSON.parse(s.getItem(key)) || emptyObject).value
     },
 
-    set (key, value) {
+    set(key, value) {
       s.setItem(key, JSON.stringify({ value }))
     },
 
-    remove (key) {
+    remove(key) {
       s.removeItem(key)
     },
 
-    clear () {
+    clear() {
       s.clear()
     },
 
-    length () {
+    length() {
       return s.length
     }
   }

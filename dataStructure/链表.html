@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8" />
+    <title>链表</title>
+    <link rel="stylesheet" href="../assets/prism.css" />
+  </head>
+  <body>
+    <pre><code data-code-highlight="javascript" class="language-javascript"></code></pre>
+    <script data-code-highlight="javascript">
+      // 链表
+
+      class LinkedListNode {
+        value = null
+        next = null
+        constructor(value) {
+          this.value = value
+        }
+      }
+
+      class LinkedList {
+        length = 0
+        #head = null
+        constructor() {}
+
+        first() {
+          return this.#head
+        }
+
+        last() {
+          let current = this.#head
+          while (current.next) {
+            current = current.next
+          }
+          return current
+        }
+
+        prev(node) {
+          let current = this.#head
+          while (current.next !== node) {
+            current = current.next
+          }
+          return current
+        }
+
+        push(value) {
+          const node = new LinkedListNode(value)
+          if (this.#head === null) {
+            this.#head = node
+          } else {
+            this.last().next = node
+          }
+          this.length++
+          return this
+        }
+
+        pop() {
+          const last = this.last()
+          const prev = this.prev(last)
+          prev.next = null
+          this.length--
+          return last.value
+        }
+      }
+
+      const demo = new LinkedList()
+
+      demo.push(0)
+
+      demo.push(1)
+    </script>
+    <script src="../assets/codeHighlight.js"></script>
+    <script src="../assets/prism.js"></script>
+  </body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8" />
+    <title>06-策略模式</title>
+  </head>
+  <body>
+    <script>
+      const strategies = {
+        required(value, { required }) {
+          return required ? !!value : true
+        },
+        minlength(value, { minlength }) {
+          return minlength ? value.length >= minlength : true
+        }
+      }
+
+      class Validator {
+        rules = {}
+        constructor(rules = {}) {
+          this.rules = rules
+        }
+        add(prop, rule) {
+          if (typeof prop === 'string') {
+            rule.prop = prop
+            this.rules[prop] = rule
+            return this
+          }
+          let rules
+          if (typeof prop === 'object') {
+            rules = [prop]
+          } else if (Array.isArray(prop)) {
+            rules = prop
+          }
+          rules.forEach((item) => {
+            this.rules[item.prop] = item
+          })
+        }
+
+        validate(values = {}) {
+          const rules = this.rules
+          let rule
+          for (let prop in rules) {
+            if (!rules.hasOwnProperty(prop)) {
+              continue
+            }
+            rule = rules[prop]
+            for (let key in rule) {
+              if (!rule.hasOwnProperty(key)) {
+                continue
+              }
+              if (typeof strategies[key] === 'function' && !strategies[key](values[prop], rule)) {
+                return rule.hasOwnProperty(`${key}Msg`) ? rule[`${key}Msg`] : rule.message
+              }
+            }
+          }
+        }
+      }
+
+      const test = new Validator()
+      test.add('mobile', {
+        required: true,
+        minlength: 11,
+        requiredMsg: '手机号码不能为空',
+        minlengthMsg: '手机号码是为11位的纯数字'
+      })
+      console.log(test.validate({ mobile: '134000000' }))
+    </script>
+  </body>
+</html>
