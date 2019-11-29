@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8" />
+    <title>删除排序数组中的重复项</title>
+    <link rel="stylesheet" href="../assets/prism.css" />
+  </head>
+  <body>
+    <pre><code data-code-highlight="javascript" class="language-javascript"></code></pre>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script data-code-highlight="javascript">
+      /**
+       * @param {number[]} nums
+       * @return {number}
+       */
+      const removeDuplicates = function(nums) {
+        let temp = 0
+        for (let i = 1; i < nums.length; i++) {
+          if (nums[i] !== nums[temp]) {
+            nums[++temp] = nums[i]
+          }
+        }
+        temp++
+        nums.length = temp
+        return temp
+      }
+      const nums = [1, 2]
+      console.log(removeDuplicates(nums), nums)
+    </script>
+    <script src="../assets/codeHighlight.js"></script>
+    <script src="../assets/prism.js"></script>
+  </body>
+</html>
