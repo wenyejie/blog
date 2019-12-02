@@ -1,8 +1,3 @@
-/**
- * @author: Storm
- * @date: 2019/5/8
- * @email: wenyejie@foxmail.com
- */
 import { isUndefined } from './common.js'
 
 export const arrRemove = (array, item) => {
@@ -31,7 +26,7 @@ export const arrFindByProp = (array, key, value, returnKey) => {
   if (!Array.isArray(array) || isUndefined(key) || isUndefined(value)) {
     return
   }
-  const item = array.find(item => item[key] === value)
+  const item = array.find((item) => item[key] === value)
   if (!item) {
     return
   }

@@ -1,15 +1,9 @@
-/**
- * @author: Storm
- * @date: 2019-02-21
- * @email: wenyejie@foxmail.com
- */
-
 import observer from './observer.js'
 
 import compile from './compile.js'
 
 export default class Vue {
-  constructor (options) {
+  constructor(options) {
     let data
     if (typeof options.data === 'function') {
       data = options.data()

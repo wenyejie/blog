@@ -1,35 +1,30 @@
-<!doctype html>
-<!--
- - @author: Storm
- - @date: 2019-02-20
- - @email: wenyejie@foxmail.com
- -->
+<!DOCTYPE html>
 <html lang="zh-cn">
-<head>
-  <meta charset="utf-8">
-  <title>简单的Vue实现</title>
-</head>
-<body>
-  <div id="app">
-    <input v-model="message" />
-    <div>{{ message }}</div>
-    <img src="./vue.png" />
-  </div>
-  <script type="module">
-  import Vue from './vue.js'
+  <head>
+    <meta charset="utf-8" />
+    <title>简单的Vue实现</title>
+  </head>
+  <body>
+    <div id="app">
+      <input v-model="message" />
+      <div>{{ message }}</div>
+      <img src="./vue.png" />
+    </div>
+    <script type="module">
+      import Vue from './vue.js'
 
-  const vm = new Vue({
-    el: '#app',
-    data () {
-      return {
-        message: 'Hello World!'
-      }
-    }
-  })
+      const vm = new Vue({
+        el: '#app',
+        data() {
+          return {
+            message: 'Hello World!'
+          }
+        }
+      })
 
-  window.vm = vm
+      window.vm = vm
 
-  console.log(vm)
-  </script>
-</body>
+      console.log(vm)
+    </script>
+  </body>
 </html>

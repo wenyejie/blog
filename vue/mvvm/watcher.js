@@ -1,21 +1,15 @@
-/**
- * @author: Storm
- * @date: 2019-03-08
- * @email: wenyejie@foxmail.com
- */
-
 const replaceReg = /(\{\{.*\}\})/
 
 class Watcher {
-  constructor () {
+  constructor() {
     this.subscribes = []
   }
 
-  add (vm, el, name, template) {
+  add(vm, el, name, template) {
     this.subscribes.push({ vm, el, name, template })
   }
 
-  update () {
+  update() {
     const copies = this.subscribes.concat()
     copies.forEach(({ vm, el, name, template }) => {
       const { nodeType } = el
@@ -33,10 +27,7 @@ class Watcher {
     })
   }
 
-  notify () {
-
-  }
-
+  notify() {}
 }
 
 export default Watcher

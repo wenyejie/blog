@@ -1,9 +1,3 @@
-/**
- * @author: Storm
- * @date: 2019/5/8
- * @email: wenyejie@foxmail.com
- */
-
 export const inBrowser = typeof window !== 'undefined'
 
 export const ua = inBrowser && window.navigator.userAgent.toLowerCase()

@@ -1,32 +1,27 @@
-<!doctype html>
-<!--
- - @author: Storm
- - @date: 2019-03-08
- - @email: wenyejie@foxmail.com
- -->
+<!DOCTYPE html>
 <html lang="zh-cn">
-<head>
-  <meta charset="utf-8">
-  <title>Proxy</title>
-</head>
-<body>
-  <div id="app">APP</div>
-  <script>
-  function Demo () {
-    const obj = Object.create(null)
-    return new Proxy(this, {
-      get (obj, key) {
-        console.log('proxy.get', obj, key, obj[key])
-        return obj[key]
-      },
-      set (obj, key, newVal) {
-        console.log('proxy.set', obj, key, newVal)
-        return newVal
+  <head>
+    <meta charset="utf-8" />
+    <title>Proxy</title>
+  </head>
+  <body>
+    <div id="app">APP</div>
+    <script>
+      function Demo() {
+        const obj = Object.create(null)
+        return new Proxy(this, {
+          get(obj, key) {
+            console.log('proxy.get', obj, key, obj[key])
+            return obj[key]
+          },
+          set(obj, key, newVal) {
+            console.log('proxy.set', obj, key, newVal)
+            return newVal
+          }
+        })
       }
-    })
-  }
 
-  const demo = new Demo()
-  </script>
-</body>
+      const demo = new Demo()
+    </script>
+  </body>
 </html>

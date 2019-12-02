@@ -1,62 +1,55 @@
-<!doctype html>
-<!--
- - @author: Storm
- - @date: 2019-03-07
- - @email: wenyejie@foxmail.com
- -->
+<!DOCTYPE html>
 <html lang="zh-cn">
-<head>
-  <meta charset="utf-8">
-  <title>nextTick</title>
-</head>
-<body>
-  <div id="app">
-    <h1 id="title">0</h1>
-    <button type="button" id="btn">Click</button>
-  </div>
-  <script type="module">
-  const nextTick = (function () {
-    const callbackQueue = []
+  <head>
+    <meta charset="utf-8" />
+    <title>nextTick</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1 id="title">0</h1>
+      <button type="button" id="btn">Click</button>
+    </div>
+    <script type="module">
+      const nextTick = (function() {
+        const callbackQueue = []
 
-    let resolve
+        let resolve
 
-    const call = () => {
-      const cbs = callbackQueue.splice(0)
-      cbs.forEach(cb => cb())
-    }
+        const call = () => {
+          const cbs = callbackQueue.splice(0)
+          cbs.forEach((cb) => cb())
+        }
 
-    const isPromise = typeof Promise
+        const isPromise = typeof Promise
 
-    return function (cb) {
+        return function(cb) {
+          if (cb) {
+            callbackQueue.push(cb)
+          }
 
-      if (cb) {
-        callbackQueue.push(cb)
-      }
+          if (isPromise) {
+            resolve = Promise.resolve()
+            resolve.then(call)
+          } else {
+            setTimeout(call, 0)
+          }
+          if (!cb && isPromise) {
+            return resolve
+          }
+        }
+      })()
 
-      if (isPromise) {
-        resolve = Promise.resolve()
-        resolve.then(call)
-      } else {
-        setTimeout(call, 0)
-      }
-      if (!cb && isPromise) {
-        return resolve
-      }
-    }
-  }())
+      const $title = document.querySelector('#title')
+      const $btn = document.querySelector('#btn')
+      let counter = 0
 
-  const $title = document.querySelector('#title')
-  const $btn = document.querySelector('#btn')
-  let counter = 0
-
-  $btn.addEventListener('click', () => {
-    console.log('change start', $title.innerHTML)
-    $title.innerHTML = `${++counter}`
-    nextTick()
-      .then(() => {
-        console.log('change end', $title.innerHTML)
+      $btn.addEventListener('click', () => {
+        console.log('change start', $title.innerHTML)
+        $title.innerHTML = `${++counter}`
+        nextTick().then(() => {
+          console.log('change end', $title.innerHTML)
+        })
       })
-  })
-  </script>
-</body>
+    </script>
+  </body>
 </html>

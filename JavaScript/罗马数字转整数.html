@@ -1,47 +1,42 @@
-<!doctype html>
-<!--
- - @author: Storm
- - @date: 2019-03-28
- - @email: wenyejie@foxmail.com
- -->
+<!DOCTYPE html>
 <html lang="zh-cn">
-<head>
-  <meta charset="utf-8">
-  <title>罗马数字转整数</title>
-</head>
-<body>
-  <script>
-  /**
-   * @param {string} s
-   * @return {number}
-   */
-  const romanToInt = function (s) {
-    const array = s.match(/IV|IX|CM|CD|XC|XL|I|V|X|L|C|D|M/gi)
-    const matchNum = {
-      'I': 1,
-      'V': 5,
-      'IV': 4,
-      'IX': 9,
-      'X': 10,
-      'XL': 40,
-      'L': 50,
-      'XC': 90,
-      'C': 100,
-      'CD': 400,
-      'D': 500,
-      'CM': 900,
-      'M': 1000
-    }
-    let result = 0
-    for (let i = 0; i < array.length; i++) {
-      result += matchNum[array[i]]
-    }
-    return result
-  }
+  <head>
+    <meta charset="utf-8" />
+    <title>罗马数字转整数</title>
+  </head>
+  <body>
+    <script>
+      /**
+       * @param {string} s
+       * @return {number}
+       */
+      const romanToInt = function(s) {
+        const array = s.match(/IV|IX|CM|CD|XC|XL|I|V|X|L|C|D|M/gi)
+        const matchNum = {
+          'I': 1,
+          'V': 5,
+          'IV': 4,
+          'IX': 9,
+          'X': 10,
+          'XL': 40,
+          'L': 50,
+          'XC': 90,
+          'C': 100,
+          'CD': 400,
+          'D': 500,
+          'CM': 900,
+          'M': 1000
+        }
+        let result = 0
+        for (let i = 0; i < array.length; i++) {
+          result += matchNum[array[i]]
+        }
+        return result
+      }
 
-  console.time('test')
-  console.log(romanToInt('MCDLXXVI'))
-  console.timeEnd('test')
-  </script>
-</body>
+      console.time('test')
+      console.log(romanToInt('MCDLXXVI'))
+      console.timeEnd('test')
+    </script>
+  </body>
 </html>

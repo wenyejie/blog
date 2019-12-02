@@ -1,68 +1,63 @@
-<!doctype html>
-<!--
- - @author: Storm
- - @date: 2019-03-18
- - @email: wenyejie@foxmail.com
- -->
+<!DOCTYPE html>
 <html lang="zh-cn">
-<head>
-  <meta charset="utf-8">
-  <title>遍历性能分析</title>
-</head>
-<body>
-  <script>
-  let array = []
-  for (let i = 0; i < 100000; i++) {
-    array.push(i)
-  }
+  <head>
+    <meta charset="utf-8" />
+    <title>遍历性能分析</title>
+  </head>
+  <body>
+    <script>
+      let array = []
+      for (let i = 0; i < 100000; i++) {
+        array.push(i)
+      }
 
-  const forTest = () => {
-    let result = 0
-    for (let i = 0; i < array.length; i++) {
-      result += array[i]
-    }
-    return result
-  }
+      const forTest = () => {
+        let result = 0
+        for (let i = 0; i < array.length; i++) {
+          result += array[i]
+        }
+        return result
+      }
 
-  const forInTest = () => {
-    let result = 0
-    for (let key in array) {
-      result += array[key]
-    }
-    return result
-  }
+      const forInTest = () => {
+        let result = 0
+        for (let key in array) {
+          result += array[key]
+        }
+        return result
+      }
 
-  const forEachTest = () => {
-    let result = 0
-    array.forEach((item) => {
-      result += item
-    })
-    return result
-  }
+      const forEachTest = () => {
+        let result = 0
+        array.forEach((item) => {
+          result += item
+        })
+        return result
+      }
 
-  const forOfTest = () => {
-    let result = 0
-    for (let value of array) {
-      result += value
-    }
-    return result
-  }
+      const forOfTest = () => {
+        let result = 0
+        for (let value of array) {
+          result += value
+        }
+        return result
+      }
 
-  console.time('forEachTest')
-  console.log(forEachTest())
-  console.timeEnd('forEachTest')
+      console.time('forEachTest')
+      console.log(forEachTest())
+      console.timeEnd('forEachTest')
 
-  console.time('forTest')
-  console.log(forTest())
-  console.timeEnd('forTest')
+      console.time('forTest')
+      console.log(forTest())
+      console.timeEnd('forTest')
 
-  console.time('forInTest')
-  console.log(forInTest())
-  console.timeEnd('forInTest')
+      console.time('forInTest')
+      console.log(forInTest())
+      console.timeEnd('forInTest')
 
-  console.time('forOfTest')
-  console.log(forOfTest())
-  console.timeEnd('forOfTest')
-  </script>
-</body>
+      console.time('forOfTest')
+      console.log(forOfTest())
+      console.timeEnd('forOfTest')
+    </script>
+  </body>
 </html>

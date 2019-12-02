@@ -1,9 +1,4 @@
 <!DOCTYPE html>
-<!--
- - @author: Storm
- - @date: 2019-03-15
- - @email: wenyejie@foxmail.com
- -->
 <html lang="zh-cn">
   <head>
     <meta charset="utf-8" />
@@ -65,19 +60,19 @@
     </div>
     <button>Toggle</button>
     <script>
-      let toggle = true;
-      const $button = document.querySelector("button");
-      const $wrapper = document.querySelector(".wrapper");
-      $button.addEventListener("click", () => {
-        let height = 0;
+      let toggle = true
+      const $button = document.querySelector('button')
+      const $wrapper = document.querySelector('.wrapper')
+      $button.addEventListener('click', () => {
+        let height = 0
         if (toggle) {
-          height = $wrapper.scrollHeight / 2;
+          height = $wrapper.scrollHeight / 2
         } else {
-          height = 20;
+          height = 20
         }
-        toggle = !toggle;
-        $wrapper.style.height = height + "px";
-      });
+        toggle = !toggle
+        $wrapper.style.height = height + 'px'
+      })
     </script>
   </body>
 </html>

@@ -1,41 +1,36 @@
-<!doctype html>
-<!--
- - @author: Storm
- - @date: 2019-03-26
- - @email: wenyejie@foxmail.com
- -->
+<!DOCTYPE html>
 <html lang="zh-cn">
-<head>
-  <meta charset="utf-8">
-  <title>两数之和</title>
-</head>
-<body>
-  <script>
-  /**
-   * @param {number[]} nums
-   * @param {number} target
-   * @return {number[]}
-   */
-  const twoSum = (nums, target) => {
-    const copies = nums.concat().sort((a, b) => a - b)
-    const length = copies.length
-    let diffNum
-    for (let i = 0; i < length; i++) {
-      diffNum = target - copies[i]
-      if (copies.indexOf(diffNum, i + 1) >= 0) {
-        if (copies[i] !== diffNum) {
-          return [nums.indexOf(copies[i]), nums.indexOf(diffNum)]
-        } else {
-          const index = nums.indexOf(copies[i])
-          return [index, nums.indexOf(diffNum, index + 1)]
+  <head>
+    <meta charset="utf-8" />
+    <title>两数之和</title>
+  </head>
+  <body>
+    <script>
+      /**
+       * @param {number[]} nums
+       * @param {number} target
+       * @return {number[]}
+       */
+      const twoSum = (nums, target) => {
+        const copies = nums.concat().sort((a, b) => a - b)
+        const length = copies.length
+        let diffNum
+        for (let i = 0; i < length; i++) {
+          diffNum = target - copies[i]
+          if (copies.indexOf(diffNum, i + 1) >= 0) {
+            if (copies[i] !== diffNum) {
+              return [nums.indexOf(copies[i]), nums.indexOf(diffNum)]
+            } else {
+              const index = nums.indexOf(copies[i])
+              return [index, nums.indexOf(diffNum, index + 1)]
+            }
+          }
         }
       }
-    }
-  }
 
-  console.time('test')
-  console.log(twoSum([3, 2, 3], 6))
-  console.timeEnd('test')
-  </script>
-</body>
+      console.time('test')
+      console.log(twoSum([3, 2, 3], 6))
+      console.timeEnd('test')
+    </script>
+  </body>
 </html>

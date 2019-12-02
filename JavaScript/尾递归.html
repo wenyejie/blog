@@ -1,32 +1,27 @@
-<!doctype html>
-<!--
- - @author: Storm
- - @date: 2019-03-28
- - @email: wenyejie@foxmail.com
- -->
+<!DOCTYPE html>
 <html lang="zh-cn">
-<head>
-  <meta charset="utf-8">
-  <title>尾递归</title>
-</head>
-<body>
-  <script type="module">
-  'use strict'
-  // const factorial = (n) => {
-  //   if (n === 1) return 1
-  //   return n * factorial(n - 1)
-  // }
+  <head>
+    <meta charset="utf-8" />
+    <title>尾递归</title>
+  </head>
+  <body>
+    <script type="module">
+      'use strict'
+      // const factorial = (n) => {
+      //   if (n === 1) return 1
+      //   return n * factorial(n - 1)
+      // }
 
-  const factorial = (n, total = 1) => {
-    if (n === 1) return total
-    return factorial(n - 1, n * total)
-  }
+      const factorial = (n, total = 1) => {
+        if (n === 1) return total
+        return factorial(n - 1, n * total)
+      }
 
-  window.onload = () => {
-    console.time('test')
-    console.log(factorial(1000))
-    console.timeEnd('test')
-  }
-  </script>
-</body>
+      window.onload = () => {
+        console.time('test')
+        console.log(factorial(1000))
+        console.timeEnd('test')
+      }
+    </script>
+  </body>
 </html>

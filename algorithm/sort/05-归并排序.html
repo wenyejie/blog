@@ -1,68 +1,63 @@
-<!doctype html>
-<!--
- - @author: Storm
- - @date: 2019-01-11
- - @email: wenyejie@foxmail.com
- -->
+<!DOCTYPE html>
 <html lang="zh-cn">
-<head>
-  <meta charset="utf-8">
-  <title>05-归并排序</title>
-</head>
-<body>
-  <script type="module">
-  import data from './data.js'
+  <head>
+    <meta charset="utf-8" />
+    <title>05-归并排序</title>
+  </head>
+  <body>
+    <script type="module">
+      import data from './data.js'
 
-  /**
-   * 归并排序
-   * 参考文档: https://github.com/wenyejie/JS-Sorting-Algorithm/blob/master/5.mergeSort.md
-   * @param array {Array<Number>} 排序数组
-   * @return {Array<Number>} 排序后的数组
-   */
-  const mergeSort = (array) => {
-    const length = array.length
-    if (length < 2) {
-      return array
-    }
+      /**
+       * 归并排序
+       * 参考文档: https://github.com/wenyejie/JS-Sorting-Algorithm/blob/master/5.mergeSort.md
+       * @param array {Array<Number>} 排序数组
+       * @return {Array<Number>} 排序后的数组
+       */
+      const mergeSort = (array) => {
+        const length = array.length
+        if (length < 2) {
+          return array
+        }
 
-    const middle = Math.floor(length / 2)
-    const left = array.slice(0, middle)
-    const right = array.slice(middle)
+        const middle = Math.floor(length / 2)
+        const left = array.slice(0, middle)
+        const right = array.slice(middle)
 
-    return merge(mergeSort(left), mergeSort(right))
-  }
-
-  /**
-   * 合并两个数组
-   * @param left {Array<Number>} 左数组
-   * @param right {Array<Number>} 右数组
-   * @return {Array<Number>} 排序后的数组
-   */
-  const merge = (left, right) => {
-    const result = []
-
-    while (left.length && right.length) {
-      if (left[0] <= right[0]) {
-        result.push(left.shift())
-      } else {
-        result.push(right.shift())
+        return merge(mergeSort(left), mergeSort(right))
       }
-    }
 
-    while (left.length) {
-      result.push(left.shift())
-    }
+      /**
+       * 合并两个数组
+       * @param left {Array<Number>} 左数组
+       * @param right {Array<Number>} 右数组
+       * @return {Array<Number>} 排序后的数组
+       */
+      const merge = (left, right) => {
+        const result = []
 
-    while (right.length) {
-      result.push(right.shift())
-    }
+        while (left.length && right.length) {
+          if (left[0] <= right[0]) {
+            result.push(left.shift())
+          } else {
+            result.push(right.shift())
+          }
+        }
 
-    return result
-  }
+        while (left.length) {
+          result.push(left.shift())
+        }
 
-  console.log(`旧数据: ${data}`)
+        while (right.length) {
+          result.push(right.shift())
+        }
 
-  console.log(`新数据: ${mergeSort(data)}`)
-  </script>
-</body>
+        return result
+      }
+
+      console.log(`旧数据: ${data}`)
+
+      console.log(`新数据: ${mergeSort(data)}`)
+    </script>
+  </body>
 </html>

@@ -1,31 +1,25 @@
-<!doctype html>
-<!--
- - @author: Storm
- - @date: 2019-02-25
- - @email: wenyejie@foxmail.com
- -->
+<!DOCTYPE html>
 <html lang="zh-cn">
-<head>
-  <meta charset="utf-8">
-  <title>01-工厂模式</title>
-</head>
-<body>
-  <script>
+  <head>
+    <meta charset="utf-8" />
+    <title>01-工厂模式</title>
+  </head>
+  <body>
+    <script>
+      // 每个实例之间没有之间关系
+      // 没有共同父类, 不能公用方法.
+      function Demo(name, age) {
+        const obj = new Object(null)
+        obj.name = name
+        obj.age = age
+        obj.sayHi = function() {
+          console.log(`${this.name}: Hi!`)
+        }
+        return obj
+      }
 
-  // 每个实例之间没有之间关系
-  // 没有共同父类, 不能公用方法.
-  function Demo (name, age) {
-    const obj = new Object(null)
-    obj.name = name
-    obj.age = age
-    obj.sayHi = function () {
-      console.log(`${this.name}: Hi!`)
-    }
-    return obj
-  }
-
-  const demo = Demo('Storm', 29)
-  console.log(demo)
-  </script>
-</body>
+      const demo = Demo('Storm', 29)
+      console.log(demo)
+    </script>
+  </body>
 </html>

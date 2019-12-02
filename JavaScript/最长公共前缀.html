@@ -1,48 +1,43 @@
-<!doctype html>
-<!--
- - @author: Storm
- - @date: 2019-03-28
- - @email: wenyejie@foxmail.com
- -->
+<!DOCTYPE html>
 <html lang="zh-cn">
-<head>
-  <meta charset="utf-8">
-  <title>最长公共前缀</title>
-</head>
-<body>
-  <script>
-  /**
-   * @param {string[]} strs
-   * @return {string}
-   */
-  const longestCommonPrefix = function (strs) {
-    if (strs.length === 0) {
-      return ''
-    } else if (strs.length === 1) {
-      return  strs[0]
-    }
+  <head>
+    <meta charset="utf-8" />
+    <title>最长公共前缀</title>
+  </head>
+  <body>
+    <script>
+      /**
+       * @param {string[]} strs
+       * @return {string}
+       */
+      const longestCommonPrefix = function(strs) {
+        if (strs.length === 0) {
+          return ''
+        } else if (strs.length === 1) {
+          return strs[0]
+        }
 
-    const temp = strs[0]
-    const string = strs.join()
-    const length = strs.length
-    let regexp
-    let math = ''
-    let result = ''
+        const temp = strs[0]
+        const string = strs.join()
+        const length = strs.length
+        let regexp
+        let math = ''
+        let result = ''
 
-    for (let i = 1; i <= temp.length; i++) {
-      math = temp.substr(0, i)
-      regexp = new RegExp(`(^|,)${math}`, 'gi')
-      if (string.match(regexp).length !== length) {
-        break
+        for (let i = 1; i <= temp.length; i++) {
+          math = temp.substr(0, i)
+          regexp = new RegExp(`(^|,)${math}`, 'gi')
+          if (string.match(regexp).length !== length) {
+            break
+          }
+          result = math
+        }
+        return result
       }
-      result = math
-    }
-    return result
-  }
 
-  console.time('test')
-  console.log(longestCommonPrefix(['c', 'c', 'c']))
-  console.timeEnd('test')
-  </script>
-</body>
+      console.time('test')
+      console.log(longestCommonPrefix(['c', 'c', 'c']))
+      console.timeEnd('test')
+    </script>
+  </body>
 </html>

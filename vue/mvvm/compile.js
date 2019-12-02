@@ -1,9 +1,3 @@
-/**
- * @author: Storm
- * @date: 2019-03-08
- * @email: wenyejie@foxmail.com
- */
-
 const reg = /\{\{(.*)\}\}/
 const replaceReg = /(\{\{.*\}\})/
 
@@ -36,7 +30,7 @@ const compileAttr = (vm, node, attr) => {
   switch (name) {
     case 'v-model':
       node.value = vm[nodeValue]
-      node.addEventListener('input', event => {
+      node.addEventListener('input', (event) => {
         vm[nodeValue] = event.target.value
       })
       vm.$watcher[nodeValue].add(vm, node, nodeValue)
@@ -47,7 +41,7 @@ const compileAttr = (vm, node, attr) => {
 }
 
 const loopNodes = (vm, node) => {
-  node.childNodes.forEach(node => compileNode(vm, node))
+  node.childNodes.forEach((node) => compileNode(vm, node))
 }
 
 const loopAttrs = (vm, node) => {

@@ -1,9 +1,3 @@
-/**
- * @author: Storm
- * @date: 2019/5/8
- * @email: wenyejie@foxmail.com
- */
-
 export const monthLength = (date = new Date()) => {
   const val = new Date(date)
   val.setMonth(val.getMonth() + 1, 0)

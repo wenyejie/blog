@@ -1,12 +1,7 @@
-/**
- * @author: Storm
- * @date: 2019-02-21
- * @email: wenyejie@foxmail.com
- */
 import Dep from './dep.js'
 
 export default class Watcher {
-  constructor (vm, node, bindName) {
+  constructor(vm, node, bindName) {
     Dep.target = this
 
     this.name = bindName
@@ -17,11 +12,11 @@ export default class Watcher {
     Dep.target = null
   }
 
-  get () {
+  get() {
     this.value = this.vm[this.name]
   }
 
-  update () {
+  update() {
     this.get()
     const node = this.node
     const value = this.value

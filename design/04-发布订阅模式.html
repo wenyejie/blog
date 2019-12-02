@@ -1,56 +1,50 @@
-<!doctype html>
-<!--
- - @author: Storm
- - @date: 2019-02-25
- - @email: wenyejie@foxmail.com
- -->
+<!DOCTYPE html>
 <html lang="zh-cn">
-<head>
-  <meta charset="utf-8">
-  <title>03-单例模式</title>
-</head>
-<body>
-  <script>
+  <head>
+    <meta charset="utf-8" />
+    <title>03-单例模式</title>
+  </head>
+  <body>
+    <script>
+      const Demo = (function() {
+        const events = {}
 
-  const Demo = (function () {
-    const events = {}
-
-    function on(eventName, handler) {
-      events[eventName] = events[eventName] || []
-      events[eventName].push({handler})
-    }
-
-    function trigger (eventName, args) {
-      const eventList = events[eventName]
-      if (!eventList) {
-        return
-      }
-
-      eventList.forEach(handler => {
-        handler(args)
-      })
-    }
-
-    function off (eventName, handler) {
-      if (!handler) {
-        delete events[eventName]
-      } else {
-        const eventList = events[eventName]
-        const index = eventList.indexOf(handler)
-        if (Number.isInteger(index)) {
-          eventList.splice(index, 1)
+        function on(eventName, handler) {
+          events[eventName] = events[eventName] || []
+          events[eventName].push({ handler })
         }
-      }
-    }
 
-    return {
-      on,
-      off,
-      trigger
-    }
-  })()
+        function trigger(eventName, args) {
+          const eventList = events[eventName]
+          if (!eventList) {
+            return
+          }
 
-  window.demo = Demo()
-  </script>
-</body>
+          eventList.forEach((handler) => {
+            handler(args)
+          })
+        }
+
+        function off(eventName, handler) {
+          if (!handler) {
+            delete events[eventName]
+          } else {
+            const eventList = events[eventName]
+            const index = eventList.indexOf(handler)
+            if (Number.isInteger(index)) {
+              eventList.splice(index, 1)
+            }
+          }
+        }
+
+        return {
+          on,
+          off,
+          trigger
+        }
+      })()
+
+      window.demo = Demo()
+    </script>
+  </body>
 </html>

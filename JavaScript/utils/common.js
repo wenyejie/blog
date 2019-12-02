@@ -1,9 +1,3 @@
-/**
- * @author: Storm
- * @date: 2019/5/7
- * @email: wenyejie@foxmail.com
- */
-
 export const emptyObject = Object.freeze({})
 
 export const nullObject = () => {
@@ -66,7 +60,7 @@ export const hasOwn = (obj, key) => {
 
 export const cached = (fn) => {
   const cache = nullObject()
-  return function (str) {
+  return function(str) {
     const hit = cache[str]
     return hit || (cache[str] = fn(str))
   }
@@ -75,7 +69,7 @@ export const cached = (fn) => {
 // 横杠命名法转驼峰命名发
 const camelizeRE = /-(\w)/g
 export const camelize = (str) => {
-  return str.replace(camelizeRE, (_, c) => c ? c.toUpperCase() : '')
+  return str.replace(camelizeRE, (_, c) => (c ? c.toUpperCase() : ''))
 }
 export const camelizeCached = cached(camelize)
 
@@ -86,7 +80,7 @@ export const capitalize = (str) => {
 export const capitalizeCached = cached(capitalize)
 
 // 驼峰命名法转横杠命名法
-const hyphenateRE= /\B([A-Z])/g
+const hyphenateRE = /\B([A-Z])/g
 export const hyphenate = (str) => {
   return str.replace(hyphenateRE, '-$1').toLowerCase()
 }
@@ -99,7 +93,7 @@ export const hyphenateCached = cached(hyphenate)
  */
 export const once = (fn) => {
   let called = false
-  return function () {
+  return function() {
     if (!called) {
       called = true
       fn.apply(this, arguments)

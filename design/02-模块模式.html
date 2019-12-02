@@ -1,31 +1,25 @@
-<!doctype html>
-<!--
- - @author: Storm
- - @date: 2019-02-25
- - @email: wenyejie@foxmail.com
- -->
+<!DOCTYPE html>
 <html lang="zh-cn">
-<head>
-  <meta charset="utf-8">
-  <title>02-模块模式</title>
-</head>
-<body>
-  <script>
-  // 封装大部分代码, 只暴露必需接口
+  <head>
+    <meta charset="utf-8" />
+    <title>02-模块模式</title>
+  </head>
+  <body>
+    <script>
+      // 封装大部分代码, 只暴露必需接口
 
+      const Demo = (function(name, age) {
+        function sayHi() {
+          console.log(`${name}: Hi!`)
+        }
+        return {
+          name,
+          age,
+          sayHi
+        }
+      })()
 
-  const Demo = (function (name, age) {
-    function sayHi () {
-      console.log(`${name}: Hi!`)
-    }
-    return {
-      name,
-      age,
-      sayHi
-    }
-  })()
-
-  window.demo = Demo('Storm', 29)
-  </script>
-</body>
+      window.demo = Demo('Storm', 29)
+    </script>
+  </body>
 </html>

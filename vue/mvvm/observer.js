@@ -1,20 +1,14 @@
-/**
- * @author: Storm
- * @date: 2019-03-08
- * @email: wenyejie@foxmail.com
- */
-
 import Watcher from './watcher.js'
 
 const defineReactive = (vm, name, value) => {
   const watcher = new Watcher()
   vm.$watcher[name] = watcher
   Object.defineProperty(vm, name, {
-    get () {
+    get() {
       console.log('defineReactive get', name, value)
       return value
     },
-    set (newVal) {
+    set(newVal) {
       if (newVal === value) return
       value = newVal
       watcher.update()
