@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8" />
+    <title>队列-queue</title>
+    <link rel="stylesheet" href="../assets/prism.css" />
+  </head>
+  <body>
+    <button></button>
+    <pre><code data-code-highlight="javascript" class="language-javascript"></code></pre>
+    <script data-code-highlight="javascript">
+      class Queue {
+        #list = []
+        constructor() {
+          const args = Array.from(arguments)
+          args.forEach((value) => this.push(value))
+        }
+        push(value) {
+          this.#list.push(value)
+          return this
+        }
+        shift() {
+          return this.#list.shift()
+        }
+        isEmpty() {
+          return this.#list.length === 0
+        }
+        static create() {
+          return new Queue(...arguments)
+        }
+      }
+      const demo = new Queue(1, 2, 3, 4, 5)
+      demo.push(6)
+      demo.shift()
+    </script>
+    <script src="../assets/codeHighlight.js"></script>
+    <script src="../assets/prism.js"></script>
+  </body>
+</html>

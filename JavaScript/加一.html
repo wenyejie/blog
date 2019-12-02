@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<!--
+ - @author: Storm
+ - @email: wenyejie@foxmail.com
+ -->
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8" />
+    <title>加一</title>
+    <link rel="stylesheet" href="../assets/prism.css" />
+  </head>
+  <body>
+    <pre><code data-code-highlight="javascript" class="language-javascript"></code></pre>
+    <script data-code-highlight="javascript">
+      // https://leetcode-cn.com/problems/plus-one/
+      /**
+       * @param {number[]} digits
+       * @return {number[]}
+       */
+      const plusOne = function(digits) {
+        for (let i = digits.length - 1; i >= -1; i--) {
+          if (digits[i] + 1 === 10) {
+            digits[i] = 0
+          } else {
+            if (i === -1) {
+              digits.unshift(1)
+            } else {
+              digits[i] = digits[i] + 1
+            }
+            break
+          }
+        }
+        return digits
+      }
+
+      console.log(plusOne([1, 2, 3, 4, 5]))
+    </script>
+    <script src="../assets/codeHighlight.js"></script>
+    <script src="../assets/prism.js"></script>
+  </body>
+</html>
