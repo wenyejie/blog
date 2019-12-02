@@ -8,28 +8,33 @@
   <body>
     <pre><code data-code-highlight="javascript" class="language-javascript"></code></pre>
     <script data-code-highlight="javascript">
-      // https://leetcode-cn.com/problems/plus-one/
+      // https://leetcode-cn.com/problems/count-and-say/
       /**
-       * @param {number[]} digits
-       * @return {number[]}
+       * 报数 1. 1 | 2. 11 | 3. 21 | 4. 1211 | 5. 111221 | 6. 312211 | 7. 13112221
+       * @param {number} n
+       * @return {string}
        */
-      const plusOne = function(digits) {
-        for (let i = digits.length - 1; i >= -1; i--) {
-          if (digits[i] + 1 === 10) {
-            digits[i] = 0
-          } else {
-            if (i === -1) {
-              digits.unshift(1)
-            } else {
-              digits[i] = digits[i] + 1
+      function countAndSay(n) {
+        let temp = ''
+        let result = '1'
+        let len = 0
+        for (let i = 2; i <= n; i++) {
+          temp = result
+          result = ''
+          len = 1
+          for (let j = 1; j <= temp.length; j++) {
+            if (temp[j - 1] === temp[j]) {
+              len++
+              continue
             }
-            break
+            result = result + len + temp[j - 1]
+            len = 1
           }
         }
-        return digits
+        return result
       }
 
-      console.log(plusOne([1, 2, 3, 4, 5]))
+      console.log(countAndSay(30))
     </script>
     <script src="../assets/codeHighlight.js"></script>
     <script src="../assets/prism.js"></script>
