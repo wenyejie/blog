@@ -9,10 +9,73 @@
     <button></button>
     <pre><code data-code-highlight="javascript" class="language-javascript"></code></pre>
     <script data-code-highlight="javascript">
+      class LinkedListNode {
+        constructor(value) {
+          this.next = null
+          this.value = value
+        }
+      }
       class LinkedList {
         #head = null
         constructor() {}
+        first() {
+          return this.#head
+        }
+        last() {
+          let current = this.#head
+          while (current.next) {
+            current = current.next
+          }
+          return current
+        }
+        push(value) {
+          const node = new LinkedListNode(value)
+          if (this.#head === null) {
+            this.#head = node
+          } else {
+            const last = this.last()
+            last.next = node
+          }
+          return this
+        }
+        find(value) {
+          let current = this.#head
+          while (current.value !== value) {
+            current = current.next
+          }
+          return current
+        }
+        findPrev(value) {
+          let current = this.#head
+          if (current.value === value) {
+            return null
+          }
+          while (current.next !== null && current.next.value !== value) {
+            current = current.next
+          }
+          return current.next.value === value ? current : null
+        }
+        insert(value, insertVal) {
+          const node = new LinkedListNode(insertVal)
+          const prev = this.find(value)
+          node.next = prev.next
+          prev.next = node
+          return this
+        }
+        remove(value) {
+          const prev = this.findPrev(value)
+          const current = this.find(value)
+          prev.next = current.next
+          return this
+        }
       }
+
+      const demo = new LinkedList()
+      demo.push(0)
+      demo.push(1)
+      demo.push(3)
+      demo.insert(1, 2)
+      demo.remove(3)
     </script>
     <script src="../assets/codeHighlight.js"></script>
     <script src="../assets/prism.js"></script>

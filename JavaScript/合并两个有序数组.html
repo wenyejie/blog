@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8" />
+    <title>合并两个有序数组</title>
+    <link rel="stylesheet" href="../assets/prism.css" />
+  </head>
+  <body>
+    <pre><code data-code-highlight="javascript" class="language-javascript"></code></pre>
+    <script data-code-highlight="javascript">
+      // https://leetcode-cn.com/problems/merge-sorted-array/
+      /**
+       * @param {number[]} nums1
+       * @param {number} m
+       * @param {number[]} nums2
+       * @param {number} n
+       * @return {void} Do not return anything, modify nums1 in-place instead.
+       */
+      const merge = (nums1, m, nums2, n) => {
+        let i = 0
+        let len = m
+        for (let j = 0; j < n; j++) {
+          while (nums1[i] < nums2[j] && i < len) {
+            i++
+          }
+          nums1.splice(i, 0, nums2[j])
+          len++
+        }
+        nums1.length = m + n
+      }
+
+      const num1 = [1, 2, 3, 0, 0, 0]
+      merge(num1, 3, [2, 5, 6], 3)
+      console.log(num1)
+    </script>
+    <script src="../assets/codeHighlight.js"></script>
+    <script src="../assets/prism.js"></script>
+  </body>
+</html>

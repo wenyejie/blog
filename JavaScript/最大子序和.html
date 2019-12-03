@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8" />
+    <title>最大子序和</title>
+    <link rel="stylesheet" href="../assets/prism.css" />
+  </head>
+  <body>
+    <pre><code data-code-highlight="javascript" class="language-javascript"></code></pre>
+    <script data-code-highlight="javascript">
+      // https://leetcode-cn.com/problems/maximum-subarray/
+      // 输入: [-2,1,-3,4,-1,2,1,-5,4],
+      // 输出: 6
+      // 解释: 连续子数组 [4,-1,2,1] 的和最大，为 6。
+      /**
+       * @param {number[]} nums
+       * @return {number}
+       */
+      const maxSubArray = (nums) => {
+        let sum = nums[0]
+        let max = nums[0]
+        for (let i = 1; i < nums.length; i++) {
+          if (sum < 0 && nums[i] > sum) {
+            sum = 0
+          }
+          sum += nums[i]
+          max = Math.max(sum, max)
+        }
+
+        return max
+      }
+
+      console.log(maxSubArray([-2, 1, -3, 4, -1, 2, 1, -5, 4]))
+    </script>
+    <script src="../assets/codeHighlight.js"></script>
+    <script src="../assets/prism.js"></script>
+  </body>
+</html>
