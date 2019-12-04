@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8" />
+    <title>移动零</title>
+    <link rel="stylesheet" href="../assets/prism.css" />
+  </head>
+  <body>
+    <pre><code data-code-highlight="javascript" class="language-javascript"></code></pre>
+    <script data-code-highlight="javascript">
+      // https://leetcode-cn.com/problems/move-zeroes/
+      /**
+       * @param {number[]} nums
+       * @return {void} Do not return anything, modify nums in-place instead.
+       */
+      const moveZeroes = (nums) => {
+        let i = 0
+        let length = nums.length
+        while (i < length) {
+          if (nums[i] === 0) {
+            nums.splice(i, 1)
+            nums.push(0)
+            length--
+          } else {
+            i++
+          }
+        }
+      }
+
+      const nums = [0, 1, 0, 3, 12]
+      moveZeroes(nums)
+      console.log(nums)
+    </script>
+    <script src="../assets/codeHighlight.js"></script>
+    <script src="../assets/prism.js"></script>
+  </body>
+</html>
