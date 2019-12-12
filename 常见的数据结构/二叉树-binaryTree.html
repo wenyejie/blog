@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8" />
+    <title>二叉树-binaryTree</title>
+    <link rel="stylesheet" href="../assets/prism.css" />
+  </head>
+  <body>
+    <button></button>
+    <pre><code data-code-highlight="javascript" class="language-javascript"></code></pre>
+    <script data-code-highlight="javascript">
+      // 二叉排序树
+      class BinarySortTreeNode {
+        constructor(value) {
+          this.value = value
+          this.right = null
+          this.left = null
+        }
+      }
+
+      const insertNode = (node, newNode) => {
+        if (newNode.value < node.value) {
+          if (node.left === null) {
+            node.left = newNode
+          } else {
+            insertNode(node.left, newNode)
+          }
+          return
+        }
+        if (node.right === null) {
+          node.right = newNode
+        } else {
+          insertNode(node.right, newNode)
+        }
+      }
+
+      const inOrderTraversalRecursion = (node, callback, result) => {
+        if (node === null) {
+          return
+        }
+        // 先遍历左孩子
+        inOrderTraversalRecursion(node.left, callback, result)
+        // 再遍历父节点
+        result.push(node.value)
+        callback && callback(node)
+        // 后遍历右孩子
+        inOrderTraversalRecursion(node.right, callback, result)
+      }
+      class BinarySortTree {
+        #root = null
+        constructor(...args) {
+          args.forEach((value) => this.insert(value))
+        }
+
+        insert(value) {
+          const node = new BinarySortTreeNode(value)
+          if (this.#root === null) {
+            this.#root = node
+          } else {
+            insertNode(this.#root, node)
+          }
+          return this
+        }
+
+        sort(callback) {
+          const result = []
+          inOrderTraversalRecursion(this.#root, callback, result)
+          return result
+        }
+      }
+
+      const demo = new BinarySortTree(49, 33, 11, 25, 40, 9, 23, 54)
+      console.log(demo.sort()) // [9, 11, 23, 25, 33, 40, 49, 54]
+    </script>
+    <script src="../assets/codeHighlight.js"></script>
+    <script src="../assets/prism.js"></script>
+  </body>
+</html>
