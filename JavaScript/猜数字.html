@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8" />
+    <title>猜数字</title>
+    <link rel="stylesheet" href="../assets/prism.css" />
+  </head>
+  <body>
+    <pre><code data-code-highlight="javascript" class="language-javascript"></code></pre>
+    <div>结果为: <span id="result"></span></div>
+    <script data-code-highlight="javascript">
+      // https://leetcode-cn.com/problems/guess-numbers/
+      /**
+       * @param {number[]} guess
+       * @param {number[]} answer
+       * @return {number}
+       */
+      const game = (guess, answer) => {
+        let count = 0
+        for (let i = 0; i < guess.length; i++) {
+          if (guess[i] === answer[i]) {
+            count++
+          }
+        }
+        return count
+      }
+
+      document.querySelector('#result').innerHTML = game([3, 2, 1], [1, 2, 3]) + ''
+    </script>
+    <script src="../assets/codeHighlight.js"></script>
+    <script src="../assets/prism.js"></script>
+  </body>
+</html>
