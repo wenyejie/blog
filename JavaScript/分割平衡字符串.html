@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8" />
+    <title>分割平衡字符串</title>
+    <link rel="stylesheet" href="../assets/prism.css" />
+  </head>
+  <body>
+    <pre><code data-code-highlight="javascript" class="language-javascript"></code></pre>
+    <div>
+      结果为:
+      <pre id="result"></pre>
+    </div>
+    <script data-code-highlight="javascript">
+      // https://leetcode-cn.com/problems/split-a-string-in-balanced-strings/
+      /**
+       * @param {string} s
+       * @return {number}
+       */
+      const balancedStringSplit = (s) => {
+        const map = {
+          R: 1,
+          L: -1
+        }
+        let count = 0
+        let length = 0
+        for (let i = 0; i < s.length; i++) {
+          count += map[s[i]]
+          if (count === 0) {
+            length++
+          }
+        }
+        return length
+      }
+
+      document.querySelector('#result').innerHTML = JSON.stringify(
+        balancedStringSplit('RLRRLLRLRL')
+      )
+    </script>
+    <script src="../assets/codeHighlight.js"></script>
+    <script src="../assets/prism.js"></script>
+  </body>
+</html>

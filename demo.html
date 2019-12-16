@@ -2,43 +2,46 @@
 <html lang="zh-cn">
   <head>
     <meta charset="utf-8" />
-    <title>迪米特</title>
+    <title>百度地图定位</title>
     <link rel="stylesheet" href="./assets/prism.css" />
   </head>
   <body>
-    <div id="app">
-      <div :style="{'background-image': `url(${activeBg})`}" class="loading"></div>
-    </div>
     <pre><code data-code-highlight="javascript" class="language-javascript"></code></pre>
-    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <span id="demo"></span>
+    <pre id="result"></pre>
+    <script
+      type="text/javascript"
+      src="http://api.map.baidu.com/api?v=2.0&amp;ak=E4805d16520de693a3fe707cdc962045"
+    ></script>
+    <!--<script
+      src="http://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+      crossorigin="anonymous"
+    ></script>-->
     <script data-code-highlight="javascript">
-      class ListNode {
-        constructor(val) {
-          this.val = val
-          this.next = null
-        }
-      }
-      const mergeTwoLists = function(l1, l2) {
-        let result = new ListNode()
-        let current = result
-        while (l1 !== null || l2 !== null) {
-          if (l1 !== null && (l2 === null || l1.val <= l2.val)) {
-            current.next = l1
-            current = l1
-            l1 = l1.next
+      const geolocation = new BMap.Geolocation()
+      geolocation.getCurrentPosition(
+        function(r) {
+          document.querySelector('#result').innerHTML = JSON.stringify(r, '\n\s', 2)
+          if (this.getStatus() === BMAP_STATUS_SUCCESS) {
+            document.querySelector('#demo').innerHTML =
+              '您的位置：' + r.point.lng + ',' + r.point.lat
           } else {
-            current.next = l2
-            current = l2
-            l2 = l2.next
+            alert('failed' + this.getStatus())
           }
-        }
-        return result.next
-      }
-
-      const l1 = { val: 1, next: { val: 2, next: { val: 4, next: null } } }
-      const l2 = { val: 1, next: { val: 3, next: { val: 4, next: null } } }
-      console.log(mergeTwoLists(l1, l2))
+        },
+        { enableHighAccuracy: true }
+      )
+      //关于状态码
+      //BMAP_STATUS_SUCCESS	检索成功。对应数值“0”。
+      //BMAP_STATUS_CITY_LIST	城市列表。对应数值“1”。
+      //BMAP_STATUS_UNKNOWN_LOCATION	位置结果未知。对应数值“2”。
+      //BMAP_STATUS_UNKNOWN_ROUTE	导航结果未知。对应数值“3”。
+      //BMAP_STATUS_INVALID_KEY	非法密钥。对应数值“4”。
+      //BMAP_STATUS_INVALID_REQUEST	非法请求。对应数值“5”。
+      //BMAP_STATUS_PERMISSION_DENIED	没有权限。对应数值“6”。(自 1.1 新增)
+      //BMAP_STATUS_SERVICE_UNAVAILABLE	服务不可用。对应数值“7”。(自 1.1 新增)
+      //BMAP_STATUS_TIMEOUT	超时。对应数值“8”。(自 1.1 新增)
     </script>
     <script src="./assets/codeHighlight.js"></script>
     <script src="./assets/prism.js"></script>
