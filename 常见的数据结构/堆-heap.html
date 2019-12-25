@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8" />
+    <title>堆-heap</title>
+    <link rel="stylesheet" href="../assets/prism.css" />
+  </head>
+  <body>
+    <pre><code data-code-highlight="javascript" class="language-javascript"></code></pre>
+    <script data-code-highlight="javascript">
+      const swap = (array, i, j) => {
+        const temp = array[i]
+        array[i] = array[j]
+        array[j] = temp
+      }
+      // 小顶堆
+      class Heap {
+        #list = []
+        constructor(array) {
+          this.#list = array
+          for (let i = Math.floor(this.#list.length / 2 - 1); i >= 0; i--) {
+            this.shiftDown(i, this.#list.length)
+          }
+          for (let i = Math.floor(this.#list.length - 1); i > 0; i--) {
+            swap(this.#list, 0, i)
+            this.shiftDown(0, i)
+          }
+        }
+        shiftDown(index, length) {
+          let temp = this.#list[index]
+          for (let j = 2 * index + 1; j < length; j = 2 * j + 1) {
+            temp = this.#list[index]
+            if (j + 1 < length && this.#list[j] < this.#list[j + 1]) {
+              j++
+            }
+            if (temp < this.#list[j]) {
+              swap(this.#list, index, j)
+              index = j
+            } else {
+              break
+            }
+          }
+        }
+        remove() {}
+      }
+
+      const demo = new Heap([4, 6, 8, 5, 9, 1, 2, 5, 3, 2])
+
+      console.log(demo)
+    </script>
+    <script src="../assets/codeHighlight.js"></script>
+    <script src="../assets/prism.js"></script>
+  </body>
+</html>
