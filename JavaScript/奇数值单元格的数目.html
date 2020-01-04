@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8" />
+    <title>奇数值单元格的数目</title>
+    <link rel="stylesheet" href="../assets/prism.css" />
+  </head>
+  <body>
+    <pre><code
+  data-code-highlight="javascript"
+  class="language-javascript"></code></pre>
+    <div>
+      结果为:
+      <pre id="result"></pre>
+    </div>
+    <script data-code-highlight="javascript">
+      // https://leetcode-cn.com/problems/cells-with-odd-values-in-a-matrix/
+      /**
+       * @param {number} n
+       * @param {number} m
+       * @param {number[][]} indices
+       * @return {number}
+       */
+      const oddCells = (n, m, indices) => {
+        const array = []
+        for (let i = 0; i < n; i++) {
+          array[i] = []
+          for (let j = 0; j < m; j++) {
+            array[i][j] = 0
+          }
+        }
+        for (let i = 0; i < indices.length; i++) {
+          let row = indices[i][0]
+          let col = indices[i][1]
+          for (let j = 0; j < array[row].length; j++) {
+            array[row][j]++
+          }
+          for (let j = 0; j < array.length; j++) {
+            array[j][col]++
+          }
+        }
+        let sum = 0
+        for (let i = 0; i < array.length; i++) {
+          for (let j = 0; j < array[i].length; j++) {
+            if (array[i][j] % 2 === 1) {
+              sum++
+            }
+          }
+        }
+        return sum
+      }
+      document.querySelector('#result').innerHTML = JSON.stringify(oddCells(2, 3, [[0, 1], [1, 1]]))
+    </script>
+    <script src="../assets/codeHighlight.js"></script>
+    <script src="../assets/prism.js"></script>
+  </body>
+</html>
