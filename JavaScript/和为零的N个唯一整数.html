@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8" />
+    <title>和为零的N个唯一整数</title>
+    <link rel="stylesheet" href="../assets/prism.css" />
+  </head>
+  <body>
+    <pre><code data-code-highlight="javascript" class="language-javascript"></code></pre>
+    <div>
+      结果为:
+      <pre id="result"></pre>
+    </div>
+    <script data-code-highlight="javascript">
+      // https://leetcode-cn.com/problems/find-n-unique-integers-sum-up-to-zero/
+      /**
+       * @param {number} n
+       * @return {number[]}
+       */
+      const sumZero = (n) => {
+        const result = []
+        if (n % 2 === 1) {
+          result.push(0)
+        }
+        const length = Math.floor(n / 2)
+        for (let i = 1; i <= length; i++) {
+          result.push(i)
+          result.unshift(-i)
+        }
+        return result
+      }
+      document.querySelector('#result').innerHTML = JSON.stringify(sumZero(10))
+    </script>
+    <script src="../assets/codeHighlight.js"></script>
+    <script src="../assets/prism.js"></script>
+  </body>
+</html>

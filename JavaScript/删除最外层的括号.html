@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8" />
+    <title>删除最外层的括号</title>
+    <link rel="stylesheet" href="../assets/prism.css" />
+  </head>
+  <body>
+    <pre><code
+  data-code-highlight="javascript"
+  class="language-javascript"></code></pre>
+    <div>
+      结果为:
+      <pre id="result"></pre>
+    </div>
+    <script data-code-highlight="javascript">
+      // https://leetcode-cn.com/problems/remove-outermost-parentheses/
+      /**
+       * @param {string} S
+       * @return {string}
+       */
+      const removeOuterParentheses = (S) => {
+        let result = ''
+        let start = 0
+        let count = 0
+        for (let i = 0; i < S.length; i++) {
+          count += S[i] === '(' ? 1 : -1
+          if (count === 0) {
+            result += S.substring(start + 1, i)
+            start = i + 1
+          }
+        }
+        return result
+      }
+      document.querySelector('#result').innerHTML = JSON.stringify(
+        removeOuterParentheses('(()())(())(()(()))')
+      )
+    </script>
+    <script src="../assets/codeHighlight.js"></script>
+    <script src="../assets/prism.js"></script>
+  </body>
+</html>
