@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8" />
+    <title>合并二叉树</title>
+    <link rel="stylesheet" href="../assets/prism.css" />
+  </head>
+  <body>
+    <pre><code
+  data-code-highlight="javascript"
+  class="language-javascript"></code></pre>
+    <div>
+      结果为:
+      <pre id="result"></pre>
+    </div>
+    <script data-code-highlight="javascript">
+      // https://leetcode-cn.com/problems/merge-two-binary-trees/
+      /**
+       * Definition for a binary tree node.
+       * function TreeNode(val) {
+       *     this.val = val;
+       *     this.left = this.right = null;
+       * }
+       */
+      /**
+       * @param {TreeNode} t1
+       * @param {TreeNode} t2
+       * @return {TreeNode}
+       */
+      const mergeTrees = (t1, t2, t = {}) => {
+        if (t1 === null && t2 === null) {
+          return null
+        }
+        t1 = t1 === null ? { val: 0, left: null, right: null } : t1
+        t2 = t2 === null ? { val: 0, left: null, right: null } : t2
+        t.left = null
+        t.right = null
+        t.val = t1.val + t2.val
+
+        if (t1.left !== null || t2.left !== null) {
+          t.left = {}
+          mergeTrees(t1.left, t2.left, t.left)
+        }
+        if (t1.right !== null || t2.right !== null) {
+          t.right = {}
+          mergeTrees(t1.right, t2.right, t.right)
+        }
+        return t
+      }
+      document.querySelector('#result').innerHTML = JSON.stringify(mergeTrees(null, null))
+    </script>
+    <script src="../assets/codeHighlight.js"></script>
+    <script src="../assets/prism.js"></script>
+  </body>
+</html>

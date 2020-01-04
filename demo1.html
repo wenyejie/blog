@@ -6,26 +6,10 @@
   </head>
   <body>
     <script>
-      function checkIDCard(idCode) {
-        // 加权因子
-        const weight_factor = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2]
-        // 校验码
-        const check_code = ['1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2']
-
-        const code = (idCode + '').toLocaleUpperCase()
-
-        // ISO 7064:1983.MOD 11-2
-        // 判断最后一位校验码是否正确
-        const arr = code.substring(0, 17).split('')
-        const len = arr.length
-        let num = 0
-        for (let i = 0; i < len; i++) {
-          num = num + arr[i] * weight_factor[i]
-        }
-        return check_code[num % 11] === code[17]
+      function demo(t = { val: 0, left: null, right: null }) {
+        return t
       }
-
-      checkIDCard('441424199004076755')
+      console.log(demo(null))
     </script>
   </body>
 </html>
