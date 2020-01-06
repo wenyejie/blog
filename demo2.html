@@ -3,90 +3,19 @@
   <head>
     <meta charset="utf-8" />
     <title>Demo1</title>
-    <style>
-      div {
-        width: 200px;
-        overflow: hidden;
-        word-break: keep-all;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        display: flex;
-      }
-      span {
-        display: inline-block;
-        vertical-align: middle;
-        background-color: #999999;
-        color: #fff;
-        margin: 3px;
-      }
-    </style>
   </head>
   <body>
-    <div>
-      <span>测试测试</span>
-      <span>测试测试1</span>
-      <span>测试测试</span>
-      <span>测试测试</span>
-      <span>测试测试</span>
-      <span>测试测试</span>
-      <span>测试测试</span>
-      <span>测试测试</span>
-      <span>测试测试</span>
-      <span>测试测试</span>
-      <span>测试测试</span>
-      <span>测试测试</span>
-      <span>测试测试</span>
-      <span>测试测试</span>
-      <span>测试测试</span>
-    </div>
     <script>
-      /*function formItemValidate (value, rules) {
-  return {
-    $required: rules.required ? !!value : true,
-    $minlength: rules.minlength > 0 ? `${value}`.length >= rules.minlength : true
-  }
-}
-
-console.log(formItemValidate('13411111111', {
-  required: true,
-  minlength: 11
-}))*/
-
-      function required(value, required) {
-        return required ? !!value : true
+      const demo = () => {
+        const receiptPdfUrl = ''
+        if (receiptPdfUrl) {
+          return /^https/.test(receiptPdfUrl)
+            ? receiptPdfUrl
+            : receiptPdfUrl.replace(/^http/, 'https')
+        }
+        return ''
       }
-
-      function minlength(value, minlength) {
-        return minlength > 0 ? `${value}`.length >= minlength : true
-      }
-
-      const validators = {
-        required,
-        minlength
-      }
-
-      function formItemValidate(value, rules) {
-        const validity = {}
-        rules.forEach((item) => {
-          validity[`$${item.name}`] = item.validator(value, item.property)
-        })
-        return validity
-      }
-
-      console.log(
-        formItemValidate('13480298192', [
-          {
-            name: 'required',
-            property: true,
-            validator: required
-          },
-          {
-            name: 'minlength',
-            property: 11,
-            validator: minlength
-          }
-        ])
-      )
+      console.log(demo())
     </script>
   </body>
 </html>

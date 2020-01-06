@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8" />
+    <title>汉明距离</title>
+    <link rel="stylesheet" href="../assets/prism.css" />
+  </head>
+  <body>
+    <pre><code
+  data-code-highlight="javascript"
+  class="language-javascript"></code></pre>
+    <div>
+      结果为:
+      <pre id="result"></pre>
+    </div>
+    <script data-code-highlight="javascript">
+      // https://leetcode-cn.com/problems/hamming-distance/
+      /**
+       * @param {number} x
+       * @param {number} y
+       * @return {number}
+       */
+      const hammingDistance = (x, y) => (x ^ y).toString(2).replace(/0/g, '').length
+      document.querySelector('#result').innerHTML = JSON.stringify(hammingDistance(93, 73))
+      console.log((93).toString(2), (73).toString(2))
+    </script>
+    <script src="../assets/codeHighlight.js"></script>
+    <script src="../assets/prism.js"></script>
+  </body>
+</html>
