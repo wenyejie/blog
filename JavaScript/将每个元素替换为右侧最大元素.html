@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8" />
+    <title>将每个元素替换为右侧最大元素</title>
+    <link rel="stylesheet" href="../assets/prism.css" />
+  </head>
+  <body>
+    <pre><code
+  data-code-highlight="javascript"
+  class="language-javascript"></code></pre>
+    <div>
+      结果为:
+      <pre id="result"></pre>
+    </div>
+    <script data-code-highlight="javascript">
+      // https://leetcode-cn.com/problems/replace-elements-with-greatest-element-on-right-side/
+
+      /**
+       * @param {number[]} arr
+       * @return {number[]}
+       */
+      const replaceElements = (arr) => {
+        let max = arr[arr.length - 1]
+        arr[arr.length - 1] = -1
+        for (let i = arr.length - 2; i >= 0; i--) {
+          let temp = arr[i]
+          arr[i] = max
+          max = Math.max(max, temp)
+        }
+        return arr
+      }
+      document.querySelector('#result').innerHTML = JSON.stringify(
+        replaceElements([17, 18, 5, 4, 6, 1])
+      )
+    </script>
+    <script src="../assets/codeHighlight.js"></script>
+    <script src="../assets/prism.js"></script>
+  </body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8" />
+    <title>唯一摩尔斯密码词</title>
+    <link rel="stylesheet" href="../assets/prism.css" />
+  </head>
+  <body>
+    <pre><code
+  data-code-highlight="javascript"
+  class="language-javascript"></code></pre>
+    <div>
+      结果为:
+      <pre id="result"></pre>
+    </div>
+    <script data-code-highlight="javascript">
+      // https://leetcode-cn.com/problems/unique-morse-code-words/
+
+      const wordMap = {
+        a: '.-',
+        b: '-...',
+        c: '-.-.',
+        d: '-..',
+        e: '.',
+        f: '..-.',
+        g: '--.',
+        h: '....',
+        i: '..',
+        j: '.---',
+        k: '-.-',
+        l: '.-..',
+        m: '--',
+        n: '-.',
+        o: '---',
+        p: '.--.',
+        q: '--.-',
+        r: '.-.',
+        s: '...',
+        t: '-',
+        u: '..-',
+        v: '...-',
+        w: '.--',
+        x: '-..-',
+        y: '-.--',
+        z: '--..'
+      }
+      /**
+       * @param {string[]} words
+       * @return {number}
+       */
+      const uniqueMorseRepresentations = (words) => {
+        const set = new Set()
+        for (let i = 0; i < words.length; i++) {
+          let temp = ''
+          for (let j = 0; j < words[i].length; j++) {
+            temp += wordMap[words[i][j]]
+          }
+          set.add(temp)
+        }
+        return set.size
+      }
+      document.querySelector('#result').innerHTML = JSON.stringify(
+        uniqueMorseRepresentations(['gin', 'zen', 'gig', 'msg'])
+      )
+    </script>
+    <script src="../assets/codeHighlight.js"></script>
+    <script src="../assets/prism.js"></script>
+  </body>
+</html>
