@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8" />
+  <title>翻转二叉树</title>
+  <link
+    rel="stylesheet"
+    href="../assets/prism.css" />
+</head>
+<body>
+<pre><code
+  data-code-highlight="javascript"
+  class="language-javascript"></code></pre>
+<div>
+  结果为:
+  <pre id="result"></pre>
+</div>
+<script data-code-highlight="javascript">
+// https://leetcode-cn.com/problems/invert-binary-tree/
+
+
+const swap = (left, right) => {
+  const temp = left.val
+  left.val = right.val
+  right.val = temp
+}
+const loop = (left, right, leftRoot, rightRoot) => {
+  if (left === null && right === null) {
+    return
+  }
+  if (left === null) {
+    leftRoot.left = right
+    left = right
+    rightRoot.right = null
+
+    if (left.left !== null || left.right !== null) {
+      loop(left.left, left.right, left, left)
+    }
+    return
+  } else if (right === null) {
+    rightRoot.right = left
+    right = left
+    leftRoot.left = null
+    if (right.left !== null || right.right !== null) {
+      loop(right.left, right.right, right, right)
+    }
+    return
+  }
+  swap(left, right)
+  if (left.left !== null || right.right !== null) {
+    loop(left.left, right.right, left, right)
+  }
+  if (left.right !== null || right.left !== null) {
+    loop(right.left, left.right, right, left)
+  }
+}
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {TreeNode}
+ */
+const invertTree = (root) => {
+  if (root) {
+    loop(root.left, root.right, root, root)
+  }
+  return root
+}
+document.querySelector('#result').innerHTML = JSON.stringify(
+  invertTree({
+    val: 3,
+    left: {
+      val: 2,
+      left: null,
+      right: null
+    },
+    right: {
+      val: 4,
+      left: {
+        val: 1,
+        left: null,
+        right: null
+      },
+      right: null
+    }
+  })
+)
+</script>
+<script src="../assets/codeHighlight.js"></script>
+<script src="../assets/prism.js"></script>
+</body>
+</html>

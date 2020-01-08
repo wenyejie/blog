@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8" />
+  <title>翻转二叉树-better</title>
+  <link
+    rel="stylesheet"
+    href="../assets/prism.css" />
+</head>
+<body>
+<pre><code
+  data-code-highlight="javascript"
+  class="language-javascript"></code></pre>
+<div>
+  结果为:
+  <pre id="result"></pre>
+</div>
+<script data-code-highlight="javascript">
+// https://leetcode-cn.com/problems/invert-binary-tree/
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {TreeNode}
+ */
+const invertTree = (root) => {
+  if (root === null) {
+    return root
+  }
+  const temp = root.right
+  root.right = root.left
+  root.left = temp
+  invertTree(root.left)
+  invertTree(root.right)
+  return root
+}
+document.querySelector('#result').innerHTML = JSON.stringify(
+  invertTree({
+    val: 3,
+    left: {
+      val: 2,
+      left: null,
+      right: null
+    },
+    right: {
+      val: 4,
+      left: {
+        val: 1,
+        left: null,
+        right: null
+      },
+      right: null
+    }
+  })
+)
+</script>
+<script src="../assets/codeHighlight.js"></script>
+<script src="../assets/prism.js"></script>
+</body>
+</html>
