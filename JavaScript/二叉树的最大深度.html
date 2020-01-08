@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8" />
+  <title>二叉树的最大深度</title>
+  <link
+    rel="stylesheet"
+    href="../assets/prism.css" />
+</head>
+<body>
+<pre><code
+  data-code-highlight="javascript"
+  class="language-javascript"></code></pre>
+<div>
+  结果为:
+  <pre id="result"></pre>
+</div>
+<script data-code-highlight="javascript">
+// https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+const maxDepth = (root) => {
+  if (root === null) {
+    return 0
+  }
+  return Math.max(maxDepth(root.left) + 1, maxDepth(root.right) + 1)
+}
+document.querySelector('#result').innerHTML = JSON.stringify(
+  maxDepth({
+    val: 3,
+    left: {
+      val: 9,
+      left: null,
+      right: null
+    },
+    right: {
+      val: 20,
+      left: {
+        val: 15,
+        left: null,
+        right: null
+      },
+      right: {
+        val: 7,
+        left: null,
+        right: null
+      }
+    }
+  })
+)
+</script>
+<script src="../assets/codeHighlight.js"></script>
+<script src="../assets/prism.js"></script>
+</body>
+</html>

@@ -3,33 +3,25 @@
   <head>
     <meta charset="utf-8" />
     <title>Demo1</title>
-    <style>
-      ul .op-dropdown__company:last-of-type {
-        border-bottom: 1px solid #e6e6e6;
-        background-color: #000;
-      }
-    </style>
   </head>
   <body>
-  <ul data-v-43940d82="" class="ivu-dropdown-menu">
-    <li data-v-43940d82="" class="op-dropdown__company ivu-dropdown-item">
-      云劳务匡散军测试一
-    </li>
-    <li data-v-43940d82="" class="op-dropdown__company ivu-dropdown-item">
-      云劳务匡散军测试二
-    </li>
-    <li data-v-43940d82="" class="op-dropdown__company ivu-dropdown-item">
-      云劳务匡散军测试三
-    </li>
-    <li data-v-43940d82="" class="op-dropdown__company ivu-dropdown-item">创美科技公司</li>
-    <li data-v-43940d82="" class="op-dropdown__company ivu-dropdown-item">创面大公司</li>
-    <div data-v-43940d82="" class="op-dropdown__logout ivu-dropdown-item">退出登录</div>
-  </ul>
     <script>
-      function demo(t = { val: 0, left: null, right: null }) {
-        return t
+    const test1 = (n) => {
+      if (n <= 1) {
+        return 1
       }
-      console.log(demo(null))
+      return n * test1(n - 1)
+    }
+
+    console.log(test1(100))
+
+    const test2 = (n, sum = 1) => {
+      if (n <= 1) {
+        return sum
+      }
+      return test2(n -1, n * sum)
+    }
+    console.log(test2(100))
     </script>
   </body>
 </html>
