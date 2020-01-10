@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8" />
+  <title>统计位数为偶数的数字</title>
+  <link
+    rel="stylesheet"
+    href="../assets/prism.css" />
+</head>
+<body>
+<pre><code
+  data-code-highlight="javascript"
+  class="language-javascript"></code></pre>
+<div>
+  结果为:
+  <pre id="result"></pre>
+</div>
+<script data-code-highlight="javascript">
+// https://leetcode-cn.com/problems/find-numbers-with-even-number-of-digits/
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+const findNumbers = (nums) => {
+  let sum = 0
+  for (let i = 0; i < nums.length; i++) {
+    if ((nums[i] + '').length % 2 === 0) {
+      sum++
+    }
+  }
+  return sum
+}
+document.querySelector('#result').innerHTML = JSON.stringify(
+  findNumbers([555, 901, 482, 1771])
+)
+</script>
+<script src="../assets/codeHighlight.js"></script>
+<script src="../assets/prism.js"></script>
+</body>
+</html>

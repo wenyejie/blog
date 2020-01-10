@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8" />
+  <title>有序数组的平方</title>
+  <link
+    rel="stylesheet"
+    href="../assets/prism.css" />
+</head>
+<body>
+<pre><code
+  data-code-highlight="javascript"
+  class="language-javascript"></code></pre>
+<div>
+  结果为:
+  <pre id="result"></pre>
+</div>
+<script data-code-highlight="javascript">
+// https://leetcode-cn.com/problems/squares-of-a-sorted-array/
+/**
+ * @param {number[]} A
+ * @return {number[]}
+ */
+const sortedSquares = (A) => A.map(item => item * item).sort((a, b) => a - b)
+document.querySelector('#result').innerHTML = JSON.stringify(
+  sortedSquares([-4,-1,0,3,10])
+)
+</script>
+<script src="../assets/codeHighlight.js"></script>
+<script src="../assets/prism.js"></script>
+</body>
+</html>
