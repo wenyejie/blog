@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8" />
+  <title>最近的请求次数</title>
+  <link
+    rel="stylesheet"
+    href="../assets/prism.css" />
+</head>
+<body>
+<pre><code
+  data-code-highlight="javascript"
+  class="language-javascript"></code></pre>
+<div>
+  结果为:
+  <pre id="result"></pre>
+</div>
+<script data-code-highlight="javascript">
+// https://leetcode-cn.com/problems/number-of-recent-calls/
+const RecentCounter = function() {
+  this.list = []
+}
+
+/**
+ * @param {number} t
+ * @return {number}
+ */
+RecentCounter.prototype.ping = function(t) {
+  if (Number.isInteger(t)) {
+    this.list.push(t)
+  }
+  this.list = this.list.filter(_t => (_t >= t - 3000))
+  return this.list.length
+}
+
+/**
+ * Your RecentCounter object will be instantiated and called as such:
+ * var obj = new RecentCounter()
+ * var param_1 = obj.ping(t)
+ */
+const obj = new RecentCounter()
+obj.ping(10)
+document.querySelector('#result').innerHTML = JSON.stringify(
+  obj.ping(10)
+)
+</script>
+<script src="../assets/codeHighlight.js"></script>
+<script src="../assets/prism.js"></script>
+</body>
+</html>
