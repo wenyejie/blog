@@ -11,35 +11,9 @@
       <button type="submit" class="submit">Submit</button>
     </form>
     <script>
-      // Good
-      function required(value, required) {
-        return required ? !!value : true
-      }
-
-      function minlength(value, minlength) {
-        return minlength > 0 ? `${value}`.length >= minlength : true
-      }
-
-      function formItemValidate(value, rules) {
-        const validity = {}
-        rules.forEach((item) => {
-          validity[`$${item.name}`] = item.validator(value, item.property)
-        })
-        return validity
-      }
-
-      formItemValidate('13411111111', [
-        {
-          name: 'required',
-          property: true,
-          validator: required
-        },
-        {
-          name: 'minlength',
-          property: 11,
-          validator: minlength
-        }
-      ]) // { $required: true, $minlength: true }
+    document.addEventListener('visibilitychange', (event) => {
+      console.log(event, document.hidden)
+    })
     </script>
   </body>
 </html>

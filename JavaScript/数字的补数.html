@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8" />
+  <title>数字的补数</title>
+  <link
+    rel="stylesheet"
+    href="../assets/prism.css" />
+</head>
+<body>
+<pre><code
+  data-code-highlight="javascript"
+  class="language-javascript"></code></pre>
+<div>
+  结果为:
+  <pre id="result"></pre>
+</div>
+<script data-code-highlight="javascript">
+// https://leetcode-cn.com/problems/number-complement/
+/**
+ * @param {number} num
+ * @return {number}
+ */
+const findComplement = (num) => {
+  const binary = num.toString(2)
+  let result = ''
+  for (let i = 0; i < binary.length; i++) {
+    result += binary[i] === '1' ? '0' : '1'
+  }
+  return Number.parseInt(result, 2)
+}
+document.querySelector('#result').innerHTML = JSON.stringify(
+  findComplement(5)
+)
+</script>
+<script src="../assets/codeHighlight.js"></script>
+<script src="../assets/prism.js"></script>
+</body>
+</html>

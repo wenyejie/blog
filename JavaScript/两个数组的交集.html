@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8" />
+  <title>两个数组的交集</title>
+  <link
+    rel="stylesheet"
+    href="../assets/prism.css" />
+</head>
+<body>
+<pre><code
+  data-code-highlight="javascript"
+  class="language-javascript"></code></pre>
+<div>
+  结果为:
+  <pre id="result"></pre>
+</div>
+<script data-code-highlight="javascript">
+// https://leetcode-cn.com/problems/intersection-of-two-arrays/
+/**
+ * @param {number[]} nums1
+ * @param {number[]} nums2
+ * @return {number[]}
+ */
+const intersection = (nums1, nums2) => {
+  const set = new Set()
+  for (let i = 0; i < nums1.length; i++) {
+    if (nums2.includes(nums1[i])) {
+      set.add(nums1[i])
+    }
+  }
+  return Array.from(set)
+}
+document.querySelector('#result').innerHTML = JSON.stringify(
+  intersection([1, 2, 2, 1], [2, 2])
+)
+</script>
+<script src="../assets/codeHighlight.js"></script>
+<script src="../assets/prism.js"></script>
+</body>
+</html>
