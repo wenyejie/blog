@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8" />
+    <title>最小差值 I</title>
+    <link rel="stylesheet" href="../assets/prism.css" />
+  </head>
+  <body>
+    <pre><code
+  data-code-highlight="javascript"
+  class="language-javascript"></code></pre>
+    <div>
+      结果为:
+      <pre id="result"></pre>
+    </div>
+    <script data-code-highlight="javascript">
+      // https://leetcode-cn.com/problems/smallest-range-i/
+      /**
+       * @param {number[]} A
+       * @param {number} K
+       * @return {number}
+       */
+      const smallestRangeI = (A, K) => {
+        const min = Math.min.apply(null, A)
+        const max = Math.max.apply(null, A)
+        if (min + K >= max - K) {
+          return 0
+        }
+        return max - K - min - K
+      }
+      document.querySelector('#result').innerHTML = JSON.stringify(smallestRangeI([1, 3, 6], 3))
+    </script>
+    <script src="../assets/codeHighlight.js"></script>
+    <script src="../assets/prism.js"></script>
+  </body>
+</html>
