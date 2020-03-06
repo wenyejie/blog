@@ -11,9 +11,56 @@
       <button type="submit" class="submit">Submit</button>
     </form>
     <script>
-    document.addEventListener('visibilitychange', (event) => {
-      console.log(event, document.hidden)
-    })
+      // const moneyFormat = (money) => {
+      //   if (typeof money !== 'number' || Number.isNaN(money)) {
+      //     return ''
+      //   }
+      //   let result = money.toFixed(2)
+      //   const numSplit = result.split('.')
+      //   const integer = numSplit[0]
+      //   const decimal = numSplit[1]
+      //   result = integer.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+      //   result += '.' + decimal
+      //   return result
+      // }
+
+      const isNumber = (value) => typeof value === 'number' && !Number.isNaN(value)
+
+      const moneyFormat = (number, options) => {
+        options = Object.assign(
+          {
+            // 小数点长度
+            decimal: 2,
+            // 钱币符号
+            symbol: '',
+            // 默认值
+            default: '',
+            // 分隔符号
+            split: ',',
+            // 分割长度
+            length: 3
+          },
+          options
+        )
+        number = Number.parseFloat(number)
+        if (!isNumber(number)) {
+          return options.default
+        }
+        const result = number.toFixed(options.decimal)
+        const numberSplit = result.split('.')
+
+        return (
+          options.symbol +
+          numberSplit[0].replace(
+            new RegExp('\\B(?=(\\d{' + options.length + '})+(?!\\d))', 'g'),
+            options.split
+          ) +
+          '.' +
+          numberSplit[1]
+        )
+      }
+
+      console.log(moneyFormat(1000000))
     </script>
   </body>
 </html>
