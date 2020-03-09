@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8" />
+    <title>获取月份长度</title>
+    <link rel="stylesheet" href="../assets/prism.css" />
+  </head>
+  <body>
+    <pre><code
+  data-code-highlight="javascript"
+  class="language-javascript"></code></pre>
+    <div>
+      结果为:
+      <pre id="result"></pre>
+    </div>
+    <script data-code-highlight="javascript">
+      /**
+       * 获取当月长度
+       * @param date
+       */
+      const monthLength = (date = new Date()) =>
+        new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate()
+      document.querySelector('#result').innerHTML = JSON.stringify(monthLength())
+    </script>
+    <script src="../assets/codeHighlight.js"></script>
+    <script src="../assets/prism.js"></script>
+  </body>
+</html>
