@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8" />
+    <title>图片压缩</title>
+    <link rel="stylesheet" href="../assets/prism.css" />
+  </head>
+  <body>
+    <pre><code
+  data-code-highlight="javascript"
+  class="language-javascript"></code></pre>
+    <input type="file" id="input" accept="image/jpeg,image/jpg,image/png,image/webp,image/gif" />
+    <div>
+      结果为:
+      <pre id="result"><img id="img" /></pre>
+    </div>
+    <script data-code-highlight="javascript">
+      const $input = document.querySelector('#input')
+      const $picture = document.querySelector('#img')
+      const file2base64 = (file) => {
+        return new Promise(resolve => {
+          const reader = new FileReader()
+          reader.readAsDataURL(file)
+          reader.onload = () => resolve(reader.result)
+        })
+      }
+      const createImgByUrl = (url) => {
+        return new Promise(resolve => {
+          const img = document.createElement('img')
+          img.src = url
+          img.onload = () => resolve(img)
+        })
+      }
+      const createCanvas = ($img, options) => {
+        return new Promise(resolve => {
+          const $canvas = document.createElement('canvas')
+          const context = $canvas.getContext('2d')
+          context.fillStyle = options.fillStyle
+          context.fillRect(0, 0, $canvas.width, $canvas.height)
+          resolve({context, $canvas})
+        })
+      }
+      const calcDrawSize = ($img, options) => {
+        const proportion = $img.naturalWidth / $img.naturalHeight
+        let dw
+        let dh
+        if (proportion >= 1) {
+          if (options.maxWidth > 0) {
+            dw = $img.naturalWidth > options.maxWidth ? options.maxWidth : $img.naturalWidth
+          } else {
+            dw = $img.naturalWidth
+          }
+          dh = dw / proportion
+        } else {
+          if (options.maxHeight > 0) {
+            dh = $img.naturalHeight > options.maxHeight ? options.maxHeight : $img.naturalHeight
+          } else {
+            dh = $img.naturalHeight
+          }
+          dw = dh * proportion;
+        }
+        return { dw, dh }
+      }
+      const canvas2file = ($canvas, file, options) => {
+        return new Promise(resolve => {
+          const fileType = options.fileType ? ('image/' + options.fileType) : file.type
+          const fileName = options.fileName ? (options.fileName.replace(/\.\w{2,4}$/, '') + '.' + fileType.replace('image/', '')) : file.name
+          $canvas.toBlob((blob) => {
+            resolve(new File([blob], fileName, {type: fileType}))
+          }, fileType, options.quality)
+        })
+      }
+      const defaultOptions = {
+        maxSize: 10 * 1024 * 1024, // 最大不能超过10m
+        minSize: 0, // 最小
+        width: 0, // 固定宽度, 0为不固定
+        height: 0, // 固定高度, 0为不固定
+        maxWidth: 1024, // 最大宽度, 默认1024
+        minWidth: 0, // 最小宽度, 0为不限制
+        maxHeight: 1024, // 最大高度, 默认1024
+        minHeight: 0, // 最小高度, 0为不限制
+        fillStyle: 'rgba(255, 255, 255, 0)', // 填充底色, 默认透明
+        quality: 0.75, // 压缩之后的质量, 不压缩为1
+        fileType: '', // 压缩之后重新保存的格式, 如: jpeg, png, 不填为图片原有格式
+        fileName: '', // 压缩之后的文件名称,
+        shear: false, // 是否允许裁剪
+      }
+      const imageCompress = async (file, options = {}) => {
+        options = Object.assign({}, defaultOptions, options)
+        const base64 = await file2base64(file)
+        const $img = await createImgByUrl(base64)
+        const { dw, dh } = await calcDrawSize($img, options)
+        const { context, $canvas } = await createCanvas($img, options)
+        $canvas.width = dw
+        $canvas.height = dh
+        context.drawImage($img, 0, 0, $img.naturalWidth, $img.naturalHeight, 0, 0, dw, dh)
+
+        const compressFile = await canvas2file($canvas, file, options)
+        $picture.src = await file2base64(compressFile)
+        console.log(`before: ${file.size}`, `after: ${compressFile.size}`)
+        return compressFile
+      }
+      $input.addEventListener('change', (event) => {
+        imageCompress(event.target.files[0], {quality: 1})
+      })
+      // document.querySelector('#result').innerHTML = JSON.stringify()
+    </script>
+    <script src="../assets/codeHighlight.js"></script>
+    <script src="../assets/prism.js"></script>
+  </body>
+</html>

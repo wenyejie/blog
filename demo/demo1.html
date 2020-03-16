@@ -5,23 +5,15 @@
     <title>Demo1</title>
   </head>
   <body>
+    <el-input v-model="demo" @change="handleDemo"></el-input>
     <script>
-    const test1 = (n) => {
-      if (n <= 1) {
-        return 1
-      }
-      return n * test1(n - 1)
-    }
+      export default {
+        methods: {
+          handleDemo ($event) {
 
-    console.log(test1(100))
-
-    const test2 = (n, sum = 1) => {
-      if (n <= 1) {
-        return sum
+          }
+        }
       }
-      return test2(n -1, n * sum)
-    }
-    console.log(test2(100))
     </script>
   </body>
 </html>

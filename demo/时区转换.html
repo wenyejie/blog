@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8" />
+    <title>时区转换</title>
+    <link rel="stylesheet" href="../assets/prism.css" />
+  </head>
+  <body>
+    <pre><code
+  data-code-highlight="javascript"
+  class="language-javascript"></code></pre>
+    <div>
+      结果为:
+      <pre id="result"></pre>
+    </div>
+    <script data-code-highlight="javascript">
+      /**
+       * 时区转换
+       * @param date { Date }
+       * @param hours {number} 默认零时区, 即北京时间转格林时间
+       * @return {Date}
+       */
+      const timeZoneConvert = (date = new Date(), hours = -8) => {
+        date = new Date(date)
+        date.setHours(date.getHours() + hours)
+        return date
+      }
+      document.querySelector('#result').innerHTML = JSON.stringify(timeZoneConvert())
+    </script>
+    <script src="../assets/codeHighlight.js"></script>
+    <script src="../assets/prism.js"></script>
+  </body>
+</html>
