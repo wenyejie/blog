@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8" />
+    <title>Title</title>
+  </head>
+  <body>
+    <script>
+      const str = `http://www.wenyejie.com`
+      console.log('前置肯定', /(?<=www\.)\b\w+\b/g.exec(str)) // ['wenyejie']
+      console.log('前置否定', /(?<!www\.)\b\w+\b/g.exec(str)) // ['http', 'www', 'com']
+      console.log('后置肯定', /\b\w+\b(?=\.com)/g.exec(str)) // ['wenyejie']
+      console.log('后置否定', /\b\w+\b(?!\.com)/g.exec(str)) // ['http', 'www', 'com']
+    </script>
+  </body>
+</html>
