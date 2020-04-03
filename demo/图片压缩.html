@@ -6,38 +6,50 @@
     <link rel="stylesheet" href="../assets/prism.css" />
   </head>
   <body>
-    <pre><code
-  data-code-highlight="javascript"
-  class="language-javascript"></code></pre>
-    <input type="file" id="input" accept="image/jpeg,image/jpg,image/png,image/webp,image/gif" />
+    <input type="file" id="input" accept="image/*" />
     <div>
       结果为:
       <pre id="result"><img id="img" /></pre>
     </div>
+    <pre><code
+  data-code-highlight="javascript"
+  class="language-javascript"></code></pre>
+    <script src="../node_modules/wenyejie-utils/dist/index.js"></script>
     <script data-code-highlight="javascript">
+      window.s = window.t || window.s
       const $input = document.querySelector('#input')
       const $picture = document.querySelector('#img')
       const file2base64 = (file) => {
-        return new Promise(resolve => {
+        return new Promise((resolve) => {
           const reader = new FileReader()
           reader.readAsDataURL(file)
           reader.onload = () => resolve(reader.result)
         })
       }
+
+      const file2url = (file) => {
+        return Promise.resolve(window.URL.createObjectURL(file))
+      }
+
       const createImgByUrl = (url) => {
-        return new Promise(resolve => {
+        return new Promise((resolve) => {
           const img = document.createElement('img')
           img.src = url
           img.onload = () => resolve(img)
         })
       }
+      const file2img = async (file) => {
+        const base64 = await file2url(file)
+        return await createImgByUrl(base64)
+      }
+
       const createCanvas = ($img, options) => {
-        return new Promise(resolve => {
+        return new Promise((resolve) => {
           const $canvas = document.createElement('canvas')
           const context = $canvas.getContext('2d')
           context.fillStyle = options.fillStyle
           context.fillRect(0, 0, $canvas.width, $canvas.height)
-          resolve({context, $canvas})
+          resolve({ context, $canvas })
         })
       }
       const calcDrawSize = ($img, options) => {
@@ -57,22 +69,28 @@
           } else {
             dh = $img.naturalHeight
           }
-          dw = dh * proportion;
+          dw = dh * proportion
         }
         return { dw, dh }
       }
       const canvas2file = ($canvas, file, options) => {
-        return new Promise(resolve => {
-          const fileType = options.fileType ? ('image/' + options.fileType) : file.type
-          const fileName = options.fileName ? (options.fileName.replace(/\.\w{2,4}$/, '') + '.' + fileType.replace('image/', '')) : file.name
-          $canvas.toBlob((blob) => {
-            resolve(new File([blob], fileName, {type: fileType}))
-          }, fileType, options.quality)
+        return new Promise((resolve) => {
+          const type = options.type ? options.type : file.type
+          const fileName = options.fileName
+            ? s.prefix(options.fileName) + '.' + type.replace('image/', '')
+            : file.name
+          $canvas.toBlob(
+            (blob) => {
+              resolve(new File([blob], fileName, { type }))
+            },
+            type,
+            options.quality
+          )
         })
       }
       const defaultOptions = {
+        size: 0, // 文件大小
         maxSize: 10 * 1024 * 1024, // 最大不能超过10m
-        minSize: 0, // 最小
         width: 0, // 固定宽度, 0为不固定
         height: 0, // 固定高度, 0为不固定
         maxWidth: 1024, // 最大宽度, 默认1024
@@ -80,15 +98,16 @@
         maxHeight: 1024, // 最大高度, 默认1024
         minHeight: 0, // 最小高度, 0为不限制
         fillStyle: 'rgba(255, 255, 255, 0)', // 填充底色, 默认透明
-        quality: 0.75, // 压缩之后的质量, 不压缩为1
-        fileType: '', // 压缩之后重新保存的格式, 如: jpeg, png, 不填为图片原有格式
-        fileName: '', // 压缩之后的文件名称,
-        shear: false, // 是否允许裁剪
+        quality: 0.75, // 压缩之后的质量, 不压缩为1, 默认0.75
+        type: '', // 压缩之后重新保存的格式, 如: image/jpeg, image/png, 不填为图片原有格式
+        fileName: '', // 压缩之后的文件名称, 不填则为原有名称
+        shear: false // 是否允许裁剪
       }
       const imageCompress = async (file, options = {}) => {
         options = Object.assign({}, defaultOptions, options)
-        const base64 = await file2base64(file)
-        const $img = await createImgByUrl(base64)
+        // const base64 = await file2base64(file)
+        // const $img = await createImgByUrl(base64)
+        const $img = await file2img(file)
         const { dw, dh } = await calcDrawSize($img, options)
         const { context, $canvas } = await createCanvas($img, options)
         $canvas.width = dw
@@ -97,11 +116,16 @@
 
         const compressFile = await canvas2file($canvas, file, options)
         $picture.src = await file2base64(compressFile)
-        console.log(`before: ${file.size}`, `after: ${compressFile.size}`)
+        console.log(`before: ${file.size}`, `after: ${compressFile.size}`, file, compressFile)
+
+        // 如果压缩之后质量没有减少, 反而变大了, 则返回原图
+        if (file.size <= compressFile.size) {
+          return file
+        }
         return compressFile
       }
       $input.addEventListener('change', (event) => {
-        imageCompress(event.target.files[0], {quality: 1})
+        imageCompress(event.target.files[0], { quality: 0.9 })
       })
       // document.querySelector('#result').innerHTML = JSON.stringify()
     </script>
