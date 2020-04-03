@@ -32,8 +32,8 @@ amount = amount.replace(limitAmount, '') // 1.11
 > 这里要说明一下为什么不用 `<input type="number" />` `type="number"`的输入框, 这样不就可以省略很多非
 > 法校验了嘛?
 
-这个主要是因为当前项目用的是 `element-ui` `<el-input type="number" />` 的输入框有点丑, 而且当用户输
-入非法的`number`字符时, 并不会触发`input`, `change`回调, 所以去不掉当前的非法输入
+这个主要是因为 `<input type="number" />` 的输入框, 当用户输入非法的`number`字符时, 获取到的`value`为
+空字符串
 
 ## 正则说明:
 
