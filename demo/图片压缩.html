@@ -54,8 +54,14 @@
       }
       const calcDrawSize = ($img, options) => {
         const proportion = $img.naturalWidth / $img.naturalHeight
-        let dw
-        let dh
+        let dw = 0
+        let dh = 0
+        let dx = 0
+        let dy = 0
+        let sx = 0
+        let sy = 0
+        let sw = $img.naturalWidth
+        let sh = $img.naturalHeight
         if (proportion >= 1) {
           if (options.maxWidth > 0) {
             dw = $img.naturalWidth > options.maxWidth ? options.maxWidth : $img.naturalWidth
@@ -71,7 +77,7 @@
           }
           dw = dh * proportion
         }
-        return { dw, dh }
+        return { dw, dh, dx, dy, sx, sy, sw, sh }
       }
       const canvas2file = ($canvas, file, options) => {
         return new Promise((resolve) => {
@@ -84,37 +90,39 @@
           )
         })
       }
-      const defaultOptions = {
-        maxWidth: 1024, // 最大宽度, 默认1024
-        maxHeight: 1024, // 最大高度, 默认1024
-        fillStyle: 'rgba(255, 255, 255, 0)', // 填充底色, 默认透明
-        quality: 0.75 // 压缩之后的质量, 不压缩为1, 默认0.75
-      }
       const imageCompress = async (file, options = {}) => {
-        options = Object.assign({}, defaultOptions, options)
-        // const base64 = await file2base64(file)
-        // const $img = await createImgByUrl(base64)
+        options = Object.assign(
+          {
+            noCompressIfLarger: true, // 如果发现压缩后文件大小比原来还大，则使用原图
+            maxWidth: 1024, // 最大宽度, 默认1024
+            maxHeight: 1024, // 最大高度, 默认1024
+            fillStyle: 'rgba(255, 255, 255, 0)', // 填充底色, 默认透明
+            quality: 0.75 // 压缩之后的质量, 不压缩为1, 默认0.75
+          },
+          options
+        )
         const $img = await file2img(file)
-        const { dw, dh } = await calcDrawSize($img, options)
+        const { dw, dh, dx, dy, sx, sy, sw, sh } = await calcDrawSize($img, options)
         const { context, $canvas } = await createCanvas($img, options)
         $canvas.width = dw
         $canvas.height = dh
-        context.drawImage($img, 0, 0, $img.naturalWidth, $img.naturalHeight, 0, 0, dw, dh)
+        context.drawImage($img, sx, sy, sw, sh, dx, dy, dw, dh)
 
         const compressFile = await canvas2file($canvas, file, options)
-        $picture.src = await file2base64(compressFile)
-        console.log(`before: ${file.size}`, `after: ${compressFile.size}`, file, compressFile)
 
-        // 如果压缩之后质量没有减少, 反而变大了, 则返回原图, 这样做是因为图片转化成base64之后质量会变大
-        if (file.size <= compressFile.size) {
+        // 如果压缩之后质量没有减少, 反而变大了, 则返回原图, 这样做是因为图片转化成base64之后质量会变大,
+        if (options.noCompressIfLarger && file.size <= compressFile.size) {
           return file
         }
+
         return compressFile
       }
       $input.addEventListener('change', (event) => {
         const file = event.target.files[0]
         imageCompress(file, {
           quality: 0.9
+        }).then(async (compressFile) => {
+          $picture.src = await file2base64(compressFile)
         })
       })
     </script>
