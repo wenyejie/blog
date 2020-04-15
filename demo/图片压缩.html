@@ -105,7 +105,7 @@
         $picture.src = await file2base64(compressFile)
         console.log(`before: ${file.size}`, `after: ${compressFile.size}`, file, compressFile)
 
-        // 如果压缩之后质量没有减少, 反而变大了, 则返回原图
+        // 如果压缩之后质量没有减少, 反而变大了, 则返回原图, 这样做是因为图片转化成base64之后质量会变大
         if (file.size <= compressFile.size) {
           return file
         }
