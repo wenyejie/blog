@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8" />
+    <title>base642file</title>
+  </head>
+  <body>
+    <input type="file" id="input" accept="image/*" />
+    <script>
+      const $input = document.querySelector('#input')
+      const base642file = (base64, filename) => {
+        const arr = base64.split(',')
+        const type = arr[0].match(/:(.*?);/)[1]
+        const bstr = atob(arr[1])
+        let n = bstr.length
+        const u8arr = new Uint8Array(n)
+        while (n--) {
+          u8arr[n] = bstr.charCodeAt(n)
+        }
+        return new File([u8arr], filename + '.' + type.substring(6), { type })
+      }
+
+      $input.addEventListener('change', (event) => {
+        const reader = new FileReader()
+        reader.readAsDataURL(event.target.files[0])
+        reader.onload = () => {
+          console.log(reader.result)
+          console.log(base642file(reader.result, 'demo'))
+        }
+      })
+    </script>
+  </body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8" />
+    <title>Title</title>
+  </head>
+  <body>
+    <!--<script src="//res.wx.qq.com/open/js/jweixin-1.6.0.js"></script>-->
+    <script>
+      const $script = document.createElement('script')
+      $script.src = '//res.wx.qq.com/open/js/jweixin-1.6.0.js'
+      $script.onload = () => {
+        document.body.removeChild($script)
+      }
+      document.body.appendChild($script)
+    </script>
+  </body>
+</html>

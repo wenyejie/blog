@@ -14,9 +14,9 @@
     <pre><code
   data-code-highlight="javascript"
   class="language-javascript"></code></pre>
-    <script src="../node_modules/wenyejie-utils/dist/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/wenyejie-utils"></script>
     <script data-code-highlight="javascript">
-      window.s = window.t || window.s
+      window.s = window.storm
       const $input = document.querySelector('#input')
       const $picture = document.querySelector('#img')
       const file2base64 = (file) => {
@@ -75,33 +75,20 @@
       }
       const canvas2file = ($canvas, file, options) => {
         return new Promise((resolve) => {
-          const type = options.type ? options.type : file.type
-          const fileName = options.fileName
-            ? s.prefix(options.fileName) + '.' + type.replace('image/', '')
-            : file.name
           $canvas.toBlob(
             (blob) => {
-              resolve(new File([blob], fileName, { type }))
+              resolve(new File([blob], file.name, { type: file.type }))
             },
-            type,
+            file.type,
             options.quality
           )
         })
       }
       const defaultOptions = {
-        size: 0, // 文件大小
-        maxSize: 10 * 1024 * 1024, // 最大不能超过10m
-        width: 0, // 固定宽度, 0为不固定
-        height: 0, // 固定高度, 0为不固定
         maxWidth: 1024, // 最大宽度, 默认1024
-        minWidth: 0, // 最小宽度, 0为不限制
         maxHeight: 1024, // 最大高度, 默认1024
-        minHeight: 0, // 最小高度, 0为不限制
         fillStyle: 'rgba(255, 255, 255, 0)', // 填充底色, 默认透明
-        quality: 0.75, // 压缩之后的质量, 不压缩为1, 默认0.75
-        type: '', // 压缩之后重新保存的格式, 如: image/jpeg, image/png, 不填为图片原有格式
-        fileName: '', // 压缩之后的文件名称, 不填则为原有名称
-        shear: false // 是否允许裁剪
+        quality: 0.75 // 压缩之后的质量, 不压缩为1, 默认0.75
       }
       const imageCompress = async (file, options = {}) => {
         options = Object.assign({}, defaultOptions, options)
@@ -125,9 +112,11 @@
         return compressFile
       }
       $input.addEventListener('change', (event) => {
-        imageCompress(event.target.files[0], { quality: 0.9 })
+        const file = event.target.files[0]
+        imageCompress(file, {
+          quality: 0.9
+        })
       })
-      // document.querySelector('#result').innerHTML = JSON.stringify()
     </script>
     <script src="../assets/codeHighlight.js"></script>
     <script src="../assets/prism.js"></script>

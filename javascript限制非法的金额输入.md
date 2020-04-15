@@ -26,8 +26,7 @@ amount = amount.replace(limitAmount, '') // 1.11
 </script>
 ```
 
-详细请见:
-[CodePen - javascript 限制非法的金额输入](https://cdpn.io/wenyejie/debug/oNXRXwo/bYAdyXJpdaRk)
+详细请见: [CodePen - javascript 限制非法的金额输入](https://codepen.io/wenyejie/pen/oNXRXwo)
 
 > 这里要说明一下为什么不用 `<input type="number" />` `type="number"`的输入框, 这样不就可以省略很多非
 > 法校验了嘛?
