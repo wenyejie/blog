@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<!--
+ - @author: Storm
+ - @email: wenyejie@foxmail.com
+ -->
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8" />
+    <title>继承-实例</title>
+  </head>
+  <body>
+    <script src="Animal.js"></script>
+    <script>
+      function Cat(name = 'cat') {
+        const instance = new Animal()
+        instance.name = name
+        return instance
+      }
+      Cat.prototype.run = function() {}
+      const lina = new Cat('lina')
+      console.log(lina)
+    </script>
+  </body>
+</html>

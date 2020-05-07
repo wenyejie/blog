@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<!--
+ - @author: Storm
+ - @email: wenyejie@foxmail.com
+ -->
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8" />
+    <title>继承 - 寄生组合</title>
+  </head>
+  <body>
+    <script src="Animal.js"></script>
+    <script>
+      function Cat(name = 'cat') {
+        Animal.call(this)
+        this.name = name
+      }
+      ;(function() {
+        function Super() {}
+        Super.prototype = Animal.prototype
+        Cat.prototype = new Super()
+        Cat.prototype.constructor = Cat
+      })()
+      Cat.prototype.run = function() {}
+      const lina = new Cat('lina')
+      console.log(lina)
+    </script>
+  </body>
+</html>

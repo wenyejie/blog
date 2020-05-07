@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<!--
+ - @author: Storm
+ - @email: wenyejie@foxmail.com
+ -->
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8" />
+    <title>object hasOwnProperty</title>
+  </head>
+  <body>
+    <script>
+      const demo = {
+        name: 'demo'
+      }
+      // BAD
+      console.log(!!demo.age)
+
+      // GOOD
+      console.log(demo.hasOwnProperty('age'))
+    </script>
+  </body>
+</html>

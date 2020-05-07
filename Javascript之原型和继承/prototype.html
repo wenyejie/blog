@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<!--
+ - @author: Storm
+ - @email: wenyejie@foxmail.com
+ -->
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8" />
+    <title>prototype</title>
+  </head>
+  <body>
+    <script>
+      class Parent {
+        constructor(name, age) {
+          this.name = name
+          this.age = age
+        }
+
+        sayHi() {
+          console.log(`${this.name}: "Hi!"`)
+        }
+      }
+
+      const child = new Parent('demo', 25)
+
+      console.log(`child.__proto__ ==>`, child.__proto__)
+      console.log(`Parent.prototype ==>`, Parent.prototype)
+
+      class Factory {
+        constructor(name) {
+          this.sayHi = () => {
+            console.log(`${this.name}: "Hi!"`)
+          }
+          this.name = name
+        }
+      }
+
+      class Constructor {
+        constructor(name) {
+          this.name = name
+        }
+        sayHi() {
+          console.log(`${this.name}: "Hi!"`)
+        }
+      }
+
+      const c = new Constructor('C')
+      const d = new Constructor('D')
+
+      c.sayHi() // 'C'
+      d.sayHi() // 'D'
+
+      d.sayHi = () => {
+        console.log('f**k me')
+      }
+      Constructor.prototype.sayHi = () => {
+        console.log('f**k us')
+      }
+    </script>
+  </body>
+</html>

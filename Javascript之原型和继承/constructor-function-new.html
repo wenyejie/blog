@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<!--
+ - @author: Storm
+ - @email: wenyejie@foxmail.com
+ -->
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8" />
+    <title>constructor function new</title>
+  </head>
+  <body>
+    <script>
+      function customNew(fn, ...rest) {
+        const obj = {}
+        fn.apply(obj, rest)
+        return obj
+      }
+      function Parent(name, age) {
+        this.name = name
+        this.age = age
+      }
+
+      const child = customNew(Parent, 'demo', 25)
+
+      console.log(child)
+    </script>
+  </body>
+</html>
