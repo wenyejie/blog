@@ -1,0 +1,112 @@
+<script>
+  function _instanceof(left, right) {
+    if (right != null && typeof Symbol !== 'undefined' && right[Symbol.hasInstance]) {
+      return !!right[Symbol.hasInstance](left)
+    } else {
+      return left instanceof right
+    }
+  }
+
+  function _construct(Parent, args, Class) {
+    if (_isNativeReflectConstruct()) {
+      _construct = Reflect.construct
+    } else {
+      _construct = function _construct(Parent, args, Class) {
+        var a = [null]
+        a.push.apply(a, args)
+        var Constructor = Function.bind.apply(Parent, a)
+        var instance = new Constructor()
+        if (Class) _setPrototypeOf(instance, Class.prototype)
+        return instance
+      }
+    }
+    return _construct.apply(null, arguments)
+  }
+
+  function _isNativeReflectConstruct() {
+    if (typeof Reflect === 'undefined' || !Reflect.construct) return false
+    if (Reflect.construct.sham) return false
+    if (typeof Proxy === 'function') return true
+    try {
+      Date.prototype.toString.call(Reflect.construct(Date, [], function() {}))
+      return true
+    } catch (e) {
+      return false
+    }
+  }
+
+  function _setPrototypeOf(o, p) {
+    _setPrototypeOf =
+      Object.setPrototypeOf ||
+      function _setPrototypeOf(o, p) {
+        o.__proto__ = p
+        return o
+      }
+    return _setPrototypeOf(o, p)
+  }
+
+  function _classCallCheck(instance, Constructor) {
+    if (!_instanceof(instance, Constructor)) {
+      throw new TypeError('Cannot call a class as a function')
+    }
+  }
+  function _defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i]
+      descriptor.enumerable = descriptor.enumerable || false
+      descriptor.configurable = true
+      if ('value' in descriptor) descriptor.writable = true
+      Object.defineProperty(target, descriptor.key, descriptor)
+    }
+  }
+
+  function _createClass(Constructor, protoProps, staticProps) {
+    if (protoProps) _defineProperties(Constructor.prototype, protoProps)
+    if (staticProps) _defineProperties(Constructor, staticProps)
+    return Constructor
+  }
+
+  var DemoES6 = /*#__PURE__*/ (function() {
+    function DemoES6() {
+      var name = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'demo'
+
+      _classCallCheck(this, DemoES6)
+
+      this.name = name
+
+      this.getName = function() {
+        console.log('My name`s ' + name)
+      }
+    }
+
+    _createClass(
+      DemoES6,
+      [
+        {
+          key: 'setName',
+          value: function setName(name) {
+            this.name = name
+          }
+        }
+      ],
+      [
+        {
+          key: 'create',
+          value: function create() {
+            for (
+              var _len = arguments.length, rest = new Array(_len), _key = 0;
+              _key < _len;
+              _key++
+            ) {
+              rest[_key] = arguments[_key]
+            }
+
+            return _construct(Demo, rest)
+          }
+        }
+      ]
+    )
+
+    return DemoES6
+  })()
+</script>

@@ -5,9 +5,36 @@
     <title>Title</title>
   </head>
   <body>
+    <input />
     <button>BUTTON</button>
     <script>
-      // document.innerHTML = 'TEST'
+      class Demo {
+        constructor(options) {
+          const $this = this
+          this.options = Object.assign(
+            {
+              sayHi() {
+                $this.report(this, 'sayHi')
+              },
+              test() {
+                $this.report($this.options, this.sayHi())
+              }
+            },
+            options
+          )
+        }
+
+        report(...rest) {
+          console.log(...rest)
+        }
+
+        show() {
+          this.options.test()
+        }
+      }
+
+      const instance = new Demo()
+      instance.show()
     </script>
   </body>
 </html>

@@ -1,0 +1,42 @@
+<script>
+  // 构造函数
+
+  // ES5
+  function Demo(name = 'demo') {
+    this.name = name
+    this.getName = function() {
+      console.log('My name`s ' + name)
+    }
+  }
+
+  Demo.prototype.setName = function(name) {
+    this.name = name
+  }
+
+  Demo.create = function(...rest) {
+    return new Demo(...rest)
+  }
+
+  const instance = new Demo()
+  console.log(instance)
+
+  // ES6
+  class DemoES6 {
+    constructor(name = 'demo') {
+      this.name = name
+      this.getName = function() {
+        console.log('My name`s ' + name)
+      }
+    }
+    setName(name) {
+      this.name = name
+    }
+
+    static create(...rest) {
+      return new Demo(...rest)
+    }
+  }
+
+  const instanceES6 = new DemoES6()
+  console.log(instanceES6 instanceof DemoES6, instanceES6)
+</script>
