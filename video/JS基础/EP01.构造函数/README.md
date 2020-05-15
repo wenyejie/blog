@@ -78,9 +78,13 @@ console.log(instance.__proto__ === Demo.prototype) // true
 - 有原型对象`prototype` 即 `Demo.prototype`
 - 一般默认首字母大写, 与普通函数区分
 
+PS: 实例化箭头函数会提示 `Uncaught TypeError: Test is not a constructor` 即因为箭头函数没有构造方法,
+所以没有办法被实例化
+
 ## `class` EcmaScript6 - EcmaScript 2015
 
-> `ES5`和`ES6`只是写法不一样, 其实本质一样, `ES6`中的`class`本质是`ES5`构造函数的语法糖
+> `ES5`和`ES6`只是写法不一样, 其实本质一样, `ES6`中的`class`关键字本质是`ES5`构造函数的语法糖,
+> JavaScript 仍然是基于原型的
 
 详见
 :[Babel · The compiler for next generation JavaScript](https://babeljs.io/repl#?browsers=&build=&builtIns=false&spec=false&loose=false&code_lz=MYGwhgzhAEAiCmBbA9gUQMoDZoG8BQ00wyAdhAC4BOArsOcpQBQliLzQC80A5ACZLJuASlwFC0cgAsAlhAB0LNp2iL4YwlNlyA5vHIA5Vuy4AzaiTrTSjEfnHjiZZCHhyQybY24BZAJ4qjAAMYbmgAagC2IXVoAF8xeMIIPUM2ZiNbGM15VWVVBLwxCjByaWAiSngS-EY5OsqKTPtK8mpKEhV4AHc4AVr6-EaC2KA&debug=false&forceAllTransforms=false&shippedProposals=false&circleciRepo=&evaluate=false&fileSize=false&timeTravel=false&sourceType=module&lineWrap=true&presets=es2015&prettier=true&targets=&version=7.9.6&externalPlugins=)

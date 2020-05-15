@@ -1,0 +1,17 @@
+<script>
+  class Demo {
+    constructor() {}
+    setName(name) {
+      this.name = name
+    }
+    getName(name) {
+      return this.name
+    }
+  }
+
+  const instance = new Demo()
+
+  Object.setPrototypeOf(instance, null)
+
+  instance.getName()
+</script>
