@@ -2,39 +2,39 @@
 <html lang="zh-cn">
   <head>
     <meta charset="utf-8" />
-    <title>Title</title>
+    <title>倒计时</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.min.js"></script>
   </head>
   <body>
-    <input />
-    <button>BUTTON</button>
+    <div id="app">
+      <button type="button" :disabled="status === 1" @click="handleStart">start</button> 倒计时:
+      <span>{{ count }}</span>
+    </div>
     <script>
-      class Demo {
-        constructor(options) {
-          const $this = this
-          this.options = Object.assign(
-            {
-              sayHi() {
-                $this.report(this, 'sayHi')
-              },
-              test() {
-                $this.report($this.options, this.sayHi())
-              }
-            },
-            options
-          )
+      const app = new Vue({
+        el: '#app',
+        data: {
+          count: 60,
+          status: 0 // 0: 什么都没有发生, 1:进行中, 2: 已结束
+        },
+        methods: {
+          handleInterval() {
+            this.count--
+            if (this.count <= 0) {
+              this.count = 60
+              this.status = 2
+              clearInterval(this.timer)
+            }
+          },
+          handleStart() {
+            this.status = 1
+            this.timer = setInterval(this.handleInterval, 1000)
+          }
+        },
+        beforeDestroy() {
+          clearInterval(this.timer)
         }
-
-        report(...rest) {
-          console.log(...rest)
-        }
-
-        show() {
-          this.options.test()
-        }
-      }
-
-      const instance = new Demo()
-      instance.show()
+      })
     </script>
   </body>
 </html>
