@@ -6,35 +6,11 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.min.js"></script>
   </head>
   <body>
-    <div id="app">
-      <button type="button" :disabled="status === 1" @click="handleStart">start</button> 倒计时:
-      <span>{{ count }}</span>
-    </div>
-    <script>
-      const app = new Vue({
-        el: '#app',
-        data: {
-          count: 60,
-          status: 0 // 0: 什么都没有发生, 1:进行中, 2: 已结束
-        },
-        methods: {
-          handleInterval() {
-            this.count--
-            if (this.count <= 0) {
-              this.count = 60
-              this.status = 2
-              clearInterval(this.timer)
-            }
-          },
-          handleStart() {
-            this.status = 1
-            this.timer = setInterval(this.handleInterval, 1000)
-          }
-        },
-        beforeDestroy() {
-          clearInterval(this.timer)
-        }
-      })
-    </script>
+    1.&& 1.1两边条件都为true时，结果才为true； 1.2如果有一个为false，结果就为false；
+    1.3当第一个条件为false时，就不再判断后面的条件
+    注意：当数值参与逻辑与运算时，结果为true，那么会返回的会是第二个为真的值；如果结果为false，返回的会是第一个为假的值。
+    2.|| 2.1只要有一个条件为true时，结果就为true； 2.2当两个条件都为false时，结果才为false；
+    2.3当一个条件为true时，后面的条件不再判断
+    注意：当数值参与逻辑或运算时，结果为true，会返回第一个为真的值；如果结果为false，会返回第二个为假的值；
   </body>
 </html>

@@ -8,4 +8,4 @@
 - [ ] promise
 - [ ] 箭头函数(arrow function)
 - [ ] Javascript 中的数据存储
-- [ ] this 指向问题
+- [ ] this 指向
