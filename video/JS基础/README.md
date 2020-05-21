@@ -7,5 +7,7 @@
 - [ ] 判断中的类型转换`>` , `<`, `>=`, `<=`, `==`, `===`
 - [ ] promise
 - [ ] 箭头函数(arrow function)
-- [ ] Javascript 中的数据存储
-- [ ] this 指向
+- [x] Javascript 中的数据存储
+- [x] this 指向
+- [ ] 编译时`and`运行时
+- [ ] 继承
