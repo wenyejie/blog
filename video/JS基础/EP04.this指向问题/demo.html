@@ -1,7 +1,26 @@
 <script>
+  const test = function() {
+    console.log(this)
+  }
+  test() // Window
+
   const demo = () => {
     console.log(this)
   }
+  demo() // Window
 
-  new demo()
+  const obj = {
+    test,
+    demo,
+    sayHi: function() {
+      const demo = () => {
+        console.log(this)
+      }
+      demo() // Window
+    }
+  }
+
+  obj.test() // obj
+  obj.demo() // window
+  obj.sayHi() // window
 </script>

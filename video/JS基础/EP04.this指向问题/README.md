@@ -24,6 +24,14 @@ function demo() {
   console.log(this)
 }
 demo() // Window
+
+function test() {
+  function demo() {
+    console.log(this)
+  }
+  demo() // Window
+}
+test()
 ```
 
 这个时候`dmeo`作为一个普通函数调用 `this` 指向`globalThis`
