@@ -156,3 +156,7 @@ new demo() // Uncaught TypeError: demo is not a constructor
 - 箭头函数本身没有`this`只是继承上一级的`this`
 
 `this`指向取决于运行时的调用方式和调用者
+
+## 参考文档
+
+- [MDN Web 文档](https://developer.mozilla.org/zh-CN/)
