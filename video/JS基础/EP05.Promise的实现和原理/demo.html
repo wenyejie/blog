@@ -1,0 +1,182 @@
+<script>
+  class $Promise {
+    #status = ''
+    #value
+    #error
+
+    #callbackQueues = []
+    #resolve = (value) => {
+      if (this.#status !== 'pending') {
+        return
+      }
+      this.#value = value
+      this.#status = 'fulfilled'
+
+      const then = this.#callbackQueues.find((item) => item.type === 'then')
+      if (!!then) {
+        this.#handleCallbackQueues()
+      }
+    }
+
+    #reject = (error) => {
+      if (this.#status !== 'pending') {
+        return
+      }
+      this.#error = error
+      this.#status = 'rejected'
+      const then = this.#callbackQueues.find((item) => item.type === 'then')
+      if (!!then) {
+        this.#handleCallbackQueues()
+      }
+    }
+
+    #parse = (instance, index) => {
+      console.log(instance)
+      let status
+      instance
+        .then(
+          (value) => {
+            this.#value = value
+            status = 'fulfilled'
+          },
+          (error) => {
+            this.#error = error
+            status = 'rejected'
+          }
+        )
+        .finally(() => {
+          this.#handleCallbackQueues(++index, status)
+        })
+    }
+
+    #handlethen = (cb, index, status) => {
+      if (status === 'fulfilled') {
+        this.#handledefault(
+          {
+            type: 'resolve',
+            resolve: cb.resolve
+          },
+          index
+        )
+      } else if (status === 'rejected') {
+        this.#handledefault(
+          {
+            type: 'reject',
+            reject: cb.reject
+          },
+          index
+        )
+      }
+    }
+
+    #handledefault = (cb, index) => {
+      let result = cb[cb.type]()
+
+      if (result instanceof $Promise) {
+        this.#parse(result, index)
+        return
+      }
+
+      this.#value = result
+      this.#handleCallbackQueues(++index, 'fulfilled')
+    }
+
+    #handleCallbackQueues = (index = 0, status = this.#status) => {
+      if (index >= this.#callbackQueues.length) {
+        return
+      }
+      const cb = this.#callbackQueues[index]
+
+      if (cb.type !== 'then') {
+        this.#handledefault(cb, index)
+      } else {
+        this.#handlethen(cb, index, status)
+      }
+    }
+
+    then(resolve, reject) {
+      this.#callbackQueues.push({
+        type: 'then',
+        resolve,
+        reject
+      })
+      if (this.#status !== 'pending') {
+        this.#handleCallbackQueues()
+      }
+      return this
+    }
+
+    finally(fn) {
+      this.#callbackQueues.push({
+        type: 'finally',
+        finally: fn
+      })
+      return this
+    }
+
+    // catch(fn) {
+    //   this.#callbackQueues.push({
+    //     type: 'catch',
+    //     catch: fn
+    //   })
+    //   return this
+    // }
+
+    constructor(executor) {
+      this.#status = 'pending'
+      executor(this.#resolve, this.#reject)
+    }
+
+    static resolve(value) {
+      return new $Promise((resolve) => {
+        resolve(value)
+      })
+    }
+
+    static reject(error) {
+      return new $Promise((resolve, reject) => {
+        reject(error)
+      })
+    }
+
+    static all(queue) {
+      return new $Promise((resolve, reject) => {
+        const values = []
+        let resolveLength = 0
+        for (let i = 0; i < queue.length; i++) {
+          queue[i].then(
+            (value) => {
+              values[i] = value
+              resolveLength++
+              if (resolveLength === queue.length) {
+                resolve(values)
+              }
+            },
+            (error) => {
+              reject(error)
+              break
+            }
+          )
+        }
+      })
+    }
+  }
+
+  const demo = new $Promise((resolve, reject) => {
+    setTimeout(resolve, 1000)
+  })
+
+  demo
+    .then(() => {
+      console.log('resolve1')
+      return $Promise.reject()
+    })
+    .then(
+      () => {
+        console.log('resolve2')
+      },
+      (error) => {
+        console.log('reject2', error)
+      }
+    )
+</script>

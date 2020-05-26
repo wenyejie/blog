@@ -1,0 +1,39 @@
+<script>
+  let result
+  const demo = (boolean) => {
+    result = new Promise((resolve, reject) => {
+      if (boolean) {
+        resolve()
+      } else {
+        reject()
+      }
+    })
+
+    return result
+  }
+
+  demo(false)
+    .then(
+      () => {
+        console.log('resolve1')
+        throw 'error'
+      },
+      () => {
+        console.log('reject1')
+      }
+    )
+    .catch((error) => {
+      console.log('catch1', error)
+      return undefined
+    })
+    .then(
+      (value) => {
+        console.log('resolve2', value)
+        console.log(result)
+        debugger
+      },
+      (value) => {
+        console.log('reject2', value)
+      }
+    )
+</script>
