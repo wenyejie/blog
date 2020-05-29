@@ -1,0 +1,21 @@
+<script>
+  function Parent(name = 'parent') {
+    this.name = name
+  }
+  Parent.prototype.callMyName = function() {}
+  function Child(name, age) {
+    Parent.call(this, name)
+    this.age = age
+  }
+
+  ;(function() {
+    function Super() {}
+    Super.prototype = Parent.prototype
+    Child.prototype = new Super()
+    Child.prototype.constructor = Child
+  })()
+  Child.prototype.getMyName = function() {}
+
+  const instance = new Child('instance', 20)
+  console.log(instance)
+</script>
