@@ -1,0 +1,14 @@
+<script>
+  function demo() {
+    const a = () => {
+      console.log(this)
+    }
+
+    // 编译后
+
+    const that = this
+    var b = function() {
+      console.log(that)
+    }
+  }
+</script>
