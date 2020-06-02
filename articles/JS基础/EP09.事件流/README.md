@@ -20,7 +20,7 @@
 
 详见下图一(图片来自 W3C):
 
-![事件流](./assets/eventflow.svg)
+![事件流](assets/eventflow.svg)
 
 ## DEMO
 
@@ -76,7 +76,7 @@
 
 **当我点击了 BUTTON 之后**返回结果如下图二:
 
-![事件结果](./assets/result-01.jpg)
+![事件结果](assets/result-01.jpg)
 
 简单分一下 `0~4`为`捕获阶段`, `5~5`为`目标阶段`, `4~0`为`冒泡阶段`
 
@@ -89,7 +89,7 @@
 
 > PS: 图二中所有的 MouseEvent 都一样
 
-![MouseEvent](./assets/result-02.jpg)
+![MouseEvent](assets/result-02.jpg)
 
 从`MouseEvent`的`path`中可以看出, 所有的触发节点和它们的上下级关系
 

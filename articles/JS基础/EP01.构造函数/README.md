@@ -52,7 +52,7 @@ const instanceES6 = new DemoES6()
 console.log(instanceES6) // 见图二
 ```
 
-![图一](./assets/constructor-instance.png) ![图二](./assets/constructor-instance-2.png)
+![图一](assets/constructor-instance.png) ![图二](assets/constructor-instance-2.png)
 
 以上就是一个构造函数, 它具有构造函数的基本结构
 

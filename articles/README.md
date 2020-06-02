@@ -1,15 +1,5 @@
 # README
 
-## 开场白
-
-大家好这里是 JS 基础学习,
-
-## 软件推荐
-
-剪辑软件: iMovie
-
-录屏软件: QuickTime Player
-
 ## 题目
 
 - [ ] JS 基础学习
