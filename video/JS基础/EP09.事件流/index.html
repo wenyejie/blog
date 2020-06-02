@@ -1,0 +1,50 @@
+<div id="demo">
+  DIV
+  <button id="button" data-report="{}">BUTTON</button>
+</div>
+
+<script>
+  function $(selector) {
+    return new jQuery(selector)
+  }
+  class jQuery {
+    constructor(selector) {
+      if (selector === document || selector === window) {
+        this.el = selector
+      } else {
+        this.el = document.querySelector(selector)
+      }
+    }
+
+    on(eventName, listener, options, useCapture) {
+      this.el.addEventListener(eventName, listener, options, useCapture)
+      return this
+    }
+  }
+
+  // PS: 真实的jQuery比这个复杂, 而且this.el是个数组
+
+  ;[window, document, 'html', 'body', '#demo', '#button'].forEach((selector, index) => {
+    $(selector)
+      .on('click', (event) => {
+        if (selector === '#demo') {
+          event.stopPropagation()
+        }
+        console.log('冒泡', index, selector, event)
+      })
+      .on(
+        'click',
+        (event) => {
+          console.log('捕获', index, selector, event)
+        },
+        true
+      )
+  })
+
+  $('#demo').on('click', (event) => {
+    // 你是#button嘛?
+    if (event.target.id === 'button') {
+      alert('it work.')
+    }
+  })
+</script>
