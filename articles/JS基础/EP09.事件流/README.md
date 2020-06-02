@@ -57,6 +57,7 @@
   // PS: 真实的jQuery比这个复杂, 而且this.el是个数组, 真实demo请看下面, 上面可以忽略
 
   ;[window, document, 'html', 'body', '#demo', '#button'].forEach((selector, index) => {
+    // 注意: 实际代码中应把listener抽取出来不是放在forEach中, 这样做会导致生成六份listener, 占用六份的内存空间
     $(selector)
       .on('click', (event) => {
         console.log('冒泡', index, selector, event)
@@ -129,18 +130,19 @@
 **什么时候需要用到呢?**
 
 ```html
-<dialog>
+<section>
   <header>
     <h3>title <button>close</button></h3>
     <h4>subtitle</h4>
   </header>
   <content>content</content>
-</dialog>
+</section>
 ```
 
-当点击标题需要收起内容, 点击关闭按钮需要关闭`dialog`时.
+当点击标题需要收起内容, 点击关闭按钮需要关闭`section`时.
 
-即当**子级元素**的事件与**父级元素**的事件发生功能上的冲突的时候, 这个时候就需要阻止冒泡
+即当**子级元素**的事件与**父级元素**的事件发生功能上的冲突的时候, 这个时候就需要阻止冒泡(但这不是唯
+一的办法)
 
 ## 事件捕获
 
@@ -176,7 +178,7 @@ $('#demo').on('click', (event) => {
 })
 ```
 
-> 注意: 从原理上来讲可以把所有时间委托到`document`中, 但并不建议这样做, 有个原则就是被委托的父级元素
+> 注意: 从原理上来讲可以把所有事件委托到`document`中, 但并不建议这样做, 有个原则就是被委托的父级元素
 > 在允许的情况下, 越接近目标元素越好, 要不然可能会有性能问题.
 
 ## 参考文档
