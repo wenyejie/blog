@@ -1,0 +1,63 @@
+<script>
+  // 对真实的代码中, 就是这么简单, 因为毕竟是单例模式啊!
+  const userInfo = {
+    // 用户信息数据
+    data: {
+      id: '',
+      portrait: '',
+      nickname: ''
+    },
+
+    // 订阅着集合
+    listeners: [],
+
+    // 更新用户数据
+    update(data) {
+      this.data = Object.assign(this.data, data)
+      this.trigger()
+    },
+
+    // 订阅
+    subscribe(listener) {
+      this.listeners.push(listener)
+      // 不管订阅前的信息, 还是订阅后的信息, 都需要推送给订阅者
+      if (this.data.id) {
+        this.trigger(listener)
+      }
+    },
+
+    // 下发
+    trigger(listener) {
+      if (listener) {
+        listener(this.data)
+        return
+      }
+
+      this.listeners.forEach((listener) => {
+        listener(this.data)
+      })
+    }
+  }
+
+  // 初始化应用后, 获取到用户信息
+
+  // fetch('./getUserInfo', (response) => {
+  //   userInfo.update(response)
+  // })
+
+  // 顶部栏订阅用户信息, 用以展示用户昵称
+  userInfo.subscribe((user) => {
+    console.log('顶部栏', user.nickname)
+  })
+
+  userInfo.update({
+    id: '001',
+    nickname: '奥特曼',
+    portrait: 'http://img.la/100x100?s=demo'
+  })
+
+  // 侧边栏订阅用户信息, 用以展示头像
+  userInfo.subscribe((user) => {
+    console.log('侧边栏', user.portrait)
+  })
+</script>

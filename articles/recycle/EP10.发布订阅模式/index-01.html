@@ -1,0 +1,51 @@
+<script>
+  // 用户
+  class User {
+    constructor(name) {
+      this.name = name
+    }
+  }
+
+  // 博客
+  class Blog {
+    // 订阅者
+    #subscribers = []
+
+    #article
+
+    constructor(name) {
+      this.name = name
+    }
+
+    // 订阅
+    subscribe(listener, before = false) {
+      this.#subscribers.push(listener)
+
+      // 如果需要订阅之前发布的消息, 并且之前有发布, 则发送推送
+      if (before && this.#article) {
+        listener(this.#article)
+      }
+    }
+
+    // 发布
+    publish(article) {
+      this.#article = article
+      this.#subscribers.forEach((subscriber) => {
+        subscriber(article)
+      })
+    }
+  }
+
+  const blog = new Blog('博客')
+
+  // 订阅者订阅了名为前端分类
+  blog.subscribe((article) => {
+    console.log('收到消息', article)
+  })
+
+  // 发布者发布了文章
+  blog.publish({
+    title: '发布订阅模式',
+    content: '......'
+  })
+</script>

@@ -1,9 +1,33 @@
+<div id="app">
+  <label v-for="(item, index) in list" :key="index">{{ item.label }}: <input v-model="item.value"/></label>
+</div>
+
+<!-- 生产环境版本，优化了尺寸和速度 -->
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
 <script>
-  const str =
-    '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport"content="width=device-width, initial-scale=1.0"/><meta http-equiv="X-UA-Compatible"content="ie=edge"/><title>自由职业者服务协议</title><style>bodypadding:0 20px;margin-bottom:40px;line-height:1.3.text-centertext-align:center.underlinetext-decoration:underline.boldfont-weight:boldullist-style:none;margin:0;padding:0section.titletext-indent:2emsection>ptext-indent:2em.panel.titletext-indent:0.panel ul litext-indent:2em;line-height:32pxdl dd,dl dttext-indent:2em.footTablewidth:100%.footTable tbody tdpadding:4px 8px</style></head><body><h1 class="text-center">自由职业者服务协议</h1><section><p class="title bold">提示条款：</p><p>欢迎您与我司【标普云结算公司】签署本《服务合作协议》（下称“本协议”）并为我司合作伙伴【标普云用工企业】公司（以下简称为“合作公司”）提供服务。在本协议中您为乙方，我司为甲方。</p><p class="bold">【审慎阅读】<span class="underline">为维护您的自身权益，在您点击同意或书面签署本协议之前，请认真阅读本协议，务必审慎阅读、充分理解各条款内容，特别是权利义务条款、法律适用和管辖条款。上述条款以粗体及下划线标识，您应重点阅读。</span></p><p class="bold">【签约】<span class="underline">当您按照提示填写您的个人信息、阅读并同意本协议且完成全部申请或书面签署后，即表示您已充分阅读、理解并接受本协议的全部内容，并与我司达成一致意见并成为我司的合作人员，此后您不得以未阅读/不理解本协议内容或类似言辞做任何形式的抗辩。阅读本协议的过程中，如果您不同意本协议或其中任何条款约定，请您立即停止任何的申请/注册/或书面签署程序。</span></p><p class="bold">【合作关系】<span class="underline">您与我司通过本协议建立合作关系，适用《合同法》《民法总则》和其他民事法律，不适用《劳动合同法》。</span></p></section><section><p class="title bold">协议条款：</p><p>根据国家法律有关规定，双方按照平等自愿、诚实信用的原则，就由您为合作公司提供【派发任务0509001】服务事宜订立本服务合作协议。</p><div class="content"><div class="panel"><p class="title bold">第一条服务工作内容</p><ul><li>1.1因我司与合作公司服务合作需要，特选用您按照我司要求提供【派发任务0509001】服务。</li><li>1.2您应按照我司要求的标准完成工作。</li><li><span class="bold underline">1.3您承诺和保证，您具有提供本协议服务所对应的相应资质和专业能力，您依据本合同约定收取相关费用不违反任何法律法规和政策规定。若依据相关规定，您提供的相关服务和收费，应通过所在机构或以其他法律规定的方式进行，则您自行负责办理全部事宜，若因您的自身原因未办理前述事宜，则您应承担由此引起的全部法律后果，并赔偿由此给我司及合作公司造成的全部经济损失。</span></li><li>1.4在本协议有效期内，您同意我司拥有一切在世界各地履行本合约而产生或由此而产生的表演权、版权及其他知识产权，无论上述产权是否存在、产生或出现。</li><li><span class="bold underline">1.5您承诺和保证，您为合作公司提供共享经济服务是以自由职业者的身份，而非劳动/劳务合同关系、或其他类似的劳动人事法律关系，也不属于国家有关法律法规和纪律规定的禁止从事兼职或经商的人员，发现前述情形我司有权利立即解除合同，并且您应承担由此引起的全部法律后果，并赔偿由此给我司造成的全部经济损失。</span></li></ul></div><div class="panel"><p class="title bold">第二条协议效力</p><ul><li>2.1<span class="underline bold">您的签约信息（包括您的姓名、身份证号等信息），以您提供的信息为准（包括但不限于线上提供或线下提供）。您承诺并保证您所提供的签约信息真实、准确，以免影响您和我司之间的《服务合作协议》效力。本协议条款若在我司授权的网站上发布，自您线上点击确认之日起生效；若为书面签署，自您签署本协议之日起生效。</span></li><li>2.2本协议自签订之日起一年内有效。期限届满，双方应另行签署新的协议；若双方未签署新的协议，而以实际行动继续合作的，视为双方同意协议期限顺延直至按照本协议约定终止或解除时为止。</li><li><dl class="bold"><dt>2.3本协议在发生下列情形时自然终止：</dt><dd>a、经合作公司事先同意的情况下，您主动退出服务的；</dd><dd>b、合作公司终止或变更业务模式而不需要您继续履行本协议的；</dd><dd>c、合作公司认为您不适合继续提供服务的；</dd><dd>d、我司和合作公司解除合作的；</dd><dd>e、其他原因导致本协议不再继续履行的。</dd></dl></li></ul></div><div class="panel"><p class="title bold">第三条我司的权利和义务</p><ul><li>3.1<span class="underline bold">您应根据我司的安排为合作公司服务，服务期间您应遵守合作公司有关服务内容、服务质量等方面的要求。合作公司可根据自身的运营要求制定具体工作安排，您应予遵守。</span></li><li>3.2我司将按合作公司的相关规定与合作公司共同对您为合作公司提供服务的工作成果进行验收。</li><li>3.3<span class="underline bold">我司应按约定及时向您支付费用。此处您应明确：您作为我司的合作人员，在合作公司正常向我司结算情况下，您的相关费用结算将由我司完成支付，您不应向合作公司或其关联公司主张任何费用。您通过合作公司渠道发起的提现/或任何申请支付的行为，均视为向我司发起，而并非向合作公司或其关联公司发起。</span></li></ul></div><div class="panel"><p class="title bold">第四条您的权利和义务</p><ul><li>4.1您应按时尽责地完成我司以及合作公司要求的工作内容，并达到规定的质量标准，不得有侵犯他人知识产权、财产权、人身权、肖像权、隐私权、商业秘密或其他合法权益以及其他违反国家法律法规、国家政策、或有悖于公序良俗的内容。</li><li>4.2<span class="underline bold">协议期内，您应在我司以及合作公司许可范围内使用本合同有关的商业信息；协议期内以及协议终止后，您均有义务对双方合作的有关协议及合作过程中知悉的我司、合作公司的相关信息予以保密，未经书面许可，您不得以任何方式向其它方披露、给予或转让该等保密信息。否则，因此导致我司及/或合作公司或其关联公司的损失，由您负责赔偿。</span></li><li>4.3除本协议事项外，您不能以我司及/或合作公司的名义开展任何与完成约定的工作任务无关的业务或活动。</li><li>4.4若相关服务通过合作公司指定的网络平台提供，或者合作公司指定的相关网络平台备案，合作公司指定的网络平台可能将要求您签署、点击电子协议，您同意点击签署。您点击确认后该协议将对您产生法律效力。</li></ul></div><div class="panel"><p class="title bold">第五条服务费用的支付</p><ul><li>5.1<span class="underline bold">我司将根据经合作公司确认的项目服务人员服务标准及收费标准向您支付服务费用，您清楚并了解有关的服务费用标准。由于您所提供的服务内容、服务质量、服务时长等情况的不同，该等服务费用金额可能会呈现浮动，您清楚并了解该等浮动为正常情况。</span></li><li>5.2<span class="underline bold">您应向我司提供您实名下的银行账户或支付宝账户，以及相关必要的证件和信息。若具体账户信息在合作公司指定的网络平台在线提供的，以您在线提供的信息为准。</span></li><li>5.3我司服务费用支付以您提供的收款帐户为准，因您提供的收款帐户不实造成的一切损失由您自行承担。如您帐号变更或发生不可用等情况时，应及时书面通知我司或在合作公司指定的网络平台进行变更操作，否则，由此造成的一切损失由您自行负责。</li><li class="underline bold">5.4您与我司属于合作关系，非我司员工，我司不承担您任何社保福利待遇，也不负责您的任何医疗保险费用。您以生产经营形式与我司合作，我方将根据生产经营所得的形式参照地方政策与您配合申报缴纳相关的税收。</li></ul></div><div class="panel"><p class="title bold">第六条违约责任</p><ul><li>6.1双方应按本协议约定履行，如有违反，守约方有权要求对方及时改正；造成对方损失的，守约方有权要求违约方赔偿。守约方有权要求违约方赔偿受到的直接和间接损失，包括但不限于前期投入、推广宣传、包装、媒介、策略规划、出访和社交活动、谈判费用、服务费、向第三方的赔偿、诉讼费、律师费等相关损失及额外支出费用。</li><li>6.2因不可抗力造成损失的，彼此不负赔偿责任，但发生不可抗力一方应及时将有关情况通知另一方，并尽最大努力进行补救。本协议所称不可抗力是指不能预见、不能克服并不能避免且对一方当事人造成重大影响的客观事件，包括但不限于自然灾害如洪水、地震、火灾和风暴等以及社会事件如战争、动乱、政府行为、黑客事件、大范围电信事故等。</li></ul></div><div class="panel"><p class="title bold">第七条协议的终止</p><ul><li><dl><dt>7.1发生以下情形时，本协议终止：</dt><dd>a.一方故意或疏忽而不尽职责，违背或损害另一方的利益或合理要求。</dd><dd>b.一方严重违反或不遵守本合同的有关条款。</dd><dd>c.一方涉入本合同外的法律纠纷而严重影响工作。</dd><dd>d.协议期限届满或任何一方提前30日书面通知对方要求终止协议的，但您要求终止协议应事先获得合作公司的同意并不得影响合作公司的运营；</dd><dd>e.一方违反协议约定，且违约方在非违约方书面通知后15日内仍未予改正的，非违约方可以书面通知的形式终止本协议；</dd><dd>f.您如未能达到我司的要求，我司在工作验收时将给予警告；此后如仍发生类似情况的，我司可提前终止本协议。</dd></dl></li><li>7.2本协议的提前终止不影响已经产生的权利义务关系。</li></ul></div><div class="panel"><p class="title bold">第八条保证事项</p><ul><li>您/本人确认我司【标普云结算公司】根据本合同授权提交的相关申报资料和信息是真实、完整、准确，和符合有关法律法规的。</li><li>您/本人确认与我司【标普云结算公司】的合作公司不存在法律上和事实上的人事劳动关系，不属于合作公司人事管理权限范围内的个人，也并非其股东。</li></ul></div><div class="panel"><p class="title bold">第九条其他</p><ul><li>9.1<span class="underline bold">您应保证您所提交的材料或信息真实、可靠，不违反国家有关法律法规的规定，一经发现您有弄虚作假或其他与真实情况不符的情形，我司有权上报相关国家机关依法追究责任主体的法律责任。如因您的原因造成了被有关国家机关追责或产生其他违法情形，您应承担由此产生的一切责任，对我司造成损害的，还应赔偿我司受到的直接和间接损失。</span></li><li><span class="underline bold">9.2本协议的订立、执行和解释及争议的解决均应适用中国法律（不含港澳台地区法律）。因履行本协议发生的纠纷，双方应友好协商解决，协商不成的，提请我司所在地人民法院诉讼解决。</span></li><li>9.3我司有权根据业务需要修改本协议条款。</li></ul></div></div></section><p>（以下无正文）</p><div class="footer"style="margin-top: 1em;"><table class="footTable"><tbody><col align="left"width="30%"/><col align="right"width="70%"/><tr><td>甲<span style="width: 1.48em; display: inline-block;"></span>方：标普云结算公司<span style="color:#FFFFFF;"></span></td><td></td></tr><tr><td>联系地址：广东省深圳市深圳</td><td></td></tr><tr><td>联系电话：</td><td></td></tr><tr><td>联系邮箱：</td><td></td></tr><tr><td style="height: 5px;"colspan="2"></td></tr><tr><td>乙方：匡散军<span style="color:#FFFFFF;"></span></td><td></td></tr><tr><td>联系地址：</td><td></td></tr><tr><td>身份证号：431021198807155652</td><td></td></tr><tr><td>联系电话：15889604573</td><td></td></tr><tr><td style="height: 0px;"colspan="2"></td></tr><tr><td colspan="2"><p>签署日期：2020年05月26日</p></td></tr></tbody></table></div></body></html>'
-
-  const start = str.indexOf('<body>')
-  const end = str.indexOf('</body>')
-
-  console.log(str.substring(start + 6, end))
+  new Vue({
+    el: '#app',
+    data() {
+      return {
+        list: [
+          {
+            label: 0,
+            value: 0
+          },
+          {
+            label: 1,
+            value: 1
+          },
+          {
+            label: 2,
+            value: 2
+          },
+          {
+            label: 2,
+            value: 2
+          }
+        ]
+      }
+    }
+  })
 </script>
