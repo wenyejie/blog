@@ -1,0 +1,19 @@
+<script>
+  // 普通阶乘
+  const factorial = (number) => {
+    if (number <= 1) {
+      return 1
+    }
+    return number * factorial(--number)
+  }
+  console.log(factorial(5)) // 120
+
+  // 尾递归优化阶乘
+  const factorialA = (number, total = 1) => {
+    if (number <= 1) {
+      return total
+    }
+    return factorialA(number - 1, total * number)
+  }
+  console.log(factorialA(5)) // 120
+</script>
