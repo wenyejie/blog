@@ -19,8 +19,7 @@
        * 获取当月长度
        * @param date
        */
-      const monthLength = (date = new Date()) =>
-        new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate()
+      const monthLength = (date = new Date()) => new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate()
       document.querySelector('#result').innerHTML = JSON.stringify(monthLength())
     </script>
     <script src="../assets/codeHighlight.js"></script>

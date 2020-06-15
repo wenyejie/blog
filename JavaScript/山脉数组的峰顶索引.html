@@ -1,42 +1,38 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
-<head>
-  <meta charset="utf-8" />
-  <title>山脉数组的峰顶索引</title>
-  <link
-    rel="stylesheet"
-    href="../assets/prism.css" />
-</head>
-<body>
-<pre><code
+  <head>
+    <meta charset="utf-8" />
+    <title>山脉数组的峰顶索引</title>
+    <link rel="stylesheet" href="../assets/prism.css" />
+  </head>
+  <body>
+    <pre><code
   data-code-highlight="javascript"
   class="language-javascript"></code></pre>
-<div>
-  结果为:
-  <pre id="result"></pre>
-</div>
-<script data-code-highlight="javascript">
-// https://leetcode-cn.com/problems/peak-index-in-a-mountain-array/
-/**
- * @param {number[]} A
- * @return {number}
- */
-const peakIndexInMountainArray = function(A) {
-  let i = 1
-  let length = A.length - 1
-  for (; i < length; i++) {
-    if (A[i - 1] < A[i]) {
-      continue
-    }
-    break
-  }
-  return i - 1
-}
-document.querySelector('#result').innerHTML = JSON.stringify(
-  peakIndexInMountainArray([0, 1, 0])
-)
-</script>
-<script src="../assets/codeHighlight.js"></script>
-<script src="../assets/prism.js"></script>
-</body>
+    <div>
+      结果为:
+      <pre id="result"></pre>
+    </div>
+    <script data-code-highlight="javascript">
+      // https://leetcode-cn.com/problems/peak-index-in-a-mountain-array/
+      /**
+       * @param {number[]} A
+       * @return {number}
+       */
+      const peakIndexInMountainArray = function(A) {
+        let i = 1
+        let length = A.length - 1
+        for (; i < length; i++) {
+          if (A[i - 1] < A[i]) {
+            continue
+          }
+          break
+        }
+        return i - 1
+      }
+      document.querySelector('#result').innerHTML = JSON.stringify(peakIndexInMountainArray([0, 1, 0]))
+    </script>
+    <script src="../assets/codeHighlight.js"></script>
+    <script src="../assets/prism.js"></script>
+  </body>
 </html>

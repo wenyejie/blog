@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8" />
+    <title>上升下降字符串</title>
+  </head>
+  <body>
+    <script data-code-highlight="javascript">
+      // https://leetcode-cn.com/problems/he-bing-liang-ge-pai-xu-de-lian-biao-lcof/
+      /**
+       * Definition for singly-linked list.
+       * function ListNode(val) {
+       *     this.val = val;
+       *     this.next = null;
+       * }
+       */
+
+      function ListNode(val) {
+        this.val = val
+        this.next = null
+      }
+      /**
+       * @param {ListNode} l1
+       * @param {ListNode} l2
+       * @return {ListNode}
+       */
+      const mergeTwoLists = (l1, l2) => {
+        if (l1 === null) {
+          return l2
+        }
+        if (l2 === null) {
+          return l1
+        }
+        const result = new ListNode(-1)
+        let resultNext = result
+        while (l1 !== null || l2 !== null) {
+          if (l1 === null || (l2 !== null && l1.val > l2.val)) {
+            resultNext.next = new ListNode(l2.val)
+            resultNext = resultNext.next
+            l2 = l2.next
+            continue
+          }
+          resultNext.next = new ListNode(l1.val)
+          resultNext = resultNext.next
+          l1 = l1.next
+        }
+        return result.next
+      }
+
+      const l1 = {
+        val: 1,
+        next: {
+          val: 2,
+          next: {
+            val: 4,
+            next: null
+          }
+        }
+      }
+
+      const l2 = {
+        val: 1,
+        next: {
+          val: 3,
+          next: {
+            val: 4,
+            next: null
+          }
+        }
+      }
+
+      window.demo = mergeTwoLists(l1, l2)
+    </script>
+    <script src="../assets/codeHighlight-2.0.js"></script>
+  </body>
+</html>

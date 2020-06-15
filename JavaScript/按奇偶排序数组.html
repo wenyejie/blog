@@ -1,41 +1,37 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
-<head>
-  <meta charset="utf-8" />
-  <title>按奇偶排序数组</title>
-  <link
-    rel="stylesheet"
-    href="../assets/prism.css" />
-</head>
-<body>
-<pre><code
+  <head>
+    <meta charset="utf-8" />
+    <title>按奇偶排序数组</title>
+    <link rel="stylesheet" href="../assets/prism.css" />
+  </head>
+  <body>
+    <pre><code
   data-code-highlight="javascript"
   class="language-javascript"></code></pre>
-<div>
-  结果为:
-  <pre id="result"></pre>
-</div>
-<script data-code-highlight="javascript">
-// https://leetcode-cn.com/problems/sort-array-by-parity/
-/**
- * @param {number[]} A
- * @return {number[]}
- */
-const sortArrayByParity = (A) => {
-  for (let i = 0; i < A.length; i++) {
-    if (A[i] % 2 === 0) {
-      const temp = A[i]
-      A.splice(i, 1)
-      A.unshift(temp)
-    }
-  }
-  return A
-}
-document.querySelector('#result').innerHTML = JSON.stringify(
-  sortArrayByParity([3, 1, 2, 4])
-)
-</script>
-<script src="../assets/codeHighlight.js"></script>
-<script src="../assets/prism.js"></script>
-</body>
+    <div>
+      结果为:
+      <pre id="result"></pre>
+    </div>
+    <script data-code-highlight="javascript">
+      // https://leetcode-cn.com/problems/sort-array-by-parity/
+      /**
+       * @param {number[]} A
+       * @return {number[]}
+       */
+      const sortArrayByParity = (A) => {
+        for (let i = 0; i < A.length; i++) {
+          if (A[i] % 2 === 0) {
+            const temp = A[i]
+            A.splice(i, 1)
+            A.unshift(temp)
+          }
+        }
+        return A
+      }
+      document.querySelector('#result').innerHTML = JSON.stringify(sortArrayByParity([3, 1, 2, 4]))
+    </script>
+    <script src="../assets/codeHighlight.js"></script>
+    <script src="../assets/prism.js"></script>
+  </body>
 </html>

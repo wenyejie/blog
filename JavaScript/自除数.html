@@ -1,49 +1,45 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
-<head>
-  <meta charset="utf-8" />
-  <title>自除数</title>
-  <link
-    rel="stylesheet"
-    href="../assets/prism.css" />
-</head>
-<body>
-<pre><code
+  <head>
+    <meta charset="utf-8" />
+    <title>自除数</title>
+    <link rel="stylesheet" href="../assets/prism.css" />
+  </head>
+  <body>
+    <pre><code
   data-code-highlight="javascript"
   class="language-javascript"></code></pre>
-<div>
-  结果为:
-  <pre id="result"></pre>
-</div>
-<script data-code-highlight="javascript">
-// https://leetcode-cn.com/problems/self-dividing-numbers/
-/**
- * @param {number} left
- * @param {number} right
- * @return {number[]}
- */
-const selfDividingNumbers = (left, right) => {
-  const result = []
-  for (let i = left; i <= right; i++) {
-    let divisor = 1
-    while(divisor <= i) {
-      if (i % (Math.floor(i/divisor)%10) !== 0) {
-        break
+    <div>
+      结果为:
+      <pre id="result"></pre>
+    </div>
+    <script data-code-highlight="javascript">
+      // https://leetcode-cn.com/problems/self-dividing-numbers/
+      /**
+       * @param {number} left
+       * @param {number} right
+       * @return {number[]}
+       */
+      const selfDividingNumbers = (left, right) => {
+        const result = []
+        for (let i = left; i <= right; i++) {
+          let divisor = 1
+          while (divisor <= i) {
+            if (i % (Math.floor(i / divisor) % 10) !== 0) {
+              break
+            }
+            if (i / divisor <= 10) {
+              result.push(i)
+              break
+            }
+            divisor *= 10
+          }
+        }
+        return result
       }
-      if (i / divisor <= 10) {
-        result.push(i)
-        break
-      }
-      divisor *=10
-    }
-  }
-  return result
-}
-document.querySelector('#result').innerHTML = JSON.stringify(
-  selfDividingNumbers(1, 22)
-)
-</script>
-<script src="../assets/codeHighlight.js"></script>
-<script src="../assets/prism.js"></script>
-</body>
+      document.querySelector('#result').innerHTML = JSON.stringify(selfDividingNumbers(1, 22))
+    </script>
+    <script src="../assets/codeHighlight.js"></script>
+    <script src="../assets/prism.js"></script>
+  </body>
 </html>

@@ -1,70 +1,72 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
-<head>
-  <meta charset="utf-8" />
-  <title>N叉树的后序遍历</title>
-  <link
-    rel="stylesheet"
-    href="../assets/prism.css" />
-</head>
-<body>
-<pre><code
+  <head>
+    <meta charset="utf-8" />
+    <title>N叉树的后序遍历</title>
+    <link rel="stylesheet" href="../assets/prism.css" />
+  </head>
+  <body>
+    <pre><code
   data-code-highlight="javascript"
   class="language-javascript"></code></pre>
-<div>
-  结果为:
-  <pre id="result"></pre>
-</div>
-<script data-code-highlight="javascript">
-// https://leetcode-cn.com/problems/n-ary-tree-postorder-traversal/
-/**
- * // Definition for a Node.
- * function Node(val, children) {
- *    this.val = val;
- *    this.children = children;
- * };
- */
-/**
- * @param {Node} root
- * @return {number[]}
- */
-const postorder = (root) => {
-  if (!root) {
-    return []
-  }
-  let result = [root]
-  for (let i = result.length - 1; i >= 0; i--) {
-    if (result[i].children.length > 0) {
-      const length = result.length
-      result = result[i].children.concat(result)
-      i = result.length - length - 1
-    }
-  }
-  return result.map(item => item.val)
-}
-document.querySelector('#result').innerHTML = JSON.stringify(
-  postorder({
-    'val': 1,
-    'children': [
-      {
-        'val': 3,
-        'children': [
-          {
-            'val': 5, 'children': []
-          },
-          {
-            'val': 6, 'children': []
+    <div>
+      结果为:
+      <pre id="result"></pre>
+    </div>
+    <script data-code-highlight="javascript">
+      // https://leetcode-cn.com/problems/n-ary-tree-postorder-traversal/
+      /**
+       * // Definition for a Node.
+       * function Node(val, children) {
+       *    this.val = val;
+       *    this.children = children;
+       * };
+       */
+      /**
+       * @param {Node} root
+       * @return {number[]}
+       */
+      const postorder = (root) => {
+        if (!root) {
+          return []
+        }
+        let result = [root]
+        for (let i = result.length - 1; i >= 0; i--) {
+          if (result[i].children.length > 0) {
+            const length = result.length
+            result = result[i].children.concat(result)
+            i = result.length - length - 1
           }
-        ]
-      },
-      {
-        'val': 2,
-        'children': []
-      }, { 'val': 4, 'children': [] }]
-  })
-)
-</script>
-<script src="../assets/codeHighlight.js"></script>
-<script src="../assets/prism.js"></script>
-</body>
+        }
+        return result.map((item) => item.val)
+      }
+      document.querySelector('#result').innerHTML = JSON.stringify(
+        postorder({
+          'val': 1,
+          'children': [
+            {
+              'val': 3,
+              'children': [
+                {
+                  'val': 5,
+                  'children': []
+                },
+                {
+                  'val': 6,
+                  'children': []
+                }
+              ]
+            },
+            {
+              'val': 2,
+              'children': []
+            },
+            { 'val': 4, 'children': [] }
+          ]
+        })
+      )
+    </script>
+    <script src="../assets/codeHighlight.js"></script>
+    <script src="../assets/prism.js"></script>
+  </body>
 </html>

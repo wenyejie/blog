@@ -1,42 +1,38 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
-<head>
-  <meta charset="utf-8" />
-  <title>反转字符串</title>
-  <link
-    rel="stylesheet"
-    href="../assets/prism.css" />
-</head>
-<body>
-<pre><code
+  <head>
+    <meta charset="utf-8" />
+    <title>反转字符串</title>
+    <link rel="stylesheet" href="../assets/prism.css" />
+  </head>
+  <body>
+    <pre><code
   data-code-highlight="javascript"
   class="language-javascript"></code></pre>
-<div>
-  结果为:
-  <pre id="result"></pre>
-</div>
-<script data-code-highlight="javascript">
-// https://leetcode-cn.com/problems/reverse-string/
-/**
- * @param {character[]} s
- * @return {void} Do not return anything, modify s in-place instead.
- */
-const reverseString = (s) => {
-  const halfLength = Math.floor(s.length / 2)
-  const length = s.length - 1
+    <div>
+      结果为:
+      <pre id="result"></pre>
+    </div>
+    <script data-code-highlight="javascript">
+      // https://leetcode-cn.com/problems/reverse-string/
+      /**
+       * @param {character[]} s
+       * @return {void} Do not return anything, modify s in-place instead.
+       */
+      const reverseString = (s) => {
+        const halfLength = Math.floor(s.length / 2)
+        const length = s.length - 1
 
-  for (let i = 0; i < halfLength; i++) {
-    const temp = s[i]
-    s[i] = s[length - i]
-    s[length - i] = temp
-  }
-  return s
-}
-document.querySelector('#result').innerHTML = JSON.stringify(
-  reverseString(['h', 'e', 'l', 'l', 'o'])
-)
-</script>
-<script src="../assets/codeHighlight.js"></script>
-<script src="../assets/prism.js"></script>
-</body>
+        for (let i = 0; i < halfLength; i++) {
+          const temp = s[i]
+          s[i] = s[length - i]
+          s[length - i] = temp
+        }
+        return s
+      }
+      document.querySelector('#result').innerHTML = JSON.stringify(reverseString(['h', 'e', 'l', 'l', 'o']))
+    </script>
+    <script src="../assets/codeHighlight.js"></script>
+    <script src="../assets/prism.js"></script>
+  </body>
 </html>

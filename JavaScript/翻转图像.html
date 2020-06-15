@@ -23,7 +23,11 @@
         return A.map((item) => item.map((item) => (item === 1 ? 0 : 1)).reverse())
       }
       document.querySelector('#result').innerHTML = JSON.stringify(
-        flipAndInvertImage([[1, 1, 0], [1, 0, 1], [0, 0, 0]])
+        flipAndInvertImage([
+          [1, 1, 0],
+          [1, 0, 1],
+          [0, 0, 0]
+        ])
       )
     </script>
     <script src="../assets/codeHighlight.js"></script>

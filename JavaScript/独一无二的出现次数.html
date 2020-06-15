@@ -1,40 +1,36 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
-<head>
-  <meta charset="utf-8" />
-  <title>独一无二的出现次数</title>
-  <link
-    rel="stylesheet"
-    href="../assets/prism.css" />
-</head>
-<body>
-<pre><code
+  <head>
+    <meta charset="utf-8" />
+    <title>独一无二的出现次数</title>
+    <link rel="stylesheet" href="../assets/prism.css" />
+  </head>
+  <body>
+    <pre><code
   data-code-highlight="javascript"
   class="language-javascript"></code></pre>
-<div>
-  结果为:
-  <pre id="result"></pre>
-</div>
-<script data-code-highlight="javascript">
-// https://leetcode-cn.com/problems/unique-number-of-occurrences/
-/**
- * @param {number[]} arr
- * @return {boolean}
- */
-const uniqueOccurrences = (arr) => {
-  const valueMap = {}
+    <div>
+      结果为:
+      <pre id="result"></pre>
+    </div>
+    <script data-code-highlight="javascript">
+      // https://leetcode-cn.com/problems/unique-number-of-occurrences/
+      /**
+       * @param {number[]} arr
+       * @return {boolean}
+       */
+      const uniqueOccurrences = (arr) => {
+        const valueMap = {}
 
-  for (let i = 0; i < arr.length; i++) {
-    valueMap[arr[i]] = valueMap[arr[i]] ? valueMap[arr[i]] + 1 : 1
-  }
-  const values = Object.values(valueMap)
-  return values.length === new Set(values).size
-}
-document.querySelector('#result').innerHTML = JSON.stringify(
-  uniqueOccurrences([1, 2, 2, 1, 1, 3])
-)
-</script>
-<script src="../assets/codeHighlight.js"></script>
-<script src="../assets/prism.js"></script>
-</body>
+        for (let i = 0; i < arr.length; i++) {
+          valueMap[arr[i]] = valueMap[arr[i]] ? valueMap[arr[i]] + 1 : 1
+        }
+        const values = Object.values(valueMap)
+        return values.length === new Set(values).size
+      }
+      document.querySelector('#result').innerHTML = JSON.stringify(uniqueOccurrences([1, 2, 2, 1, 1, 3]))
+    </script>
+    <script src="../assets/codeHighlight.js"></script>
+    <script src="../assets/prism.js"></script>
+  </body>
 </html>

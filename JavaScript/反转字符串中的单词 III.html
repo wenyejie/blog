@@ -1,44 +1,40 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
-<head>
-  <meta charset="utf-8" />
-  <title>反转字符串中的单词 III</title>
-  <link
-    rel="stylesheet"
-    href="../assets/prism.css" />
-</head>
-<body>
-<pre><code
+  <head>
+    <meta charset="utf-8" />
+    <title>反转字符串中的单词 III</title>
+    <link rel="stylesheet" href="../assets/prism.css" />
+  </head>
+  <body>
+    <pre><code
   data-code-highlight="javascript"
   class="language-javascript"></code></pre>
-<div>
-  结果为:
-  <pre id="result"></pre>
-</div>
-<script data-code-highlight="javascript">
-// https://leetcode-cn.com/problems/reverse-words-in-a-string-iii/
-/**
- * @param {string} s
- * @return {string}
- */
-const reverseWords = (s) => {
-  let result = ''
-  let stack = ''
-  for (let i = 0; i < s.length; i++) {
-    if (s[i] === ' ') {
-      result += stack + ' '
-      stack = ''
-    } else {
-      stack = s[i] + stack
-    }
-  }
-  return result + stack
-}
-document.querySelector('#result').innerHTML = JSON.stringify(
-  reverseWords('Let\'s take LeetCode contest')
-)
-</script>
-<script src="../assets/codeHighlight.js"></script>
-<script src="../assets/prism.js"></script>
-</body>
+    <div>
+      结果为:
+      <pre id="result"></pre>
+    </div>
+    <script data-code-highlight="javascript">
+      // https://leetcode-cn.com/problems/reverse-words-in-a-string-iii/
+      /**
+       * @param {string} s
+       * @return {string}
+       */
+      const reverseWords = (s) => {
+        let result = ''
+        let stack = ''
+        for (let i = 0; i < s.length; i++) {
+          if (s[i] === ' ') {
+            result += stack + ' '
+            stack = ''
+          } else {
+            stack = s[i] + stack
+          }
+        }
+        return result + stack
+      }
+      document.querySelector('#result').innerHTML = JSON.stringify(reverseWords("Let's take LeetCode contest"))
+    </script>
+    <script src="../assets/codeHighlight.js"></script>
+    <script src="../assets/prism.js"></script>
+  </body>
 </html>

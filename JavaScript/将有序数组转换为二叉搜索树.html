@@ -1,56 +1,52 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
-<head>
-  <meta charset="utf-8" />
-  <title>将有序数组转换为二叉搜索树</title>
-  <link
-    rel="stylesheet"
-    href="../assets/prism.css" />
-</head>
-<body>
-<pre><code
+  <head>
+    <meta charset="utf-8" />
+    <title>将有序数组转换为二叉搜索树</title>
+    <link rel="stylesheet" href="../assets/prism.css" />
+  </head>
+  <body>
+    <pre><code
   data-code-highlight="javascript"
   class="language-javascript"></code></pre>
-<div>
-  结果为:
-  <pre id="result"></pre>
-</div>
-<script data-code-highlight="javascript">
-// https://leetcode-cn.com/problems/convert-sorted-array-to-binary-search-tree/
+    <div>
+      结果为:
+      <pre id="result"></pre>
+    </div>
+    <script data-code-highlight="javascript">
+      // https://leetcode-cn.com/problems/convert-sorted-array-to-binary-search-tree/
 
-function TreeNode (val) {
-  this.val = val
-  this.left = this.right = null
-}
+      function TreeNode(val) {
+        this.val = val
+        this.left = this.right = null
+      }
 
-/**
- * Definition for a binary tree node.
- * function TreeNode(val) {
- *     this.val = val;
- *     this.left = this.right = null;
- * }
- */
-/**
- * @param {number[]} nums
- * @return {TreeNode}
- */
-var sortedArrayToBST = function(nums) {
-  if (nums.length === 0) {
-    return null
-  }
-  const half = Math.floor(nums.length / 2)
-  const tree = new TreeNode(nums[half])
+      /**
+       * Definition for a binary tree node.
+       * function TreeNode(val) {
+       *     this.val = val;
+       *     this.left = this.right = null;
+       * }
+       */
+      /**
+       * @param {number[]} nums
+       * @return {TreeNode}
+       */
+      var sortedArrayToBST = function(nums) {
+        if (nums.length === 0) {
+          return null
+        }
+        const half = Math.floor(nums.length / 2)
+        const tree = new TreeNode(nums[half])
 
-  tree.left = sortedArrayToBST(nums.slice(0, half))
-  tree.right = sortedArrayToBST(nums.slice(half + 1))
+        tree.left = sortedArrayToBST(nums.slice(0, half))
+        tree.right = sortedArrayToBST(nums.slice(half + 1))
 
-  return tree
-}
-document.querySelector('#result').innerHTML = JSON.stringify(
-  sortedArrayToBST([-10, -3, 0, 5, 9])
-)
-</script>
-<script src="../assets/codeHighlight.js"></script>
-<script src="../assets/prism.js"></script>
-</body>
+        return tree
+      }
+      document.querySelector('#result').innerHTML = JSON.stringify(sortedArrayToBST([-10, -3, 0, 5, 9]))
+    </script>
+    <script src="../assets/codeHighlight.js"></script>
+    <script src="../assets/prism.js"></script>
+  </body>
 </html>

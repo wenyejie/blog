@@ -24,8 +24,7 @@
         function(r) {
           document.querySelector('#result').innerHTML = JSON.stringify(r, '\n\s', 2)
           if (this.getStatus() === BMAP_STATUS_SUCCESS) {
-            document.querySelector('#demo').innerHTML =
-              '您的位置：' + r.point.lng + ',' + r.point.lat
+            document.querySelector('#demo').innerHTML = '您的位置：' + r.point.lng + ',' + r.point.lat
           } else {
             alert('failed' + this.getStatus())
           }
