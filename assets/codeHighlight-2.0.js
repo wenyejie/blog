@@ -12,13 +12,7 @@ document.head.appendChild($link)
 // 载入相关HTML
 const $wrap = document.createElement('div')
 $wrap.innerHTML =
-  '<pre><code\n' +
-  '  data-code-highlight="javascript"\n' +
-  '  class="language-javascript"></code></pre>\n' +
-  '    <div>\n' +
-  '      结果为:\n' +
-  '      <pre ><code id="result" class="language-json"></code></pre>\n' +
-  '    </div>'
+  '<pre><code data-code-highlight="javascript" class="language-javascript"></code></pre><div>结果为:<pre ><code id="result" class="language-json"></code></pre></div>'
 
 const $code = document.querySelector('script[data-code-highlight="javascript"]')
 
