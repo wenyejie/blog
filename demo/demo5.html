@@ -1,33 +1,69 @@
-<div id="app">
-  <label v-for="(item, index) in list" :key="index">{{ item.label }}: <input v-model="item.value"/></label>
-</div>
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8" />
+    <link href="./demo3.html" />
+    <title>test</title>
+  </head>
+  <body>
+    <form>
+      <label>姓名 <input type="text" required maxlength="20" minlength="2"/></label>
 
-<!-- 生产环境版本，优化了尺寸和速度 -->
-<script src="https://cdn.jsdelivr.net/npm/vue"></script>
-<script>
-  new Vue({
-    el: '#app',
-    data() {
-      return {
-        list: [
-          {
-            label: 0,
-            value: 0
-          },
-          {
-            label: 1,
-            value: 1
-          },
-          {
-            label: 2,
-            value: 2
-          },
-          {
-            label: 2,
-            value: 2
-          }
-        ]
+      <button type="submit">提交</button>
+    </form>
+
+    <script src="../node_modules/wenyejie-utils/dist/index.js"></script>
+    <script type="module">
+      const camelizeRE = /-(\w)/g
+
+      // 把横杠命名转化为驼峰命名
+      export const camelize = (str) => {
+        return str.replace(camelizeRE, (_, c) => (c ? c.toUpperCase() : ''))
       }
-    }
-  })
-</script>
+
+      // 首字母大写
+      export const capitalize = (str) => {
+        return str.charAt(0).toUpperCase() + str.slice(1)
+      }
+
+      // 驼峰命名转横杠命名
+      const hyphenateRE = /\B([A-Z])/g
+      export const hyphenate = (str) => {
+        return str.replace(hyphenateRE, '-$1').toLowerCase()
+      }
+      const css = (elt, name, value, options) => {
+        if (!name) {
+          return window.getComputedStyle(elt)
+        }
+        if (value === undefined) {
+          return window.getComputedStyle(elt)[name]
+        }
+        if (value === null) {
+          return window
+        }
+      }
+
+      const get = (elt, name, pseudo) => {
+        if (typeof name !== 'string') {
+          return window.getComputedStyle(elt, pseudo)
+        }
+        return window.getComputedStyle(elt, pseudo)[name]
+      }
+
+      const set = (elt, name, value) => {
+        let styles = null
+        if (typeof name === 'string') {
+          styles = { [name]: value }
+        } else {
+          styles = name
+        }
+
+        for (let key in styles) {
+          elt[key] = styles[key]
+        }
+      }
+
+      console.log(css(document.querySelector('form'), 'font-size'))
+    </script>
+  </body>
+</html>
