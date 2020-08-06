@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8" />
+    <title>剑指 Offer 05. 替换空格</title>
+  </head>
+  <body>
+    <script data-code-highlight="javascript">
+      // https://leetcode-cn.com/problems/ti-huan-kong-ge-lcof/
+      /**
+       * @param {string} s
+       * @return {string}
+       */
+      const replaceSpace = (s) => {
+        // return s.replace(/\s/g, '%20')
+        for (let i = 0; i < s.length; i++) {
+          s[i] = s[i] === ' ' ? '%20' : s[i]
+        }
+        return s
+      }
+
+      window.demo = replaceSpace('We are happy.')
+    </script>
+    <script src="../assets/codeHighlight-2.0.js"></script>
+  </body>
+</html>

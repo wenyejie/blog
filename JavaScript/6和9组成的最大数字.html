@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8" />
+    <title>6和9组成的最大数字</title>
+  </head>
+  <body>
+    <script data-code-highlight="javascript">
+      // https://leetcode-cn.com/problems/maximum-69-number/
+      /**
+       * @param {number} num
+       * @return {number}
+       */
+      const maximum69Number = (num) => {
+        const str = num + ''
+        let i = 0
+        for (; i < str.length; i++) {
+          if (str[i] === '6') {
+            break
+          }
+        }
+        return num + 3 * Math.pow(10, str.length - i - 1)
+      }
+
+      window.demo = maximum69Number(9996)
+    </script>
+    <script src="../assets/codeHighlight-2.0.js"></script>
+  </body>
+</html>

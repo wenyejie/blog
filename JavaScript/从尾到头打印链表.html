@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8" />
+    <title>从尾到头打印链表</title>
+  </head>
+  <body>
+    <script data-code-highlight="javascript">
+      // https://leetcode-cn.com/problems/cong-wei-dao-tou-da-yin-lian-biao-lcof/
+      /**
+       * Definition for singly-linked list.
+       * function ListNode(val) {
+       *     this.val = val;
+       *     this.next = null;
+       * }
+       */
+      /**
+       * @param {ListNode} head
+       * @return {number[]}
+       */
+      const reversePrint = (head) => {
+        const result = []
+        while (head !== null) {
+          result.unshift(head.val)
+          head = head.next
+        }
+        return result
+      }
+
+      window.demo = reversePrint({
+        val: 1,
+        next: {
+          val: 2,
+          next: {
+            val: 3,
+            next: null
+          }
+        }
+      })
+    </script>
+    <script src="../assets/codeHighlight-2.0.js"></script>
+  </body>
+</html>

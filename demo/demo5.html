@@ -11,59 +11,26 @@
 
       <button type="submit">提交</button>
     </form>
-
-    <script src="../node_modules/wenyejie-utils/dist/index.js"></script>
-    <script type="module">
-      const camelizeRE = /-(\w)/g
-
-      // 把横杠命名转化为驼峰命名
-      export const camelize = (str) => {
-        return str.replace(camelizeRE, (_, c) => (c ? c.toUpperCase() : ''))
+    <script>
+      function alphabetPosition(text) {
+        text = text.trim()
+        text = text.toLowerCase()
+        console.log(text)
+        let str = ''
+        for (let i of text) {
+          if (i.charCodeAt(0) >= 'a'.charCodeAt(0) && i.charCodeAt(0) <= 'z'.charCodeAt(0)) {
+            str += i.charCodeAt(0) - 'a'.charCodeAt(0) + 1
+            str += ' '
+          }
+          console.log(str)
+          str = str.trimRight()
+          console.log(i.charCodeAt(0), 'a'.charCodeAt(0))
+          console.log(str)
+        }
+        return str
       }
 
-      // 首字母大写
-      export const capitalize = (str) => {
-        return str.charAt(0).toUpperCase() + str.slice(1)
-      }
-
-      // 驼峰命名转横杠命名
-      const hyphenateRE = /\B([A-Z])/g
-      export const hyphenate = (str) => {
-        return str.replace(hyphenateRE, '-$1').toLowerCase()
-      }
-      const css = (elt, name, value, options) => {
-        if (!name) {
-          return window.getComputedStyle(elt)
-        }
-        if (value === undefined) {
-          return window.getComputedStyle(elt)[name]
-        }
-        if (value === null) {
-          return window
-        }
-      }
-
-      const get = (elt, name, pseudo) => {
-        if (typeof name !== 'string') {
-          return window.getComputedStyle(elt, pseudo)
-        }
-        return window.getComputedStyle(elt, pseudo)[name]
-      }
-
-      const set = (elt, name, value) => {
-        let styles = null
-        if (typeof name === 'string') {
-          styles = { [name]: value }
-        } else {
-          styles = name
-        }
-
-        for (let key in styles) {
-          elt[key] = styles[key]
-        }
-      }
-
-      console.log(css(document.querySelector('form'), 'font-size'))
+      console.log(alphabetPosition("The sunset sets at twelve o' clock."))
     </script>
   </body>
 </html>
