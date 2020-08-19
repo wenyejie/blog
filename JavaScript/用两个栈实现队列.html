@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8" />
+    <title>用两个栈实现队列</title>
+  </head>
+  <body>
+    <script data-code-highlight="javascript">
+      // https://leetcode-cn.com/problems/yong-liang-ge-zhan-shi-xian-dui-lie-lcof/
+      const CQueue = function() {
+        this.stack = []
+      }
+
+      /**
+       * @param {number} value
+       * @return {void}
+       */
+      CQueue.prototype.appendTail = function(value) {
+        this.stack.push(value)
+      }
+
+      /**
+       * @return {number}
+       */
+      CQueue.prototype.deleteHead = function() {
+        if (this.stack.length <= 0) {
+          return -1
+        }
+        return this.stack.shift()
+      }
+
+      /**
+       * Your CQueue object will be instantiated and called as such:
+       * var obj = new CQueue()
+       * obj.appendTail(value)
+       * var param_2 = obj.deleteHead()
+       */
+
+      // 输入：
+      // ["CQueue","appendTail","deleteHead","deleteHead"]
+      //   [[],[3],[],[]]
+      // 输出：[null,null,3,-1]
+
+      const obj = new CQueue()
+      console.log(obj.appendTail(3))
+      console.log(obj.deleteHead())
+      console.log(obj.deleteHead())
+
+      window.demo = obj
+    </script>
+    <script src="../assets/codeHighlight-2.0.js"></script>
+  </body>
+</html>

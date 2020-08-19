@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8" />
+    <title>二进制中1的个数</title>
+    <meta name="" />
+  </head>
+  <body>
+    <script data-code-highlight="javascript">
+      // https://leetcode-cn.com/problems/er-jin-zhi-zhong-1de-ge-shu-lcof/
+      /**
+       * @param {number} n - a positive integer
+       * @return {number}
+       */
+      const hammingWeight = function(n) {
+        const str = n.toString(2)
+        let length = 0
+        let index = 0
+        while (index < str.length) {
+          index = str.indexOf('1', index)
+          if (index === -1) {
+            break
+          } else {
+            index++
+            length++
+          }
+          console.log(str, length, index)
+        }
+        console.log(str, length, index)
+        return length
+      }
+
+      window.demo = hammingWeight(3)
+    </script>
+    <script src="../assets/codeHighlight-2.0.js"></script>
+  </body>
+</html>

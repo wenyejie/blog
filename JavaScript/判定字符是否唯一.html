@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8" />
+    <title>判定字符是否唯一</title>
+    <meta name="" />
+  </head>
+  <body>
+    <script data-code-highlight="javascript">
+      // https://leetcode-cn.com/problems/is-unique-lcci/
+      /**
+       * @param {string} str
+       * @return {boolean}
+       */
+      const isUnique = function(str) {
+        // 哈希map
+        // const map = Object.create(null)
+        // for (let i = 0; i < str.length; i++) {
+        //   if (map[str[i]]) {
+        //     return false
+        //   } else {
+        //     map[str[i]] = true
+        //   }
+        // }
+        // return true
+
+        // indexOf查找
+        for (let i = 0; i < str.length; i++) {
+          if (str.indexOf(str[i], i + 1) >= 0) {
+            return false
+          }
+        }
+        return true
+      }
+
+      window.demo = isUnique('abc')
+    </script>
+    <script src="../assets/codeHighlight-2.0.js"></script>
+  </body>
+</html>

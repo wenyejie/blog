@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8" />
+    <title>最大数值</title>
+    <meta name="" />
+  </head>
+  <body>
+    <script data-code-highlight="javascript">
+      // https://leetcode-cn.com/problems/generate-a-string-with-characters-that-have-odd-counts/
+      /**
+       * @param {number} n
+       * @return {string}
+       */
+      const generateTheString = (n) => (n % 2 === 0 ? 'a' : '').padEnd(n, 'b')
+
+      window.demo = generateTheString(2)
+    </script>
+    <script src="../assets/codeHighlight-2.0.js"></script>
+  </body>
+</html>

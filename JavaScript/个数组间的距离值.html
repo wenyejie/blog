@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8" />
+    <title>个数组间的距离值</title>
+  </head>
+  <body>
+    <script data-code-highlight="javascript">
+      // https://leetcode-cn.com/problems/find-the-distance-value-between-two-arrays/
+      /**
+       * @param {number[]} arr1
+       * @param {number[]} arr2
+       * @param {number} d
+       * @return {number}
+       */
+      const findTheDistanceValue = (arr1, arr2, d) => {
+        let distance = 0
+        for (let i = 0; i < arr1.length; i++) {
+          for (let j = 0; j < arr2.length; j++) {
+            console.log(Math.abs(arr1[i] - arr2[j]), arr1[i], arr2[j])
+            if (Math.abs(arr1[i] - arr2[j]) <= d) {
+              break
+            }
+            if (j === arr2.length - 1) {
+              distance++
+            }
+          }
+        }
+        return distance
+      }
+
+      window.demo = findTheDistanceValue([1, 4, 2, 3], [-4, -3, 6, 10, 20, 30], 3)
+    </script>
+    <script src="../assets/codeHighlight-2.0.js"></script>
+  </body>
+</html>
