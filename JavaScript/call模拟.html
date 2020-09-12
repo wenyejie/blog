@@ -1,0 +1,36 @@
+<!doctype html>
+<!--
+ - @author: Storm
+ - @date: 2020-09-13
+ - @email: wenyejie@foxmail.com
+ -->
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <title>call模拟</title>
+</head>
+<body>
+
+  <script>
+
+  const simulateCall = (fn, that = {}, ...params) => {
+    that.fn = fn
+
+    const result = that.fn(...params)
+    delete that.fn
+    return result
+  }
+
+  function test () {
+    console.log('i`m test!', this)
+    return 'hello'
+  }
+
+  const obj = {name: 'storm'}
+
+  const result = simulateCall(test, obj, 'new', 20)
+
+  console.log(result)
+  </script>
+</body>
+</html>
