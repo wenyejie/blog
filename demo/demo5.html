@@ -4,55 +4,22 @@
     <meta charset="utf-8" />
     <title>兔狲</title>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.20/lodash.min.js"></script>
   </head>
   <body>
-    <div id="app">
-      <child1><template slot-scope="scope">{{ scope }}</template></child1>
-      <child2><template slot-scope="scope">{{ scope }}</template></child2>
-    </div>
-
-    <script type="vue-template" id="child1-template">
-      <div>
-        child1
-        <slot v-bind:user="user"></slot>
-      </div>
-    </script>
-
-    <script type="vue-template" id="child2-template">
-      <div>
-        child2
-        <slot v-bind:user="user"></slot>
-      </div>
-    </script>
+    <div id="app"></div>
     <script>
-      const app = new Vue({
-        el: '#app',
-        data() {
-          return {}
-        },
-        components: {
-          child1: {
-            template: '#child1-template',
-            data() {
-              return {
-                user: {
-                  name: 'child1'
-                }
-              }
-            }
-          },
-          child2: {
-            template: '#child2-template',
-            data() {
-              return {
-                user: {
-                  name: 'child2'
-                }
-              }
-            }
-          }
-        }
-      })
+      const s1 = Symbol('s1')
+
+      const obj = {
+        [s1]: 's1 value',
+        name: '兔狲'
+      }
+      console.log(obj, s1)
+
+      for (let key in obj) {
+        console.log(key, obj[key])
+      }
     </script>
   </body>
 </html>

@@ -1,32 +1,31 @@
-<!doctype html>
+<!DOCTYPE html>
 <!--
  - @author: Storm
  - @date: 2020-09-13
  - @email: wenyejie@foxmail.com
  -->
 <html lang="zh-cn">
-<head>
-  <meta charset="utf-8">
-  <title>new模拟</title>
-</head>
-<body>
- 主要利用Object.create的特性, 会把传入的第一个参数作为原型链的指向原型
-  <script>
+  <head>
+    <meta charset="utf-8" />
+    <title>new模拟</title>
+  </head>
+  <body>
+    主要利用Object.create的特性, 会把传入的第一个参数作为原型链的指向原型
+    <script>
+      const simulateNew = (fn, ...params) => {
+        const obj = Object.create(fn.prototype)
+        fn.call(obj, ...params)
+        return obj
+      }
 
-  const simulateNew = (fn, ...params) => {
-    const obj = Object.create(fn.prototype)
-    fn.call(obj, ...params)
-    return obj
-  }
+      function Student(name, age) {
+        this.name = name
+        this.age = age
+      }
 
-  function Student (name, age) {
-    this.name = name
-    this.age = age
-  }
+      const result = simulateNew(Student, 'new', 20)
 
-  const result = simulateNew(Student, 'new', 20)
-
-  console.log(result)
-  </script>
-</body>
+      console.log(result)
+    </script>
+  </body>
 </html>
