@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8" />
+    <title>二进制转十进制</title>
+  </head>
+  <body>
+    <script data-code-highlight="javascript">
+      // https://leetcode-cn.com/problems/find-the-distance-value-between-two-arrays/
+      function binary2decimal(binary) {
+        const str = binary.toString()
+        let result = 0
+        for (let i = str.length - 1; i >= 0; i--) {
+          if (str[i] === '1') {
+            result += Math.pow(2, i)
+          }
+        }
+        return result
+      }
+
+      window.demo = binary2decimal(-1001)
+    </script>
+    <script src="../assets/codeHighlight-2.0.js"></script>
+  </body>
+</html>

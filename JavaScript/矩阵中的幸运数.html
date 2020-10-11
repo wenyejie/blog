@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8" />
+    <title>矩阵中的幸运数</title>
+  </head>
+  <body>
+    <script data-code-highlight="javascript">
+      // https://leetcode-cn.com/problems/lucky-numbers-in-a-matrix/
+      /**
+       * @param {number[][]} matrix
+       * @return {number[]}
+       */
+      const luckyNumbers = (matrix) => {
+        const mins = []
+        const maxs = []
+        for (let i = 0; i < matrix.length; i++) {
+          mins.push(Math.min(...matrix[i]))
+        }
+
+        for (let i = 0; i < matrix[0].length; i++) {
+          let child = []
+          for (let j = 0; j < matrix.length; j++) {
+            child.push(matrix[j][i])
+          }
+          maxs.push(Math.max(...child))
+        }
+        const result = []
+        for (let i = 0; i < mins.length; i++) {
+          if (maxs.includes(mins[i])) {
+            result.push(mins[i])
+          }
+        }
+        return result
+      }
+
+      window.demo = luckyNumbers([
+        [3, 7, 8],
+        [9, 11, 13],
+        [15, 16, 17]
+      ])
+    </script>
+    <script src="../assets/codeHighlight-2.0.js"></script>
+  </body>
+</html>

@@ -4,12 +4,12 @@
   "description": "blog",
   "main": "http.js",
   "dependencies": {
-    "async-validator": "^3.2.4",
-    "wenyejie-utils": "^1.0.17"
+    "async-validator": "^3.4.0",
+    "wenyejie": "^1.16.0"
   },
   "devDependencies": {
     "prettier": "^1.19.1",
-    "typescript": "^3.8.3"
+    "typescript": "^3.9.7"
   },
   "scripts": {
     "test": "test"

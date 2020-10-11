@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8" />
+    <title>二叉搜索树的第k大节点</title>
+  </head>
+  <body>
+    <script data-code-highlight="javascript">
+      // https://leetcode-cn.com/problems/er-cha-sou-suo-shu-de-di-kda-jie-dian-lcof/
+      /**
+       * Definition for a binary tree node.
+       * function TreeNode(val) {
+       *     this.val = val;
+       *     this.left = this.right = null;
+       * }
+       */
+      /**
+       * @param {TreeNode} root
+       * @param {number} k
+       * @return {number}
+       */
+      const kthLargest = (root, k) => {
+        function dfs(root) {
+          let res
+          if (k && root) {
+            res = dfs(root.right)
+            k--
+            if (k === 0) return root.val
+            res = dfs(root.left) || res
+          }
+          return res
+        }
+        return dfs(root)
+      }
+
+      window.demo = kthLargest(
+        {
+          val: 3,
+          left: {
+            val: 1,
+            left: null,
+            right: {
+              val: 2,
+              left: null,
+              right: null
+            }
+          },
+          right: {
+            val: 4,
+            left: null,
+            right: null
+          }
+        },
+        1
+      )
+    </script>
+    <script src="../assets/codeHighlight-2.0.js"></script>
+  </body>
+</html>

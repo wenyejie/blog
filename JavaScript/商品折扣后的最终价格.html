@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8" />
+    <title>商品折扣后的最终价格</title>
+  </head>
+  <body>
+    <script data-code-highlight="javascript">
+      // https://leetcode-cn.com/problems/final-prices-with-a-special-discount-in-a-shop/
+      /**
+       * @param {number[]} prices
+       * @return {number[]}
+       */
+      const finalPrices = function(prices) {
+        for (let i = 0; i < prices.length; i++) {
+          for (let j = i + 1; j < prices.length; j++) {
+            if (prices[i] > prices[j]) {
+              prices[i] = prices[i] - prices[j]
+              break
+            }
+          }
+        }
+        return prices
+      }
+
+      window.demo = finalPrices([8, 4, 6, 2, 3])
+    </script>
+    <script src="../assets/codeHighlight-2.0.js"></script>
+  </body>
+</html>

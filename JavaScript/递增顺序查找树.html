@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8" />
+    <title>递增顺序查找树</title>
+  </head>
+  <body>
+    <script data-code-highlight="javascript">
+      // https://leetcode-cn.com/problems/increasing-order-search-tree/
+      // TODO: 待完成
+      /**
+       * Definition for a binary tree node.
+       * function TreeNode(val) {
+       *     this.val = val;
+       *     this.left = this.right = null;
+       * }
+       */
+      /**
+       * @param {TreeNode} root
+       * @return {TreeNode}
+       */
+      /*const increasingBST = function(root) {
+        const findRight = (root) => {
+          while (root !== null && root.right !== null) {
+            root = root.right
+          }
+          return root
+        }
+
+        let current = root.right
+
+        while (root !== null && root.left !== null && root.right !== null) {
+          const left = root.left
+          root.left = null
+          const right = findRight(left)
+          right.right = root
+          root = left
+        }
+
+        while (current !== null) {
+          if (current.left === null) {
+            current = current.right
+          } else if (current.right === null) {
+
+          }
+        }
+
+        return root
+      }*/
+
+      const findRight = (root) => {
+        while (root !== null && root.right !== null) {
+          root = root.right
+        }
+        return root
+      }
+
+      const increasingBST = (root) => {
+        if (root === null) {
+          return root
+        }
+        while (root.left !== null) {
+          const left = root.left
+          const right = findRight(left)
+          root.left = null
+          right.right = root
+          root = left
+        }
+        let current = root
+        // while (current.right !== null) {
+        //   debugger
+        //   const right = current.right
+        //   if (right.left === null) {
+        //     current = current.right
+        //     continue
+        //   }
+        //   const rLeft = right.left
+        //   const rRight = findRight(rLeft)
+        //   current.left = null
+        //   rRight.right = current
+        //   current = rLeft
+        // }
+        return root
+      }
+
+      window.demo = increasingBST({
+        val: 3,
+        left: null,
+        right: {
+          val: 5,
+          left: {
+            val: 4,
+            left: null,
+            right: null
+          },
+          right: null
+        }
+      })
+
+      // window.demo = increasingBST({
+      //   val: 2,
+      //   left: {
+      //     val: 1,
+      //     left: null,
+      //     right: null
+      //   },
+      //   right: {
+      //     val: 3,
+      //     left: null,
+      //     right: {
+      //       val: 5,
+      //       left: {
+      //         val: 4,
+      //         left: null,
+      //         right: null
+      //       },
+      //       right: null
+      //     }
+      //   }
+      // })
+
+      /*{
+        val: 5,
+        left: {
+          val: 3,
+          left: {
+            val: 2,
+            left: {
+              val: 1,
+              left: null,
+              right: null
+            },
+            right: null
+          },
+          right: {
+            val: 4,
+            left: null,
+            right: null
+          }
+        },
+        right: {
+          val: 6,
+          left: null,
+          right: {
+            val: 8,
+            left: {
+              val: 7,
+              left: null,
+              right: null
+            },
+            right: {
+              val: 9,
+              left: null,
+              right: null
+            }
+          }
+        }
+      }*/
+    </script>
+    <script src="../assets/codeHighlight-2.0.js"></script>
+  </body>
+</html>

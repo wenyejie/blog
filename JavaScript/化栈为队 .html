@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8" />
+    <title>化栈为队</title>
+  </head>
+  <body>
+    <script data-code-highlight="javascript">
+      // https://leetcode-cn.com/problems/implement-queue-using-stacks-lcci/
+      /**
+       * Initialize your data structure here.
+       */
+      const MyQueue = function() {
+        this.stack = []
+        this.stack1 = []
+      }
+
+      /**
+       * Push element x to the back of queue.
+       * @param {number} x
+       * @return {void}
+       */
+      MyQueue.prototype.push = function(x) {
+        while (this.stack1.length !== 0) {
+          this.stack.push(this.stack1.pop())
+        }
+        this.stack.push(x)
+      }
+
+      /**
+       * Removes the element from in front of queue and returns that element.
+       * @return {number}
+       */
+      MyQueue.prototype.pop = function() {
+        while (this.stack.length !== 0) {
+          this.stack1.push(this.stack.pop())
+        }
+        return this.stack1.pop()
+      }
+
+      /**
+       * Get the front element.
+       * @return {number}
+       */
+      MyQueue.prototype.peek = function() {
+        while (this.stack.length !== 0) {
+          this.stack1.push(this.stack.pop())
+        }
+        return this.stack1[this.stack1.length - 1]
+      }
+
+      /**
+       * Returns whether the queue is empty.
+       * @return {boolean}
+       */
+      MyQueue.prototype.empty = function() {
+        return this.stack.length === 0 && this.stack1.length === 0
+      }
+
+      /**
+       * Your MyQueue object will be instantiated and called as such:
+       * var obj = new MyQueue()
+       * obj.push(x)
+       * var param_2 = obj.pop()
+       * var param_3 = obj.peek()
+       * var param_4 = obj.empty()
+       */
+
+      const obj = new MyQueue()
+      obj.push(1)
+      obj.push(2)
+      const param_3 = obj.peek()
+      const param_2 = obj.pop()
+      const param_4 = obj.empty()
+
+      window.demo = obj
+    </script>
+    <script src="../assets/codeHighlight-2.0.js"></script>
+  </body>
+</html>
