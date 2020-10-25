@@ -2,47 +2,158 @@
 <html lang="zh-cn">
   <head>
     <meta charset="utf-8" />
-    <title>百度地图定位</title>
-    <link rel="stylesheet" href="./assets/prism.css" />
+    <title>石头剪刀布</title>
+    <style>
+      *,
+      ::after,
+      ::before {
+        box-sizing: border-box;
+      }
+      * {
+        outline: none;
+        -webkit-tap-highlight-color: transparent;
+        -webkit-touch-callout: none;
+        -webkit-overflow-scrolling: touch;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        font-family: sans-serif;
+        -ms-text-size-adjust: 100%;
+        -webkit-text-size-adjust: 100%;
+      }
+      html {
+        /*触摸动作, 防止双击*/
+        touch-action: manipulation;
+      }
+      body {
+        font: 16px/1.4285714285714286 Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'PingFangSC',
+          'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', sans-serif;
+        color: #202020;
+        background-color: #fff;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      #app {
+        width: 640px;
+        margin: 0 auto;
+      }
+      .statistics {
+        display: flex;
+        justify-content: space-around;
+      }
+      .statistics--count {
+        display: block;
+        text-align: center;
+      }
+      .result {
+        display: flex;
+        justify-content: space-around;
+        margin: 15px 0;
+      }
+      .result--item {
+        height: 200px;
+        width: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #c0c0c0;
+      }
+      .modes {
+        display: flex;
+        justify-content: space-around;
+      }
+      .modes--item {
+        width: 100px;
+        height: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #c0c0c0;
+        cursor: pointer;
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/wenyejie@1.16.0/dist/wenyejie.min.js"></script>
   </head>
   <body>
-    <pre><code data-code-highlight="javascript" class="language-javascript"></code></pre>
-    <span id="demo"></span>
-    <pre id="result"></pre>
-    <script
-      type="text/javascript"
-      src="http://api.map.baidu.com/api?v=2.0&amp;ak=E4805d16520de693a3fe707cdc962045"
-    ></script>
-    <!--<script
-      src="http://code.jquery.com/jquery-3.4.1.min.js"
-      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-      crossorigin="anonymous"
-    ></script>-->
+    <article id="app">
+      <header class="statistics">
+        <div>Your Win <span class="statistics--count">{{ statistics.user }}</span></div>
+        <div>TIE <span class="statistics--count">{{ statistics.tie }}</span></div>
+        <div>Robot Win <span class="statistics--count">{{ statistics.robot }}</span></div>
+      </header>
+      <main class="result">
+        <div class="result--item result--user">{{ modes[last.user] && modes[last.user].label }}</div>
+        <div class="result--item result--ai">{{ modes[last.robot] && modes[last.robot].label }}</div>
+      </main>
+      <footer class="modes">
+        <div class="modes--item" v-for="item in modes" :key="item.value" @click="handleClick(item)">
+          {{ item.label }}
+        </div>
+      </footer>
+    </article>
     <script data-code-highlight="javascript">
-      const geolocation = new BMap.Geolocation()
-      geolocation.getCurrentPosition(
-        function(r) {
-          document.querySelector('#result').innerHTML = JSON.stringify(r, '\n\s', 2)
-          if (this.getStatus() === BMAP_STATUS_SUCCESS) {
-            document.querySelector('#demo').innerHTML = '您的位置：' + r.point.lng + ',' + r.point.lat
-          } else {
-            alert('failed' + this.getStatus())
+      const app = new Vue({
+        el: '#app',
+        data: {
+          modes: [
+            {
+              value: 0,
+              label: '剪刀',
+              win: 2,
+              lost: 1,
+              tie: 0
+            },
+            {
+              value: 1,
+              label: '石头',
+              win: 0,
+              lost: 2,
+              tie: 1
+            },
+            {
+              value: 2,
+              label: '布',
+              win: 1,
+              lost: 0,
+              tie: 2
+            }
+          ],
+          statistics: {
+            user: 0,
+            tie: 0,
+            robot: 0
+          },
+          history: []
+        },
+        computed: {
+          last() {
+            return this.history.length > 0 ? this.history[this.history.length - 1] : {}
           }
         },
-        { enableHighAccuracy: true }
-      )
-      //关于状态码
-      //BMAP_STATUS_SUCCESS	检索成功。对应数值“0”。
-      //BMAP_STATUS_CITY_LIST	城市列表。对应数值“1”。
-      //BMAP_STATUS_UNKNOWN_LOCATION	位置结果未知。对应数值“2”。
-      //BMAP_STATUS_UNKNOWN_ROUTE	导航结果未知。对应数值“3”。
-      //BMAP_STATUS_INVALID_KEY	非法密钥。对应数值“4”。
-      //BMAP_STATUS_INVALID_REQUEST	非法请求。对应数值“5”。
-      //BMAP_STATUS_PERMISSION_DENIED	没有权限。对应数值“6”。(自 1.1 新增)
-      //BMAP_STATUS_SERVICE_UNAVAILABLE	服务不可用。对应数值“7”。(自 1.1 新增)
-      //BMAP_STATUS_TIMEOUT	超时。对应数值“8”。(自 1.1 新增)
+        methods: {
+          robotHandle() {
+            const history = this.history
+            return wenyejie.randomInteger(2)
+          },
+          handleClick(item) {
+            console.log('user:', item)
+            const robot = this.robotHandle(item)
+            if (item.win === robot) {
+              this.statistics.user++
+            } else if (item.lost === robot) {
+              this.statistics.robot++
+            } else if (item.tie === robot) {
+              this.statistics.tie++
+            }
+            this.history.push({
+              user: item.value,
+              robot
+            })
+          }
+        }
+      })
     </script>
-    <script src="./assets/codeHighlight.js"></script>
-    <script src="./assets/prism.js"></script>
   </body>
 </html>
