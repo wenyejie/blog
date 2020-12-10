@@ -1,0 +1,33 @@
+<!doctype html>
+<!--
+ - @author: Storm
+ - @date: 12/10/20
+ - @email: wenyejie@foxmail.com
+ -->
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <title>new</title>
+</head>
+<body>
+  <script>
+  const shimNew = (fn, ...params) => {
+    const obj = Object.create(fn.prototype)
+    fn.call(obj, ...params)
+    return obj
+  }
+
+  function Person (name, age) {
+    this.name = name
+    this.age = age
+  }
+  Person.prototype.sayHi = function () {
+    console.log(`HI, ${this.name}`)
+  }
+
+  const storm = shimNew(Person, 'storm', 18)
+
+  console.log(storm)
+  </script>
+</body>
+</html>
