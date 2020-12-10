@@ -1,0 +1,35 @@
+<!doctype html>
+<!--
+ - @author: Storm
+ - @date: 12/11/20
+ - @email: wenyejie@foxmail.com
+ -->
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <title>bind</title>
+</head>
+<body>
+  <script>
+    function shimBind (obj = window, fn, ...params) {
+      return function () {
+        return fn.call(obj, ...params)
+      }
+    }
+
+    function Person (name, age) {
+      this.name = name
+      this.age = age
+    }
+    Person.prototype.sayHi = function () {
+      console.log(`HI, ${this.name}`)
+    }
+
+    const obj = {}
+    const fn = shimBind(obj, Person, 'storm', 18)
+    console.log(obj)
+    fn()
+    console.log(obj)
+  </script>
+</body>
+</html>
