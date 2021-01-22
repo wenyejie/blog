@@ -17,7 +17,13 @@ const insertSort = (data) => {
   }
   for (let i = 0; i < length - 1; i++) {
     for (let j = i + 1; j > 0; j--) {
-
+      if (data[j] >= data[j - 1]) {
+        break
+      } else {
+        const temp = data[j]
+        data[j] = data[j - 1]
+        data[j - 1] = temp
+      }
     }
   }
   return data
